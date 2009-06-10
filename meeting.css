@@ -1,0 +1,273 @@
+/* Layout Stylesheet */ 
+body {
+	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+
+#container {
+  
+  float:top;
+  left:0%;
+  top:0%;
+  width: 600px;
+  height:90%;
+}	
+
+/* Links */
+
+a,
+a:link,
+a:visited,
+a:active {
+	color: #4F7500;
+	text-decoration: underline;
+}
+a:hover {
+	color: #395500;
+	background: #EFF9D0;
+
+}
+
+
+a.linkdate ,
+a.linkdate:link,
+a.linkdate:visited,
+a.linkdate:active {
+   text-decoration:none;
+   color: #000000;
+}
+a.linkdate:hover {
+   text-decoration:none;
+   color: #FFFFFF;
+   background:  #97CB7A;
+}
+
+ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        }
+		
+
+input.text,
+textarea {
+	padding: 2px 3px;
+	vertical-align: middle;
+	border: 1px solid #C0BBB4;
+}
+
+input.text:hover,
+textarea:hover {
+	border: 1px solid #6BA4D7;
+}
+
+p.pollintro {
+	background-color:#eee; border:1px solid #ccc;padding:5px;
+}
+
+hr {
+	height: 1px;
+	border: 0;
+	border-top: 1px dashed #CCCCCC;
+}
+
+.descriptionBlock {
+	PADDING-LEFT: 1em; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 10px; BORDER-LEFT: #e0e0e0 3px solid
+}
+
+/* TABLES */
+
+TD.dht {
+	BORDER-RIGHT: #999999 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #999999 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: top; BORDER-LEFT: #999999 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #999999 1px solid; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #ccc; TEXT-ALIGN: center
+}
+TD.mh {
+	BORDER-RIGHT: #888 1px solid; BORDER-TOP: #888 1px solid; BORDER-LEFT: #888 1px solid; BORDER-BOTTOM: #888 1px solid; BACKGROUND-COLOR: #bbb;TEXT-ALIGN: center;
+}
+TD.th {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; BORDER-BOTTOM: #aaa 1px solid; BACKGROUND-COLOR: #ddd;TEXT-ALIGN: center;
+}
+}
+TD.dh {
+	BORDER-RIGHT: #999999 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #999999 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: top; BORDER-LEFT: #999999 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #999999 1px solid; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #ccc; TEXT-ALIGN: center;
+}
+TD.nh {
+	BORDER-RIGHT: #aaa 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #aaa 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: middle; BORDER-LEFT: #aaa 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #aaa 1px solid; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #ddd; TEXT-ALIGN: right
+}
+
+TD.en {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: middle; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+TD.es {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: middle; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+
+TD.en {
+	BORDER-RIGHT: #c66 1px solid; BORDER-TOP: #c66 1px solid; FONT-SIZE: 80%; BORDER-LEFT: #c66 1px solid; BORDER-BOTTOM: #c66 1px solid; BACKGROUND-COLOR: #f99
+}
+TD.es {
+	BORDER-RIGHT: #6c6 1px solid; BORDER-TOP: #6c6 1px solid; FONT-SIZE: 80%; BORDER-LEFT: #6c6 1px solid; BORDER-BOTTOM: #6c6 1px solid; BACKGROUND-COLOR: #9f9;
+}
+TD.mh {
+	BORDER-RIGHT: #888 1px solid; BORDER-TOP: #888 1px solid; BORDER-LEFT: #888 1px solid; BORDER-BOTTOM: #888 1px solid; BACKGROUND-COLOR: #bbb
+}
+TD.ic {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: middle; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+TD.ic {
+	BORDER-RIGHT: #aaa 1px solid; BORDER-TOP: #aaa 1px solid; BORDER-LEFT: #aaa 1px solid; BORDER-BOTTOM: #aaa 1px solid; BACKGROUND-COLOR: #ddd
+}
+TD.shl {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: bottom; COLOR: #060; BORDER-TOP-STYLE: none; PADDING-TOP: 3px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-ALIGN: center; BORDER-BOTTOM-STYLE: none
+}
+TD.sht {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: bottom; COLOR: #060; BORDER-TOP-STYLE: none; PADDING-TOP: 3px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-ALIGN: center; BORDER-BOTTOM-STYLE: none
+}
+TD.sht {
+	BORDER-TOP: #006600 1px; FONT-WEIGHT: bold
+}
+TD.shleft {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; VERTICAL-ALIGN: top; BORDER-TOP-STYLE: none; PADDING-TOP: 3px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-ALIGN: right; BORDER-BOTTOM-STYLE: none
+}
+
+tr.impaire {
+
+   background-color:#f9f8f1;
+
+}
+
+tr.paire {
+
+   background-color:#f2efe3;
+
+}
+
+/* BUTTONS */
+
+.buttons a, .buttons button{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:100%;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#565656;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+}
+
+.buttons button{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px; /* IE6 */
+}
+.buttons button[type]{
+    padding:5px 10px 5px 7px; /* Firefox */
+    line-height:17px; /* Safari */
+}
+*:first-child+html button[type]{
+    padding:4px 10px 3px 7px; /* IE7 */
+}
+.buttons button img, .buttons a img{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+button:hover, .buttons a:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons a:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+/* TIPS */
+a.tip{
+ color:red;
+ text-decoration:none;
+ position:relative;
+}
+
+a.tip span {display:none;}
+a.tip:hover {cursor:hand;}
+a.tip:hover .popbox {
+ display:block; 
+ position:absolute; 
+ top:15px;
+ left:-220px;
+ width:240px; 
+ background-color:#424242; 
+ color:#fff;  
+ padding:10px;
+ filter:alpha(opacity=90); /* IE */
+-moz-opacity:0.90; /* Moz + FF */
+opacity: 0.9; 
+}
+
+.poll_help
+{
+position:absolute;
+left:0%;
+top:30%;
+}
+
+.poll_bann
+{
+position:absolute;
+top:0%;
+left:0%;
+width:100%;
+height:5%;
+}
+
+.poll_titre
+{
+position:absolute;
+top:5%;
+left:0%;
+width:100%;
+height:15%;
+}
+
+.poll_help
+{
+text-align:left;
+position:absolute;
+top:20%;
+left:0%;
+width:100%;
+height:10%;
+}
+
+.poll_tab
+ {
+ position:absolute;
+ top:30%;
+ left:0%;
+ width:100%;
+ }
+ 
+ .footer
+ {
+position:absolute;
+top:95%;
+text-align:center;
+ width:600px;
+ height:50px;
+ }
+ 
+
+
