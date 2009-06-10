@@ -1,0 +1,13 @@
+Configuration requise
+=====================
+- PHP5
+- MySQL
+- Pear DB
+- phpCAS
+
+Installation
+============
+1. Decompression l'archive
+2. Configurer l'adresse de BD dans le fichier "includes/config.inc.php"
+3. Le script de la creation de table est le fichier "createtable.sql". Executer le.
+4. Configurer le serveur CAS dans le fichier "includes/config.inc.php".

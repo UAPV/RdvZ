@@ -1,0 +1,7 @@
+Required Configuration : PHP 5 - MySQL 2
+
+Installation instructions 
+
+1- Create a 'rdvz' mySQL database
+2- Create the tables with the DB.sql script
+3- Fill the settings in the includes/config.inc.php file (all is explained in that file)

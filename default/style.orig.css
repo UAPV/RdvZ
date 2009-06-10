@@ -1,0 +1,415 @@
+body
+{
+  font-family: Verdana, Arial, Helvetica, Geneva, sans-serif;
+  font-size: 10pt;
+  background-color: #E0E0E0;
+  background-image: url(images/dottile.gif);  
+}
+
+#page
+{
+  width: 800px;
+  margin: 10px auto;
+  background-color: white;
+  padding: 10px 10px 200px 10px;
+  -moz-border-radius: 20px;
+}
+
+h1, h2
+{
+  color: #A8A29A;
+}
+
+h1
+{
+  text-align: center;
+}
+
+h2.step1
+{
+  background: url(images/stat_forum.gif) no-repeat top left;
+  padding-left: 35px;
+  height: 32px;
+  padding-top: 5px;
+}
+
+h2.step2
+{
+  background: url(images/stat_calendar.gif) no-repeat top left;
+  padding-left: 35px;
+  height: 32px;
+  padding-top: 5px;
+}
+
+h2.thanks
+{
+  background: url(images/OK.png) no-repeat top left;
+  padding-left: 35px;
+  height: 32px;
+  padding-top: 5px;
+}
+
+h3.dates-selected
+{
+  background: url(images/arrow.gif) no-repeat top left;
+  padding-left: 25px;
+  padding-top: 2px;
+  font-size: 100%;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px dashed #CCCCCC;
+}
+
+.biglink
+{
+  font-weight: bold;
+}
+
+.meeting-table
+{
+  background-color: #c0c0c0;
+  width: 100%;
+  border-spacing: 1px;
+}
+
+.meeting-table th
+{
+  background-color: #E4E2DA;
+  font-weight: normal;
+}
+
+.meeting-table td
+{
+  background-color: #F1F0EB;
+}
+
+.meeting-table td.column-code
+{
+  width: 90px;
+  text-align: center;
+}
+
+.meeting-table td.column-action
+{
+  width: 150px;
+  text-align: center;
+}
+
+/* BUTTONS */
+
+.buttons
+{
+  clear: both;
+}
+
+.buttons a, .buttons button{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:100%;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#565656;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+}
+
+.buttons button{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px; /* IE6 */
+}
+.buttons button[type]{
+    padding:5px 10px 5px 7px; /* Firefox */
+    line-height:17px; /* Safari */
+}
+*:first-child+html button[type]{
+    padding:4px 10px 3px 7px; /* IE7 */
+}
+.buttons button img, .buttons a img{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+button:hover, .buttons a:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons a:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+.buttons button.next
+{
+  background-image: url(images/next.png);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: 25px;
+}
+
+input.cancel, input.next, input.save
+{
+  font-weight: bold;
+  color: #565656;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding: 5px 5px 5px 22px;
+  background-color:#f5f5f5;
+  border-color: #dedede;
+  border-width: 1px;
+  margin-top: 10px;
+}
+
+input.cancel
+{
+  background-image: url(images/cross.png);
+}
+
+input.next
+{
+  background-image: url(images/next.png);
+}
+
+input.save
+{
+  background-image: url(images/save.png);
+}
+
+input.cancel:hover, input.next:hover, input.save:hover
+{
+  background-color: #dff4ff;
+  color: #336699;
+}
+
+/* INPUTS */
+
+input.text, textarea
+{
+  padding: 2px 3px;
+  vertical-align: middle;
+  border: 1px solid #C0BBB4;
+}
+
+input.text:hover, textarea:hover
+{
+  border: 1px solid #6BA4D7;
+}
+
+.calendar
+{
+  width: 300px;
+  text-align: center;
+  float: left;
+}
+
+.calendar table
+{
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+.calendar table td, .calendar th
+{
+  border: 1px solid grey;
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.calendar table td.nonexistent
+{
+  background-color: #F0F0F0;
+}
+
+.calendar table td.unavailable
+{
+  color: #C0C0C0;
+}
+
+.chosen-dates
+{
+  padding-left: 320px;
+}
+
+.poll-table tr th
+{
+  font-weight: normal;
+}
+
+.poll-table tr th.month
+{
+  background-color: #bbbbbb;
+  border: 1px solid #888888;
+}
+
+.poll-table tr th.day
+{
+  background-color: #cccccc;
+  border: 1px solid #999999;
+}
+
+.poll-table tr th.possibility
+{
+  background-color: #dddddd;
+  border: 1px solid #aaaaaa;
+  width: 50px;
+}
+
+.poll-table tr td
+{
+  text-align: center;
+}
+
+.poll-table tr.vote th
+{
+  background-color: #dddddd;
+  border: 1px solid #aaaaaa;
+}
+
+.poll-table tr.vote td
+{
+  width: 50px;
+}
+
+.poll-table tr.vote td .label
+{
+  visibility: hidden;
+  display: none;
+}
+
+.poll-table tr.vote th
+{
+  text-align: left;
+}
+
+.poll-table tr.vote th.authentified
+{
+  background-image: url(images/user_auth.gif);
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 20px;
+}
+
+.poll-table tr.vote td.ok
+{
+  border: 1px solid #6c6;
+  background: #9f9 url(images/check_mark.gif) no-repeat center center;
+
+}
+
+.poll-table tr.vote td.not-ok
+{
+  border: 1px solid #c66;
+  background-color: #f99;
+}
+
+.poll-table tr.voteboxes td, .poll-table tr.voteboxes th
+{
+  background-color: #dddddd;
+  border: 1px solid #aaaaaa;
+}
+
+/*
+
+  BORDER-RIGHT: #c66 1px solid; BORDER-TOP: #c66 1px solid; FONT-SIZE: 80%; BORDER-LEFT: #c66 1px solid; BORDER-BOTTOM: #c66 1px solid; BACKGROUND-COLOR: #f99
+}
+TD.es {
+    BORDER-RIGHT: #6c6 1px solid; BORDER-TOP: #6c6 1px solid; FONT-SIZE: 80%; BORDER-LEFT: #6c6 1px solid; BORDER-BOTTOM: #6c6 1px solid; BACKGROUND-COLOR: #9f9;
+*/
+
+.error
+{
+  color: red;
+  font-weight: bold;
+}
+
+.warning
+{
+  color: orange;
+  font-weight: bold;
+  background-image: url(images/warning.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 25px;
+}
+
+.help
+{
+  color: #9DBADF;
+  font-weight: bold;
+  background-image: url(images/help.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 25px;
+}
+
+.edit-link
+{
+  background-image: url(images/edit.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 20px;
+}
+
+.delete-link
+{
+  background-image: url(images/del.gif);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 20px;
+  display:block;
+}
+
+.add-link
+{
+  background-image: url(images/add.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 20px;
+  display:block;
+}
+
+.export-link
+{
+  background-image: url(images/export.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 20px;
+  display:block;
+}
+
+
+.footer
+{
+position:absolute;
+top:80%;
+left:40%;
+height:15%;
+width:20%;
+text-align:center;
+}
+.footer img
+{
+border:0;
+}
+.footer a
+{
+text-decoration:none;
+}
+
+
