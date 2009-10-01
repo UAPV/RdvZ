@@ -190,7 +190,6 @@
   function get_infos($uid, $infos,$mode = 0)
   {
   	$ldap_server=get_serveur();
-    return $ldap_server;
    
   	if($connect=ldap_connect($ldap_server))
     // on se connecte sur un des serveurs disponibles

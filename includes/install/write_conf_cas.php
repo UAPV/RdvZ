@@ -169,7 +169,7 @@ $res =$BDD->query($sql);
 		  aifna varchar(1) NOT NULL default 'N',
 		  notif varchar(1) NOT NULL default 'N',
 		  comments varchar(1) NOT NULL default 'N',
-		  date_comments varchar(1) NOT NULL default 'N',
+		  datecomments varchar(1) NOT NULL default 'N',
 		  PRIMARY KEY (mid)
 		)";
 		
