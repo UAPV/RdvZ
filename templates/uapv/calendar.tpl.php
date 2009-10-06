@@ -56,7 +56,7 @@
                 <?php echo $i - $tpl_data['selected_date']['first_day'] + 1; ?>
               </a>
             </td>
-<?
+<?php
         }
       }
     }

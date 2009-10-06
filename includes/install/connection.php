@@ -1,6 +1,8 @@
 <?php 
-require_once('../DB/DB.php');
-require_once('../config.inc.php');
+//require_once('../DB/DB.php');
+//require_once('../config.inc.php');
+require_once('includes/DB/DB.php');
+require_once('includes/install/config.inc.php');
 
 
 
