@@ -1,0 +1,19 @@
+RdvZ ChangeLog
+
+version 1.2.2
+  2009-10-06 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+
+  * includes/install/connection.php : correction d'erreurs dans la définition
+  de chemins relatifs qui causaient des bugs dans l'installation.
+  
+  * templates/uapv/calendar.tpl.php : correction d'une erreur de syntaxe PHP
+  qui provoquait une Fatal error.
+
+  * ChangeLog : création d'un log de versions.
+
+version 1.2.1
+  2009-10-01 Arnaud Didry <arnaud.didry@univ-avignon.fr>
+
+  * includes/ldap_lecture.php : bugfix de la fonction get_infos().
+
+  * includes/install/write_conf_cas.php : remplacement de date_comments par datecomments lors de la création de la bdd.
