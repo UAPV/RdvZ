@@ -1,0 +1,19 @@
+meeting:
+  class: sfDoctrineRouteCollection
+  options: { model: meeting }         
+meeting_show:
+  url: /meeting/show/h/:h
+  param: { module: meeting, action: show }
+# default rules
+homepage:
+  url:   /
+  param: { module: meeting, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

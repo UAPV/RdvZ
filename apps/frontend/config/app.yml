@@ -1,0 +1,40 @@
+# default values
+all:
+  cas_server:
+    host: cas.univ-avignon.fr
+    port: 443
+    path:
+
+  ldap_server:
+    host: ldap.univ-avignon.fr
+    port: 389
+    basedn: dc=univ-avignon,dc=fr
+    options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
+
+  bdd_server:
+    host: localhost
+    pdo: mysql
+    dbname: rdvz
+    username: root
+    password: celine
+
+  bdd_infos:
+    user_pass_encrypt: none
+    user_table_name: user
+    user_login_field: login
+    user_pass_field: pass
+    user_name_field: name
+    user_surname_field: surname
+    user_mail_field: mail
+
+  ldap_infos:
+    user_name_field: sn
+    user_surname_field: givenname
+    user_mail_field: mail
+
+  url: rdvz.localhost
+  profile_builder_class: uapvProfileBuilderDatabase
+#  authentication_type: 'ldap_cas' 
+  authentication_type: bd 
+#  user_id: uidnumber
+  user_id: id

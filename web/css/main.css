@@ -1,0 +1,199 @@
+body {
+font:13px arial,helvetica,clean,sans-serif;
+font-size:small;
+font-family:verdana;
+background-color:#fff;
+}
+
+img {
+border : none ;
+}
+
+a {
+text-decoration:none;
+font-weight : bold ;
+color : #525252 ;
+}
+
+li {
+list-style-type:none ;
+}
+
+#page {
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+/*  width:650px;*/
+  width:95% ;
+  height: 100%;
+  margin: auto;
+  border : 1px solid #B9B9B9 ;
+  background-color : #F9F9F9 ;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  padding : 15px ;
+/*margin-top : 50px ;*/
+margin-left : 10px ;
+}
+
+#menu {
+height: 100%;
+width:95% ;
+margin: auto;
+margin-left : 10px ;
+margin-bottom : 10px ;
+padding : 5px ;
+padding-left : 15px ;
+padding-right : 15px ;
+border : 1px solid #B9B9B9 ;
+background-color : #F9F9F9 ;
+font-weight : bold ;
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+right: 0px;
+bottom: 0px;
+left: 0px;
+}
+
+#menu a {
+margin-right : 20px ;
+}
+
+table#poll td.poll_month {
+border : 1px solid grey ;
+background-color : #c0c0c0 ;
+}
+
+table#poll td {
+padding : 4px ;
+padding-left : 10px ;
+padding-right : 10px ;
+text-align : center ;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+table#poll td.poll_td {
+padding : 4px ;
+text-align : center ;
+background-color : #e5e5e5 ;
+border : 1px solid grey ;
+}
+
+table.my_meetings { 
+  border-collapse:collapse; 
+/*  text-align : center ; */
+  margin-bottom : 20px ;
+}
+    
+table.my_meetings td {
+/*  width : 160px ;*/                                                                                                 
+  padding-left : 20px ;
+  padding-right : 20px ;                                                                                              
+}
+
+table.my_meetings th {
+/*  width : 160px ;*/
+  padding-left : 20px ;
+  padding-right : 20px ;
+}       
+
+table.my_meetings tbody tr {
+}        
+
+table.my_meetings tbody tr.odd {
+  background-color : #e5e5e5 ;
+} 
+        
+table.my_meetings thead th.first {
+  -moz-border-radius-topleft : 5px; 
+  -webkit-border-top-left-radius: 5px; 
+  -moz-border-radius-bottomleft : 5px;                                                                                
+  -webkit-border-bottom-left-radius: 5px;  
+}       
+
+table.my_meetings thead th.last {                                                                                       
+  -moz-border-radius-topright : 5px;                                                                                  
+  -webkit-border-top-right-radius: 5px; 
+  -moz-border-radius-bottomright : 5px; 
+  -webkit-border-bottom-right-radius: 5px;                                                                            
+}
+
+table.my_meetings thead th {
+  background-color :  #1E52A1  ;
+  color : white ;
+  font-weight : normal ;
+}
+
+#legende {
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border : 1px solid grey ;
+padding : 5px ;
+margin-top : 30px ;
+}
+
+.not_ok {
+width : 50px ;
+background-color : #800000 ;
+border : 1px solid  #200000 ;
+opacity : 0.6 ;
+}
+
+.if_needed {
+width : 50px ;
+background-color : #ff8000 ;
+border : 1px solid  #200000 ;
+opacity : 0.6 ;
+}
+
+.ok {
+width : 50px ;
+background-color : #008000 ;
+border : 1px solid  #200000 ;
+opacity : 0.6 ;
+}
+
+.mail_error {
+color : #b00000 ;
+font-weight : bold ;
+font-size : 0.8em ;
+}
+
+.mail_icon {
+margin-bottom : -4px ;
+}
+
+.icon_16 {
+margin-bottom : -2px ;
+}
+
+.icon_32 {
+  margin-bottom : -8px ;
+}
+
+.mini_help {
+  font-size : 0.8em ;
+  font-style : italic ;
+}
+
+.ui-datepicker-trigger {
+margin-bottom : -4px ;
+}
+
+.error_list {
+  color : #800000;
+  padding:0 ;
+}
+
+.flash_error {
+  color : #800000;
+  padding : 10px ;
+  margin-top : 10px ;                                                                                                 
+}     
+      
+.flash_notice {
+  color : #207820;                                                                                                    
+  padding : 10px ;                                                                                                    
+  margin-top : 10px ;                                                                                                 
+}   

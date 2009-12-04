@@ -1,0 +1,14 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=rdvz'
+      username: root
+      password: celine
+
+#  user:
+#    class: sfDoctrineDatabase
+#    param:
+#      dsn: 'mysql:host=localhost;dbname=rdvz_users'
+#      username: root
+#      password: celine

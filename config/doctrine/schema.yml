@@ -1,0 +1,43 @@
+meeting:
+#  connection: master
+  actAs: { Timestampable: ~ }
+  columns: 
+    hash: { type: string(6), notnull: true }
+    title: { type: string(255), notnull: true }
+    description: { type: string(4000), notnull: true }
+    uid: { type: integer }
+    closed: { type: integer, default: 0 }
+    date_del: { type: timestamp }
+    date_end: { type: timestamp }
+    aifna: { type: integer, default: 0 } # autoriser les votes "disponible en cas de besoin"
+    notif: { type: integer, default: 0 } # recevoir une notification par mail à chaque vote
+
+meeting_date:
+#  connection: master
+  columns:
+    mid: { type: integer, notnull: true }
+    date: { type: timestamp, notnull: true }
+    comment: { type: string(255) }
+  relations:
+    meeting: { onDelete: CASCADE, local: mid, foreign: id, foreignAlias: meeting_dates }
+
+meeting_poll:
+#  connection: master
+  actAs: { Timestampable: ~ }
+  columns:
+    date_id: { type: integer, notnull: true }
+    poll: { type: integer, notnull: true }
+    uid: { type: integer }
+    comment: { type: string(255) }
+    participant_name: { type: string(255) }
+  relations:
+    meeting_date: { onDelete: CASCADE, local: date_id, foreign: id, foreignAlias: meeting_polls }
+
+user:
+#  connection: user
+  columns:
+    login: { type: string(50) }
+    pass: { type: string(40) }
+    name: { type: string(255) }
+    surname: { type: string(255) }
+    mail: { type: string(255) }
