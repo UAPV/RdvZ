@@ -17,7 +17,7 @@ class authenticationActions extends sfActions
       {
         // Quel type d'authentification a été choisit lors de l'installation?
         $auth_type = sfConfig::get('app_authentication_type') ;
-        if($auth_type == 'bd')
+        if($auth_type == 'bdd')
         {
           $bd = new uapvDB() ;
           $resp = $bd->checkPassword($form_info['username'], $form_info['password']) ;
