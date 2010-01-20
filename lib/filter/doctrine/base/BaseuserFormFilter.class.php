@@ -6,13 +6,14 @@
  * @package    rdvz
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseuserFormFilter extends BaseFormFilterDoctrine
+abstract class BaseuserFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
+      'ldap_id' => new sfWidgetFormFilterInput(),
       'login'   => new sfWidgetFormFilterInput(),
       'pass'    => new sfWidgetFormFilterInput(),
       'name'    => new sfWidgetFormFilterInput(),
@@ -21,6 +22,7 @@ class BaseuserFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'ldap_id' => new sfValidatorPass(array('required' => false)),
       'login'   => new sfValidatorPass(array('required' => false)),
       'pass'    => new sfValidatorPass(array('required' => false)),
       'name'    => new sfValidatorPass(array('required' => false)),
@@ -46,6 +48,7 @@ class BaseuserFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'      => 'Number',
+      'ldap_id' => 'Text',
       'login'   => 'Text',
       'pass'    => 'Text',
       'name'    => 'Text',

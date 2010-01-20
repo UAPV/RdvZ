@@ -4,12 +4,15 @@ class myUser extends uapvBasicSecurityUser
 {
   public function configure ()
   {
-    //$user = $this->getUserFromDatabase ();
-    //$user->save ();
+    if(sfConfig::get('app_authentication_type') == 'ldap')
+    {
+      $user = $this->getUserFromDatabase();
+      $user->save ();
+      $this->getProfile()->set('rdvz_user_id',$user->getId()) ;
+    }
 
     // définition des autorisation de l'utilisateur
     //$this->addCredential ($this->getProfileVar ('edupersonaffiliation'));
-    sfContext::getInstance()->getLogger()->debug('####################### '.$this->getProfileVar('uidnumber')) ;
     $this->addCredential ('member');
   }
 
@@ -18,17 +21,21 @@ class myUser extends uapvBasicSecurityUser
    * L'utilisateur sera créé s'il n'existe pas.
    * @return User 
    */
-  /*
   public function getUserFromDatabase ()
   {
-    $user = SympaGroupsUserPeer::retrieveByLdapUid($this->getProfileVar('uidnumber')) ;
+    $user = Doctrine::getTable('user')->retrieveByLdapId($this->getProfileVar(sfConfig::get('app_ldap_infos_user_id_field'))) ;
+
     if ($user === null)
     {
       // L'utilisateur se connecte pour la première fois
-      $user = new SympaGroupsUser ();
-      $user->setLdapId($this->getProfileVar('uidnumber')) ;
+      $user = new user();
+      $user->setLdapId($this->getProfileVar(sfConfig::get('app_ldap_infos_user_id_field'))) ;
+      $user->setName($this->getProfileVar(sfConfig::get('app_ldap_infos_user_name_field'))) ;
+      $user->setSurname($this->getProfileVar(sfConfig::get('app_ldap_infos_user_surname_field'))) ;
+      $user->setMail($this->getProfileVar(sfConfig::get('app_ldap_infos_user_mail_field'))) ;
+      $user->save();
     }
+
     return $user;
   }
-  */
 }

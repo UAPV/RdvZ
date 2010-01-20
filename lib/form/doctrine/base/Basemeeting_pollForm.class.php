@@ -3,18 +3,20 @@
 /**
  * meeting_poll form base class.
  *
+ * @method meeting_poll getObject() Returns the current form's model object
+ *
  * @package    rdvz
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class Basemeeting_pollForm extends BaseFormDoctrine
+abstract class Basemeeting_pollForm extends BaseFormDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'date_id'          => new sfWidgetFormDoctrineChoice(array('model' => 'meeting_date', 'add_empty' => false)),
+      'date_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('meeting_date'), 'add_empty' => false)),
       'poll'             => new sfWidgetFormInputText(),
       'uid'              => new sfWidgetFormInputText(),
       'comment'          => new sfWidgetFormInputText(),
@@ -24,8 +26,8 @@ class Basemeeting_pollForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'               => new sfValidatorDoctrineChoice(array('model' => 'meeting_poll', 'column' => 'id', 'required' => false)),
-      'date_id'          => new sfValidatorDoctrineChoice(array('model' => 'meeting_date')),
+      'id'               => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+      'date_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('meeting_date'))),
       'poll'             => new sfValidatorInteger(),
       'uid'              => new sfValidatorInteger(array('required' => false)),
       'comment'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),

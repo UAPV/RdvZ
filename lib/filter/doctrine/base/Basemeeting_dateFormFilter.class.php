@@ -6,20 +6,20 @@
  * @package    rdvz
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class Basemeeting_dateFormFilter extends BaseFormFilterDoctrine
+abstract class Basemeeting_dateFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'mid'     => new sfWidgetFormDoctrineChoice(array('model' => 'meeting', 'add_empty' => true)),
+      'mid'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('meeting'), 'add_empty' => true)),
       'date'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'comment' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'mid'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'meeting', 'column' => 'id')),
+      'mid'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('meeting'), 'column' => 'id')),
       'date'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'comment' => new sfValidatorPass(array('required' => false)),
     ));

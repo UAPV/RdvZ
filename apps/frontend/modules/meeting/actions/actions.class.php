@@ -23,23 +23,81 @@ class meetingActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
-    $this->forward404Unless($this->meeting);
-
-    $this->meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
-    setlocale(LC_TIME,'fr_FR.utf8','fra') ;
+    $this->processShow($request) ;
   }
 
   public function executeShowua(sfWebRequest $request)
   {
+    $this->getUser()->setAuthenticated(true) ;
+    $this->getUser()->addCredential('invite') ;
+    $this->processShow($request) ;
+    $this->setTemplate('show') ;
+  }
+
+  public function executeEditvote(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
+    $this->forward404Unless($this->meeting);
+    
+    $this->getUser()->setAttribute('edit',true) ;
+
+    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+  }
+
+  public function executeValidvote(sfWebRequest $request)
+  {
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
     $this->forward404Unless($this->meeting);
 
-    $this->meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
-    setlocale(LC_TIME,'fr_FR.utf8','fra') ;
-    $this->form = new meeting_pollForm() ;
+    $votes = $request->getPostParameters() ;
 
-    $this->setTemplate('show') ;
+    $meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
+    
+    foreach($meeting_dates as $date)
+    {
+      $poll = Doctrine::getTable('meeting_poll')->retrieveByUserAndDateId($date->getId(),$this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+
+      if(in_array($poll->getId(), array_keys($votes)))
+        $poll->setPoll(1) ;
+      else
+        $poll->setPoll(0) ;
+
+      $poll->save() ;
+    }
+
+    $this->getUser()->setAttribute('edit',null) ;
+
+    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+  }
+
+  public function executeVote(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
+    $this->forward404Unless($this->meeting);
+
+    $votes = $request->getPostParameters() ;
+
+    $this->meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
+    
+    foreach($this->meeting_dates as $date)
+    {
+      $poll = new meeting_poll() ;
+      if($this->getUser()->hasCredential('member'))
+        $poll->setUid($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      else
+        $poll->setParticipantName($votes['name']) ;
+
+      $poll->setDateId($date->getId()) ;
+
+      if(in_array($date->getId(), array_keys($votes)))
+        $poll->setPoll(1) ;
+      else
+        $poll->setPoll(0) ;
+
+      $poll->save() ;
+    }
+
+    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
   }
 
   public function executeVoteclose(sfWebRequest $request)
@@ -101,6 +159,16 @@ class meetingActions extends sfActions
     $submit = ($request->hasParameter('submit') ? $request->getParameter('submit') : '_');
     $submit = explode('_',$submit);
     
+/*
+    $res = Doctrine::getTable('meeting_poll')->retrieveByMid($meeting->getId()) ;
+    foreach($res as $p)
+      $p->delete() ;
+
+    $res = Doctrine::getTable('meeting_date')->retrieveByMid($meeting->getId()) ;
+    foreach($res as $d)
+      $d->delete() ;
+*/
+
     $this->processDates(&$data,$submit,&$meeting) ;
 
     $this->getUser()->setAttribute('mail',$this->fetchMails($data)) ;
@@ -176,6 +244,7 @@ class meetingActions extends sfActions
     if ($form->isValid())
     {
       $meeting = $form->save();
+
       $mails = $this->fetchMails($data,true) ;
       $this->getUser()->setAttribute('mail', array()) ;
       $this->getUser()->setAttribute('new', false) ;
@@ -199,5 +268,63 @@ class meetingActions extends sfActions
     {
       echo $e->getMessage();
     }
+  }
+
+  private function processShow(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
+    $this->forward404Unless($this->meeting);
+
+    $meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
+    
+    setlocale(LC_TIME,'fr_FR.utf8','fra') ;
+
+    $this->dates    = array() ;
+    $this->months   = array() ;
+    $this->comments = array() ;
+    $this->votes    = array() ;
+    
+    foreach($meeting_dates as $d)
+    {
+      $f = strtotime($d->getDate()) ;
+      $this->months[] = strftime("%B %Y",$f) ;
+      $this->dates[strftime("%B %Y", $f)][$d->getId()] = strftime("%a %d", $f) ;
+      if ($d->getComment() != '')
+        $this->comments[] = $d->getComment() ;
+
+      $v = Doctrine::getTable('meeting_poll')->retrieveByDateId($d->getId()) ;
+      foreach($v as $poll)
+      {
+        if(is_null($poll->getUid()))
+        {
+//          if(!array_key_exists($poll->getParticipantName(),$this->votes))
+            $this->votes[$poll->getParticipantName()][$d->getId()] = $poll ;
+/*          else
+          {
+            $i = 1 ;
+            while(array_key_exists($poll->getParticipantName().++$i, $this->votes));
+            $this->votes[$poll->getParticipantName().$i][$d->getId()] = $poll ;
+          }*/
+        }
+        else
+        {
+          $this->votes[$poll->getUid()][$d->getId()] = $poll ;
+        }
+      }
+    }
+
+    $this->months = array_unique($this->months) ;
+
+    $t = Doctrine::getTable('meeting_poll')->getVotesByMeeting($this->meeting->getId()) ;
+    $max = 0 ;
+
+    foreach($t as $res)
+      if ($res->getCnt() > $max) $max = $res->getCnt() ;
+
+    $this->bests = array() ;
+    $this->md = $meeting_dates ;
+    
+    foreach($t as $res)
+      if($res->getCnt() == $max) $this->bests[] = $res->getDateId() ;
   }
 }

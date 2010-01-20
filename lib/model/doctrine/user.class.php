@@ -12,5 +12,4 @@
  */
 class user extends Baseuser
 {
-
 }

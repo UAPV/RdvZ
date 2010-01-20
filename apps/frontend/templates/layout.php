@@ -15,9 +15,9 @@
     <?php include_stylesheets() ?>
   </head>
   <body>
-    <div id="menu">
-    <?php echo link_to('Mes rendez-vous','homepage') ?>
-    </div>
+    <?php echo link_to('<img src="/images/rdvz_logo3.png" id="logo" />','homepage') ?>
+<!--    <div id="menu">
+    </div> -->
     <div id="page">
     <?php if ($sf_user->hasFlash('notice')): ?>
     <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>

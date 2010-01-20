@@ -1,4 +1,3 @@
-<h4>Mes rendez-vous</h4>
 
 <table class="my_meetings">
   <thead>

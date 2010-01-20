@@ -3,12 +3,14 @@
 /**
  * meeting form base class.
  *
+ * @method meeting getObject() Returns the current form's model object
+ *
  * @package    rdvz
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasemeetingForm extends BaseFormDoctrine
+abstract class BasemeetingForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -28,7 +30,7 @@ class BasemeetingForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorDoctrineChoice(array('model' => 'meeting', 'column' => 'id', 'required' => false)),
+      'id'          => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
       'hash'        => new sfValidatorString(array('max_length' => 6)),
       'title'       => new sfValidatorString(array('max_length' => 255)),
       'description' => new sfValidatorString(array('max_length' => 4000)),

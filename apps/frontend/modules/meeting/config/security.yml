@@ -1,2 +1,8 @@
 showua:
   is_secure: false
+
+show:
+  credentials: [[invite]]
+
+vote:
+  credentials: [[invite]]

@@ -6,14 +6,14 @@
  * @package    rdvz
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class Basemeeting_pollFormFilter extends BaseFormFilterDoctrine
+abstract class Basemeeting_pollFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'date_id'          => new sfWidgetFormDoctrineChoice(array('model' => 'meeting_date', 'add_empty' => true)),
+      'date_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('meeting_date'), 'add_empty' => true)),
       'poll'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'uid'              => new sfWidgetFormFilterInput(),
       'comment'          => new sfWidgetFormFilterInput(),
@@ -23,7 +23,7 @@ class Basemeeting_pollFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'date_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'meeting_date', 'column' => 'id')),
+      'date_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('meeting_date'), 'column' => 'id')),
       'poll'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'uid'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'comment'          => new sfValidatorPass(array('required' => false)),

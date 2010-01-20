@@ -36,7 +36,8 @@ meeting_poll:
 user:
 #  connection: user
   columns:
-    login: { type: string(50) }
+    ldap_id : { type: string(50), unique: true }
+    login: { type: string(50), unique: true }
     pass: { type: string(40) }
     name: { type: string(255) }
     surname: { type: string(255) }

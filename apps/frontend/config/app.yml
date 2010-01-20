@@ -28,13 +28,15 @@ all:
     user_mail_field: mail
 
   ldap_infos:
+    user_id_field: uidnumber
     user_name_field: sn
     user_surname_field: givenname
     user_mail_field: mail
 
   url: rdvz.localhost
-  profile_builder_class: uapvProfileBuilderDatabase
-#  authentication_type: 'ldap_cas' 
-  authentication_type: bd 
-#  user_id: uidnumber
-  user_id: id
+#  profile_builder_class: uapvProfileBuilderDatabase
+  profile_builder_class: uapvProfileBuilderLdap
+  authentication_type: ldap
+#  authentication_type: bdd 
+  user_id: rdvz_user_id
+#  user_id: id

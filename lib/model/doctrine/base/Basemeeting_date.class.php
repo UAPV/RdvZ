@@ -11,10 +11,21 @@
  * @property meeting $meeting
  * @property Doctrine_Collection $meeting_polls
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @method integer             getMid()           Returns the current record's "mid" value
+ * @method timestamp           getDate()          Returns the current record's "date" value
+ * @method string              getComment()       Returns the current record's "comment" value
+ * @method meeting             getMeeting()       Returns the current record's "meeting" value
+ * @method Doctrine_Collection getMeetingPolls()  Returns the current record's "meeting_polls" collection
+ * @method meeting_date        setMid()           Sets the current record's "mid" value
+ * @method meeting_date        setDate()          Sets the current record's "date" value
+ * @method meeting_date        setComment()       Sets the current record's "comment" value
+ * @method meeting_date        setMeeting()       Sets the current record's "meeting" value
+ * @method meeting_date        setMeetingPolls()  Sets the current record's "meeting_polls" collection
+ * 
+ * @package    rdvz
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
  */
 abstract class Basemeeting_date extends sfDoctrineRecord
 {
@@ -38,7 +49,7 @@ abstract class Basemeeting_date extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('meeting', array(
+        $this->hasOne('meeting', array(
              'local' => 'mid',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

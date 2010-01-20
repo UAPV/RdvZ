@@ -12,7 +12,7 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Effacer', 'meeting/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Voulez-vous vraiment supprimer ce rendez-vous?')) ?>
           <?php endif; ?>
-          <input type="submit" value="<?php echo $sf_user->getAttribute('new') ? 'Créer' : 'Modifier' ?> le rendez-vous" />
+          <input type="submit" class="awesome blue large" value="<?php echo $sf_user->getAttribute('new') ? 'Créer' : 'Modifier' ?> le rendez-vous" />
         </td>
       </tr>
     </tfoot>

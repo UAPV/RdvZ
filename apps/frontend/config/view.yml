@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [main.css]
 
-  javascripts:    []
+  javascripts:    [rdvz.js]
 
   has_layout:     true
   layout:         layout

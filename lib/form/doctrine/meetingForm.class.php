@@ -88,6 +88,6 @@ class meetingForm extends BasemeetingForm
 
   public function getStylesheets()
   {
-    return array('jquery-ui-1.7.2.custom.css' => 'screen') ;
+    return array('jquery-ui-1.7.2.custom2.css' => 'screen') ;
   }
 }

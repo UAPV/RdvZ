@@ -16,10 +16,31 @@
  * @property integer $notif
  * @property Doctrine_Collection $meeting_dates
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @method string              getHash()          Returns the current record's "hash" value
+ * @method string              getTitle()         Returns the current record's "title" value
+ * @method string              getDescription()   Returns the current record's "description" value
+ * @method integer             getUid()           Returns the current record's "uid" value
+ * @method integer             getClosed()        Returns the current record's "closed" value
+ * @method timestamp           getDateDel()       Returns the current record's "date_del" value
+ * @method timestamp           getDateEnd()       Returns the current record's "date_end" value
+ * @method integer             getAifna()         Returns the current record's "aifna" value
+ * @method integer             getNotif()         Returns the current record's "notif" value
+ * @method Doctrine_Collection getMeetingDates()  Returns the current record's "meeting_dates" collection
+ * @method meeting             setHash()          Sets the current record's "hash" value
+ * @method meeting             setTitle()         Sets the current record's "title" value
+ * @method meeting             setDescription()   Sets the current record's "description" value
+ * @method meeting             setUid()           Sets the current record's "uid" value
+ * @method meeting             setClosed()        Sets the current record's "closed" value
+ * @method meeting             setDateDel()       Sets the current record's "date_del" value
+ * @method meeting             setDateEnd()       Sets the current record's "date_end" value
+ * @method meeting             setAifna()         Sets the current record's "aifna" value
+ * @method meeting             setNotif()         Sets the current record's "notif" value
+ * @method meeting             setMeetingDates()  Sets the current record's "meeting_dates" collection
+ * 
+ * @package    rdvz
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
  */
 abstract class Basemeeting extends sfDoctrineRecord
 {
@@ -67,7 +88,7 @@ abstract class Basemeeting extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasMany('meeting_date as meeting_dates', array(
+        $this->hasMany('meeting_date as meeting_dates', array(
              'local' => 'id',
              'foreign' => 'mid'));
 

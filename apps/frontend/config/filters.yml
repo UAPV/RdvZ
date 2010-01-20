@@ -1,8 +1,8 @@
-security: ~
-#security:
-#  class: uapvSecurityFilterCas # Uniquement pour login
-#  param:                       # cas + ldap.
-#    type: security             #
+#security: ~
+security:
+  class: uapvSecurityFilterCas # Uniquement pour login
+  param:                       # cas + ldap.
+    type: security             #
 rendering: ~
 
 

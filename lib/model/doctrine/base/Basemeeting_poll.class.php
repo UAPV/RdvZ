@@ -12,10 +12,23 @@
  * @property string $participant_name
  * @property meeting_date $meeting_date
  * 
- * @package    ##PACKAGE##
- * @subpackage ##SUBPACKAGE##
- * @author     ##NAME## <##EMAIL##>
- * @version    SVN: $Id: Builder.php 6365 2009-09-15 18:22:38Z jwage $
+ * @method integer      getDateId()           Returns the current record's "date_id" value
+ * @method integer      getPoll()             Returns the current record's "poll" value
+ * @method integer      getUid()              Returns the current record's "uid" value
+ * @method string       getComment()          Returns the current record's "comment" value
+ * @method string       getParticipantName()  Returns the current record's "participant_name" value
+ * @method meeting_date getMeetingDate()      Returns the current record's "meeting_date" value
+ * @method meeting_poll setDateId()           Sets the current record's "date_id" value
+ * @method meeting_poll setPoll()             Sets the current record's "poll" value
+ * @method meeting_poll setUid()              Sets the current record's "uid" value
+ * @method meeting_poll setComment()          Sets the current record's "comment" value
+ * @method meeting_poll setParticipantName()  Sets the current record's "participant_name" value
+ * @method meeting_poll setMeetingDate()      Sets the current record's "meeting_date" value
+ * 
+ * @package    rdvz
+ * @subpackage model
+ * @author     Your name here
+ * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
  */
 abstract class Basemeeting_poll extends sfDoctrineRecord
 {
@@ -46,7 +59,7 @@ abstract class Basemeeting_poll extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-    $this->hasOne('meeting_date', array(
+        $this->hasOne('meeting_date', array(
              'local' => 'date_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
