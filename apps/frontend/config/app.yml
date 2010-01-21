@@ -33,7 +33,7 @@ all:
     user_surname_field: givenname
     user_mail_field: mail
 
-  url: rdvz.localhost
+  url: rdvz2-test.univ-avignon.fr
 #  profile_builder_class: uapvProfileBuilderDatabase
   profile_builder_class: uapvProfileBuilderLdap
   authentication_type: ldap

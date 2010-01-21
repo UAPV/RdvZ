@@ -257,17 +257,26 @@ class meetingActions extends sfActions
 
   protected function sendMails($mails,$meeting)
   {
-    $mailBody = $this->getPartial('meeting/notif_new_meeting', array('user' => Doctrine::getTable('user')->find($meeting->getUid()), 'meeting' => $meeting)) ;
     $subject = "[RDVZ] Proposition de rendez-vous" ;
 
     try {     
-    foreach($mails as $mail)
-      $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $mail, $subject, $mailBody);
+      foreach($mails as $mail)
+      {
+        $mailBody = $this->getPartial('meeting/notif_new_meeting', array('user' => Doctrine::getTable('user')->find($meeting->getUid()), 'meeting' => $meeting, 'action' => ($this->isMailFromLdap($mail) ? 'show' : 'showua' ))) ;
+        $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $mail, $subject, $mailBody);
+      }
     }
     catch(Exception $e)
     {
       echo $e->getMessage();
     }
+  }
+
+  private function isMailFromLdap($mail)
+  {
+    $ldap = new uapvLdap() ;
+    $tmp = $ldap->search("mail=$mail") ;
+    return empty($tmp) ? false : true ;
   }
 
   private function processShow(sfWebRequest $request)

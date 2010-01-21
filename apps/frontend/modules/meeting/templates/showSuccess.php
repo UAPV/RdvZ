@@ -73,7 +73,7 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
   <?php foreach($votes as $user => $dts): ?>
   <tr>
     <?php $usr = Doctrine::getTable('user')->find($user) ; ?>
-    <?php if($sf_user->getAttribute('edit') && $usr->getId() == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+    <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
       <form action="<?php echo url_for('meeting/validvote?h='.$meeting->getHash()) ?>" method="post" name="edit_form"> 
     <?php endif; ?>
       
@@ -85,21 +85,21 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
 
     <?php foreach($dts as $did => $poll): ?>
       <td colspan="1" title="<?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?>" class="<?php echo ($poll->getPoll() ? 'ok' : 'not_ok' ) ?>">
-      <?php if($sf_user->getAttribute('edit') && $usr->getId() == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+      <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
         <input type="checkbox" name="<?php echo $poll->getId() ?>" <?php echo ($poll->getPoll() ? 'checked' : '') ?> />
       <?php endif; ?>
       </td>
     <?php endforeach; ?>
 
     <?php if($sf_user->hasCredential('member')): ?>
-      <?php if(is_null($sf_user->getAttribute('edit')) && $usr->getId() == $sf_user->getProfileVar(sfConfig::get('app_user_id'))&& !$meeting->getClosed()): ?>
+      <?php if(is_null($sf_user->getAttribute('edit')) && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id'))&& !$meeting->getClosed()): ?>
         <td><a href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>">Modifier mes votes</a></td>
-      <?php elseif ($sf_user->getAttribute('edit') && $usr->getId() == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+      <?php elseif ($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
         <td><a href="#" onclick="document['edit_form'].submit()">Validez mes nouveaux votes</a></td>
       <?php endif; ?>
     <?php endif; ?>
 
-    <?php if($sf_user->getAttribute('edit') && $usr->getId() == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+    <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
       </form>
     <?php endif; ?>
   </tr>

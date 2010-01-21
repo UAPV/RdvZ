@@ -186,6 +186,7 @@ class uapvLdap
 
       // Suppression des attributs "count"
       $entries = ldap_get_entries ($this->ldapCon, $result);
+      if(is_null($entries)) $entries = array() ;
 
       return $this->cleanEntries ($entries);
   }

@@ -2,7 +2,10 @@ showua:
   is_secure: false
 
 show:
-  credentials: [[invite]]
+  credentials: [[member, invite]]
 
 vote:
-  credentials: [[invite]]
+  credentials: [[member, invite]]
+
+all:
+  credentials: [[member]]

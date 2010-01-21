@@ -9,6 +9,5 @@ class ProjectConfiguration extends sfProjectConfiguration
   {
     $this->enablePlugins('sfDoctrinePlugin','uapvAuthPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
-    $this->enablePlugins('sfDoctrineGraphvizPlugin');
   }
 }
