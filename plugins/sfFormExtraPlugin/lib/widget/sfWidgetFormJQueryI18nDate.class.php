@@ -68,6 +68,7 @@ class sfWidgetFormJQueryI18nDate extends sfWidgetFormI18nDate
     {
       $image = sprintf(', buttonImage: %s, buttonImageOnly: true', $this->getOption('image'));
     }
+
     return parent::render($name, $value, $attributes, $errors).
            $this->renderTag('input', array('type' => 'hidden', 'size' => 10, 'id' => $id = $this->generateId($name).'_jquery_control', 'disabled' => 'disabled')).
            sprintf(<<<EOF

@@ -40,3 +40,6 @@ all:
 #  authentication_type: bdd 
   user_id: rdvz_user_id
 #  user_id: id
+
+  org_name: "Université d'Avignon et des Pays de Vaucluse"
+#  org_name: "Mon RdvZ"

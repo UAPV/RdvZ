@@ -1,0 +1,98 @@
+html, body{
+height : 100% ;
+margin : 0 ;
+padding : 0 ;         
+}
+
+body {
+background : #fff url('/images/rdvz_back.png') no-repeat center center ; 
+text-align : center ;             
+min-width: 800px ;
+min-height: 600px ;
+/*
+background-attachment : fixed;
+background-position : center ;
+*/
+}
+
+#page {
+  /*
+width : 100% ;
+height : 100% ;        
+color : #fff ;         
+font-family: Georgia, serif;
+font-size: 30px;
+font-style: italic;
+margin: 20px auto 0px;
+*/
+float : left ;
+height : 50% ;        
+margin-top : -25px ;
+width : 100% ;      
+}
+
+#box_text {
+color : #fff ;         
+font-family: Georgia, serif;
+font-size: 30px;
+font-style: italic;
+text-shadow: 0 1px 1px rgba(0,0,0,1);
+width : 700px ;
+margin-left : auto ;
+margin-right : auto ;
+height : 320px ;
+
+  /*
+top : 50% ;
+left : 50% ;      
+margin : 0 auto ;
+position : absolute ;  
+text-align : center ;           
+top : 50% ;
+left : 34% ;      
+*/
+}
+
+#box_text p {
+margin : 0 ;
+padding : 0 ;         
+}
+
+#link {
+margin-top : 50px ;  
+}
+
+#link a {
+margin-left : 60px ;  
+margin-right : 60px ;  
+}
+
+.awesome,
+.awesome:visited {
+  background: #222;
+  display: inline-block; 
+  padding: 5px 10px 6px; 
+  color: #fff; 
+  text-decoration: none;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  position: relative;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 1px 1px rgba(0,0,0,1);
+/*  -moz-box-shadow:    inset 0 20px 20px rgba(255,255,255,0.3);
+  -webkit-box-shadow: inset 0 20px 20px rgba(255,255,255,0.3);*/
+border: 1px solid black ;
+  -moz-border-radius: 10px; 
+  -webkit-border-radius: 10px;
+}
+.awesome:hover { background-color: #111; color: #fff;text-shadow: 0 -1px 1px rgba(0,0,0,0.4);}
+.awesome:active { top: 1px; }
+ 
+.blue.awesome, .blue.awesome:visited { background-color: #1E52A1; }
+.blue.awesome:hover                  { background-color: #376EBF; }
+.awesome.large {
+  padding: 6px 20px 6px 20px;
+}

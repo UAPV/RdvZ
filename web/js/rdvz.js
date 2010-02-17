@@ -4,4 +4,5 @@ $(document).ready(function()
   {
     $('#tips').slideUp() ;
   }); 
+
 }) ;

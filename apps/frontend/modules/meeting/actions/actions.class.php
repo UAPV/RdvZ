@@ -12,9 +12,18 @@ class meetingActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
+/*
     $mwnt = Doctrine::getTable('meeting')->getWithNoTitle() ;
     foreach($mwnt as $m)
       $m->delete() ;
+*/
+    /*
+    if($this->getUser()->hasCredential('invite')) 
+    {
+      $this->getUser()->setAuthenticated(false) ;
+      $this->getUser()->removeCredential('invite') ;
+    }
+    */
 
     $this->getUser()->setAttribute('mail', array()) ;
     $this->getUser()->setAttribute('new', false) ;
@@ -97,7 +106,12 @@ class meetingActions extends sfActions
       $poll->save() ;
     }
 
-    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    if ($this->meeting->getNotif())
+      $this->sendNotifMail($this->meeting) ;
+
+    if($this->getUser()->hasCredential('invite')) $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
+    elseif($this->getUser()->hasCredential('member')) $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    else $this->forward404() ;
   }
 
   public function executeVoteclose(sfWebRequest $request)
@@ -111,8 +125,27 @@ class meetingActions extends sfActions
     $this->redirect('homepage') ;
   }
 
+  public function executeRazvote(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
+    $this->forward404Unless($this->meeting);
+
+    $this->user = Doctrine::getTable('user')->find($request->getParameter('u')) ;
+    
+    if(empty($this->user))
+      $t = Doctrine::getTable('meeting_poll')->getByParticipantName($request->getParameter('u'),$this->meeting->getId()) ;
+    else
+      $t = Doctrine::getTable('meeting_poll')->getByUid($this->user->getId(),$this->meeting->getId()) ;
+
+    foreach($t as $poll)
+      $poll->delete() ;
+
+    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+  }
+
   public function executeNew(sfWebRequest $request)
   {
+/*
     $m = new meeting() ;
     $m->setTitle('') ;
     $m->setDescription('') ;
@@ -122,10 +155,13 @@ class meetingActions extends sfActions
     $d->setMid($m->getId()) ;
     $d->setDate(date('Y-m-d')) ;
     $d->save() ;
-
+*/
     $this->getUser()->setAttribute('mail', array(0 => '')) ;
+    $this->getUser()->setAttribute('date', array()) ;
+    $this->getUser()->setAttribute('comment', array()) ;
     $this->getUser()->setAttribute('new', true) ;
-    $this->redirect('meeting/edit?id='.$m->getId());
+    $this->form = new meetingForm();
+//    $this->redirect('meeting/edit?id='.$m->getId());
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -133,13 +169,17 @@ class meetingActions extends sfActions
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $data = $request->getParameter('meeting');
 
-    $submit = ($request->hasParameter('submit') ? $request->getParameter('submit') : '_');
-    $submit = explode('_',$submit);
+    $dates = $this->fetchDates($data) ;
+    $this->getUser()->setAttribute('mail',$this->fetchMails($data)) ;
+    $this->getUser()->setAttribute('date',$dates) ;
+    $this->getUser()->setAttribute('comment', $this->fetchComments($data)) ;
+      
+    $this->form = new meetingForm();
 
-    $this->processDates(&$data,$submit,&$meeting) ;
-
-    $this->form = new meetingForm($meeting);
-    $this->processForm($data, $this->form);
+    if(empty($dates))
+      $this->getUser()->setFlash('error', 'Vous devez sélectionner au moins une date pour créer un sondage.') ;
+    else
+      $this->processForm($data, $this->form);
 
     $this->setTemplate('new');
   }
@@ -147,6 +187,25 @@ class meetingActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($meeting = Doctrine::getTable('meeting')->find($request->getParameter('id')), sprintf('Object meeting does not exist (%s).', $request->getParameter('id')));
+
+    $dates    = array() ;
+    $comments = array() ;
+
+    $d = Doctrine::getTable('meeting_date')->retrieveByMid($meeting->getId()) ;
+    
+    foreach($d as $date)
+    {
+      $tmp = date_create($date->getDate()) ;
+      $dates[$date->getId()] = date_format($tmp, 'd-m-Y') ;
+      $comments[$date->getId()] = $date->getComment() ;
+    }
+
+    $this->getUser()->setAttribute('date',$dates) ;
+    $this->getUser()->setAttribute('comment',$comments) ;
+
+    $this->getUser()->setAttribute('date_prime',$dates) ;
+    $this->getUser()->setAttribute('comment_prime',$comments) ;
+
     $this->form = new meetingForm($meeting);
   }
 
@@ -154,12 +213,13 @@ class meetingActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($meeting = Doctrine::getTable('meeting')->find($request->getParameter('id')), sprintf('Object meeting does not exist (%s).', $request->getParameter('id')));
-    $data = $request->getParameter('meeting');
 
+    $data = $request->getParameter('meeting');
+    
+/*
     $submit = ($request->hasParameter('submit') ? $request->getParameter('submit') : '_');
     $submit = explode('_',$submit);
     
-/*
     $res = Doctrine::getTable('meeting_poll')->retrieveByMid($meeting->getId()) ;
     foreach($res as $p)
       $p->delete() ;
@@ -167,13 +227,76 @@ class meetingActions extends sfActions
     $res = Doctrine::getTable('meeting_date')->retrieveByMid($meeting->getId()) ;
     foreach($res as $d)
       $d->delete() ;
-*/
 
     $this->processDates(&$data,$submit,&$meeting) ;
 
     $this->getUser()->setAttribute('mail',$this->fetchMails($data)) ;
+*/
+    $before_dates    = $this->getUser()->getAttribute('date_prime') ;
+    $before_comments = $this->getUser()->getAttribute('comment_prime') ;
+    $after_dates     = $this->fetchDates($data) ;
+    $after_comments  = $this->fetchComments($data) ;
+
+    $this->getUser()->setAttribute('date',$after_dates) ;
+    $this->getUser()->setAttribute('comment', $after_comments) ;
+
     $this->form = new meetingForm($meeting);
-    $this->processForm($data, $this->form);
+    $this->form->bind($data) ;
+//    $this->processForm($data, $this->form);
+    if ($this->form->isValid())
+    {
+      $dates_to_add = array_diff_assoc($after_dates, $before_dates) ;
+      $dates_to_remove = array_diff_assoc($before_dates, $after_dates) ;
+      $comments_to_add = array_diff_assoc($after_comments, $before_comments) ;
+  //    $comments_to_remove = array_diff_assoc($before_comments, $after_comments) ;
+
+      foreach($dates_to_add as $did => $val)
+      {
+        $d = Doctrine::getTable('meeting_date')->findWithMid($did,$meeting->getId()) ;
+        if(is_null($d))
+        {
+          $d = new meeting_date() ;
+          $d->setDate(date_format(date_create($val),'Y-m-d')) ;
+          $d->setComment($comments_to_add[$did]) ;
+          $d->setMid($meeting->getId()) ;
+        }
+        else
+        {
+          $d->setDate(date_format(date_create($val),'Y-m-d')) ;
+          if(array_key_exists($did,$comments_to_add)) $d->setComment($comments_to_add[$did]) ;
+        }
+
+        $d->save() ;
+        unset($dates_to_remove[$did]) ;
+        unset($comments_to_add[$did]) ;
+      }
+
+      foreach($dates_to_remove as $did => $val)
+      {
+        $polls = Doctrine::getTable('meeting_poll')->retrieveByDateId($did) ;
+        foreach($polls as $p) 
+          $p->delete() ;
+
+        $d = Doctrine::getTable('meeting_date')->findWithMid($did, $meeting->getId()) ;
+        $d->delete() ;
+      }
+
+      foreach($comments_to_add as $did => $comm)
+      {
+        $d = Doctrine::getTable('meeting_date')->find($did) ;
+        $d->setComment($comments_to_add[$did]) ;
+        $d->save() ;
+      }
+
+      $this->form->save() ;
+
+      $this->getUser()->setAttribute('mail', array()) ;
+      $this->getUser()->setAttribute('date', array()) ;
+      $this->getUser()->setAttribute('new', false) ;
+
+      $this->redirect('homepage') ; 
+    }
+
 
     $this->setTemplate('edit');
   }
@@ -187,6 +310,7 @@ class meetingActions extends sfActions
 
     $this->redirect('meeting/index');
   }
+
   public function executeRenderMailInput(sfWebRequest $request)
   {
     $this->getResponse()->setContentType('text/html; charset=utf-8');
@@ -198,9 +322,24 @@ class meetingActions extends sfActions
     $html = $widget->render("meeting[input_mail_$current_id]") ;
     return $this->renderText($html) ;
   }
-  
-  protected function processDates($data, $submit, $meeting)
+
+  public function executeRenderDateInput(sfWebRequest $request)
   {
+    $this->getResponse()->setContentType('text/html; charset=utf-8');
+    $current_id = $request->getParameter('current_id');
+    $date = $request->getParameter('value') ;
+
+    $form = new meetingForm() ;
+
+    $widget_date = $form->createDateInput() ;
+    $html = $widget_date->render("meeting[input_date_$current_id]",$date) ;
+
+    return $this->renderText($html);//.$this->renderText($html2) ;
+  }
+
+  protected function fetchDates($data, $strict = false)
+  {
+  /*
     switch ($submit[0])
     {
       case 'Nouveau':
@@ -217,6 +356,38 @@ class meetingActions extends sfActions
         break;
       default : break ;
     }
+  */
+    $dates = array() ;  
+
+    foreach ($data as $widget => $value)
+    {
+      if(preg_match('/input_date_*/',$widget)) 
+      {
+        $parts = explode('_',$widget) ;
+        $date = date_create($value) ;
+
+        if ($strict && $date) $dates[$parts[2]] = date_format($date, 'd-m-Y') ;
+        elseif (!$strict) $dates[$parts[2]] = $value ;
+      }
+    }
+
+    return $dates ;
+  }
+
+  protected function fetchComments($data)
+  {
+    $comments = array() ;
+
+    foreach ($data as $widget => $value)
+    {
+      if(preg_match('/input_comment_*/',$widget))
+      {
+        $parts = explode('_',$widget) ;
+        $comments[$parts[2]] = $value ;
+      }
+    }
+
+    return $comments ;
   }
 
   protected function fetchMails($data, $strict = false)
@@ -245,8 +416,14 @@ class meetingActions extends sfActions
     {
       $meeting = $form->save();
 
-      $mails = $this->fetchMails($data,true) ;
+      $mails =    $this->fetchMails($data,true) ;
+      $dates =    $this->fetchDates($data) ; 
+      $comments = $this->fetchComments($data) ;
+
+      $this->saveDates($dates,$comments,$meeting) ;
+
       $this->getUser()->setAttribute('mail', array()) ;
+      $this->getUser()->setAttribute('date', array()) ;
       $this->getUser()->setAttribute('new', false) ;
       
       $this->sendMails($mails,$meeting) ;
@@ -257,18 +434,46 @@ class meetingActions extends sfActions
 
   protected function sendMails($mails,$meeting)
   {
-    $subject = "[RDVZ] Proposition de rendez-vous" ;
+    $subject = "[RdvZ] Proposition de rendez-vous" ;
 
+    $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
     try {     
       foreach($mails as $mail)
       {
-        $mailBody = $this->getPartial('meeting/notif_new_meeting', array('user' => Doctrine::getTable('user')->find($meeting->getUid()), 'meeting' => $meeting, 'action' => ($this->isMailFromLdap($mail) ? 'show' : 'showua' ))) ;
-        $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $mail, $subject, $mailBody);
+        $mailBody = $this->getPartial('meeting/notif_new_meeting', array('user' => $user, 'meeting' => $meeting )) ;
+        $this->getMailer()->composeAndSend($user->getMail()/*'rdvz-admin@univ-avignon.fr'*/, $mail, $subject, $mailBody);
       }
     }
     catch(Exception $e)
     {
       echo $e->getMessage();
+    }
+  }
+
+  protected function sendNotifMail($meeting)
+  {
+    $subject = "[RdvZ] Nouveau vote pour votre rendez-vous" ;
+
+    $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
+    try {
+      $mailBody = $this->getPartial('meeting/notif_new_vote', array('meeting' => $meeting)) ;
+      $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $user->getMail(), $subject, $mailBody);
+    }
+    catch(Exception $e)
+    {
+      echo $e->getMessage() ;
+    }
+  }
+
+  private function saveDates($dates,$comments,$meeting)
+  {
+    foreach($dates as $num => $date)
+    {
+      $d = new meeting_date();
+      $d->setMid($meeting->getId()) ;
+      $d->setComment($comments[$num]) ;
+      $d->setDate(date_format(date_create($date),'Y-m-d')) ;
+      $d->save() ;
     }
   }
 
@@ -298,26 +503,44 @@ class meetingActions extends sfActions
       $f = strtotime($d->getDate()) ;
       $this->months[] = strftime("%B %Y",$f) ;
       $this->dates[strftime("%B %Y", $f)][$d->getId()] = strftime("%a %d", $f) ;
-      if ($d->getComment() != '')
-        $this->comments[] = $d->getComment() ;
+      //if ($d->getComment() != '')
+      $this->comments[] = $d->getComment() ;
 
       $v = Doctrine::getTable('meeting_poll')->retrieveByDateId($d->getId()) ;
-      foreach($v as $poll)
+      
+      if(!count($v))
       {
-        if(is_null($poll->getUid()))
+        $u = Doctrine::getTable('meeting_poll')->retrieveUidByMeetingId($this->meeting->getId()) ;
+        $n = Doctrine::getTable('meeting_poll')->retrieveNameByMeetingId($this->meeting->getId()) ;
+
+        foreach($u as $uid)
         {
-//          if(!array_key_exists($poll->getParticipantName(),$this->votes))
-            $this->votes[$poll->getParticipantName()][$d->getId()] = $poll ;
-/*          else
-          {
-            $i = 1 ;
-            while(array_key_exists($poll->getParticipantName().++$i, $this->votes));
-            $this->votes[$poll->getParticipantName().$i][$d->getId()] = $poll ;
-          }*/
+          $p = new meeting_poll() ;
+          $p->setPoll(-1000) ;
+          $p->setDateId($d->getId()) ;
+          $p->setUid($uid) ;
+          $p->save() ;
+          $this->votes[$uid][$d->getId()] = $p ;
         }
-        else
+
+        foreach($n as $name)
         {
-          $this->votes[$poll->getUid()][$d->getId()] = $poll ;
+          $p = new meeting_poll() ;
+          $p->setPoll(-1000) ;
+          $p->setDateId($d->getId()) ;
+          $p->setParticipantName($name) ;
+          $p->save() ;
+          $this->votes[$name][$d->getId()] = $p ;
+        }
+      }
+      else
+      {
+        foreach($v as $poll)
+        {
+          if(is_null($poll->getUid()))
+            $this->votes[$poll->getParticipantName()][$d->getId()] = $poll ;
+          else
+            $this->votes[$poll->getUid()][$d->getId()] = $poll ;
         }
       }
     }

@@ -12,5 +12,4 @@
  */
 class meeting_poll extends Basemeeting_poll
 {
-
 }

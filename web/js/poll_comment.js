@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-  $('.ok[title], .not_ok[title]').tooltip(
+  $('.ok[title], .not_ok[title], .no_vote[title]').tooltip(
   {
     tip:'#comment',
     position : 'top right',

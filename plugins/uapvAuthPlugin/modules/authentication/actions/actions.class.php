@@ -33,6 +33,7 @@ class authenticationActions extends sfActions
         else if($auth_type == 'ldap')
         {
           $ldap = new uapvLdap() ;
+          $this->getContext()->set('ldap',$ldap);
 
           // "uid=..." à changer, pour utiliser les paramètres de configuration
           // pour que ça marche avec un LDAP qui n'a pas des uid mais des trululuid.

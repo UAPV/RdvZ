@@ -84,34 +84,43 @@
 
 
 var elementState = 'ready';
-countMail = 1 ;
-countDate = 1 ;
+var countMail = $('.dynamic_mail').length ;
+var countDate = $('.dynamic_date').length ;
+var currentMaxId = new Array() ;
+currentMaxId['Mail'] = 1 ;
+currentMaxId['Date'] = 0 ;
 //var loaderAr = new Array() ;
 function deleteWidget(w,count)
 {
   $('#meeting_input_'+w.toLowerCase()+'_'+count).parent().parent().remove() ;
-  if (count == countMail) 
+  if (w == 'Mail') 
     --countMail ;
+  else if (w == 'Date')
+    --countDate ;
 }
 
 
-var getInputWidget = function(elem,count,w)  {
-
+var getInputWidget = function(elem,count,w,val)  {
   if(elementState == 'ready'){
     elementState = 'building';
 
     jQuery.ajax({
       type: "GET",
       url: '/meeting/render'+w+'Input',
-      data: { current_id: count },
+      data: { current_id: count, value: val },
       dataType: 'html',
       success: function(result){
 
        var html = '<tr><th><a href="#" onclick="deleteWidget(\''+w+'\','+count+')"><img src="/images/close_16.png" class="mail_icon" alt="Supprimer" /></a></th><td>';
            html += result;
-           html += ' </td>' ;
+      
+      html += ' </td>' ;
 
-       jQuery(elem).parent().parent().parent().append(html);
+      
+      if(countDate == 1)
+        $('.dynamic_mail:last').parent().parent().after(html) ;
+      else
+        $('.dynamic_'+w.toLowerCase()+':last').parent().parent().after(html) ;
 
        jQuery('#meeting_input_'+w.toLowerCase()+'_'+count).ready(function()
        {
@@ -139,8 +148,12 @@ $(document).ready(function()
 */
   $('.dynamic_mail').live('keyup',function()
   {
-    if(jQuery(this).parent().parent().nextAll().length == 0)
-      getInputWidget(this,++countMail,'Mail') ;
+    if(jQuery(this).parent().parent().nextAll().length == countDate)
+    {
+      currentMaxId['Mail'] = $('.dynamic_mail:last').attr('id').split('_')[3]*1+1 ;
+      getInputWidget(this,currentMaxId['Mail'],'Mail','') ;
+      ++countMail ;
+    }
   });
 
   $('.dynamic_mail').live('blur',function()
@@ -167,6 +180,54 @@ $(document).ready(function()
     }
   });
   
-  $('.dynamic_mail').blur() ;
 //  $(window).bind("beforeunload", function(e){alert('on save tout !') ; });
+
+  $('.dynamic_mail').blur() ;
 });
+
+$(document).ready(function()
+{
+  countDate = $('.dynamic_date').length ;
+
+  $('#datee').datepicker(
+  { 
+      /*dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+      monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Decembre'],
+      dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
+      dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+      monthNamesShort: ['Jan','Fev','Mar','Avr','Mai','Jun','Jul','Aou','Sep','Oct','Nov','Dec'],
+      firstDay: 1,*/
+      dateFormat: 'dd-mm-yy',
+      onSelect: function(dateText, inst) 
+      { 
+        var max = 0 ;
+        for (var i = 0 ; i < $('.dynamic_date').length ; i++)
+          if ($('.dynamic_date')[i].id.split('_')[3]*1 > max) max = $('.dynamic_date')[i].id.split('_')[3]*1 ;
+
+        //if (countDate > 0) currentMaxId['Date'] = $('.dynamic_date:last').attr('id').split('_')[3]*1+1 ;
+        //else currentMaxId['Date'] = 1 ;
+        currentMaxId['Date'] = max+1 ;
+        getInputWidget(this,currentMaxId['Date'],'Date',dateText) ;
+        ++countDate ;
+          //$('#dates_container').append('<div id="date_'+(++dates)+'"><input type="text" name="meeting[input_date_'+dates+']" value="'+dateText+'" /></div>') ; 
+      },
+      minDate: 0,
+      hideIfNoPrevNext: true
+   }) ;
+
+  $('.dynamic_mail').blur() ;
+  
+  $('.help').mouseover(function(e)
+  {
+    var height = $("#mail_help").height();
+    var width = $("#mail_help").width();
+    //calculating offset for displaying popup message
+    leftVal=e.pageX+150-(width/2)+"px";
+    topVal=e.pageY-50-(height/2)+"px";
+    $("#mail_help").css({left:leftVal,top:topVal}).show() ;
+  }).mouseout(function()
+  {
+    $('#mail_help').hide() ;
+  });
+
+}) ;

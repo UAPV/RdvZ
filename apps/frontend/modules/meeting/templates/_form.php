@@ -5,13 +5,18 @@
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
+  <table id="new_meet">
     <tfoot>
+      <tr>
+        <td><center><strong>Dates à retenir </strong><br />(<em>cliquez sur les dates voulues</em>) <strong>:</strong></center></td>
+        <td><div id="datee"></div></td>
+      </tr>
       <tr>
         <td colspan="1">
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Effacer', 'meeting/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Voulez-vous vraiment supprimer ce rendez-vous?')) ?>
           <?php endif; ?>
+          
           <input type="submit" class="awesome blue large" value="<?php echo $sf_user->getAttribute('new') ? 'Créer' : 'Modifier' ?> le rendez-vous" />
         </td>
       </tr>
@@ -29,4 +34,6 @@
       <?php echo $form ?>
     </tbody>
   </table>
+<!--  <span id="mail_help">Entrez ici les adresses mail des personnes que vous voulez avertir, un mail automatique leur sera envoyé avec un lien vers votre sondage.</span> -->
+<!--  <div id="dates_container"></div> -->
 </form>

@@ -165,6 +165,7 @@ padding : 5px ;
 width : 200px ;
 /* background : transparent url('../images/bottom_arrow.png') no-repeat ; */
 background-color : #e5e5e5 ;
+text-align : justify ;
 }
 
 #comment_form {
@@ -196,6 +197,19 @@ height : 125px ;
 margin-top : -20px ;
 margin-left : -20px ;
 margin-bottom : -20px ;
+}
+
+#mail_help {
+font-style : italic ;
+display: none ;
+position : absolute ;
+border : 1px solid #B9B9B9 ;
+background-color : white ;
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+padding : 3px ;
+width : 300px ;
+text-align : justify ;
 }
 
 .contextMenu {

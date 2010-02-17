@@ -1,7 +1,10 @@
-#authentication:  # pour login bd ou ldap seul
-#  is_secure: false #
+authentication:  # pour login bd ou ldap seul
+  is_secure: false #
 
 meeting:
+  is_secure: false
+
+auth:
   is_secure: false
 
 all:

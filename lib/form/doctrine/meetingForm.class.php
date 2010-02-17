@@ -15,19 +15,21 @@ class meetingForm extends BasemeetingForm
     unset(
       $this['created_at'], $this['updated_at'],
       $this['uid'], $this['closed'], $this['date_del'],
-      $this['date_end'], $this['user'], $this['hash']
+      $this['date_end'], $this['user'], $this['hash'],
+      $this['aifna']
     );
 
-    $this->widgetSchema['aifna'] = new sfWidgetFormChoice(array('choices' => Doctrine::getTable('meeting')->getChoices(), 'expanded' => true)) ;
+    //$this->widgetSchema['aifna'] = new sfWidgetFormChoice(array('choices' => Doctrine::getTable('meeting')->getChoices(), 'expanded' => true)) ;
     $this->widgetSchema['notif'] = new sfWidgetFormChoice(array('choices' => Doctrine::getTable('meeting')->getChoices(), 'expanded' => true)) ;
     
     $this->widgetSchema->setLabels(array(
       'title' => 'Titre : ',
       'description' => 'Description : ',
-      'aifna' => 'Autoriser les votes<br />"Disponible en cas de besoin" : ',
-      'notif' => 'Recevoir une notification<br />par mél lors d\'un vote : '
+      //'aifna' => 'Autoriser les votes<br />"Disponible en cas de besoin" : ',
+      'notif' => 'Recevoir une notification<br />par mail lors d\'un vote : '
       )) ;
     
+/*
     foreach ($this->object['meeting_dates'] as $index => $date)
     {
       $name = 'date_'.$date['id'] ;
@@ -48,7 +50,7 @@ class meetingForm extends BasemeetingForm
     
       $this->widgetSchema->setLabel($name, $label);    
     }
-    
+*/    
     $mails = sfContext::getInstance()->getUser()->getAttribute('mail') ;
 
     foreach($mails as $i => $mail)
@@ -62,14 +64,28 @@ class meetingForm extends BasemeetingForm
       }
       else
       {
-        $this->widgetSchema->setLabel('input_mail_1', ' ') ;
-        $this->setValidator('input_mail_1', new sfValidatorEmail(array('required' => true), array('required' => 'Vous devez entrer au moins une adresse mail.', 'invalid' => 'Cette adresse mail n\'est pas valide.'))) ;
+        $this->widgetSchema->setLabel('input_mail_1', 'Adresses mail : ' /* <img src="/images/info_button_16.png" class="mail_icon help" alt="Aide" /> '*/) ;
+        $this->setValidator('input_mail_1', new sfValidatorEmail(array('required' => false), array(/*'required' => 'Vous devez entrer au moins une adresse mail.', */'invalid' => 'Cette adresse mail n\'est pas valide.'))) ;
       }
+    }
+
+    $dates    = sfContext::getInstance()->getUser()->getAttribute('date') ;
+    $comments = sfContext::getInstance()->getUser()->getAttribute('comment') ;
+
+    foreach($dates as $i => $date)
+    {
+//      $this->widgetSchema['input_date_'.$i] = new sfWidgetFormInputText(array(),array('class' => 'dynamic_date', 'size' => '10')) ;
+      //$this->widgetSchema['input_date_'.$i] .= " Commentaire (<em>facultatif</em>) : <input type='text' name='meeting[input_comment_$i]' value='".$comments[$i]."' />" ;
+      $this->widgetSchema['input_date_'.$i] = new rdvzWidgetFormInputDateText(array(),array('class' => 'dynamic_date', 'size' => '10')) ;
+      $this->widgetSchema['input_date_'.$i]->setCommentValue($comments[$i]) ; 
+      $this->widgetSchema['input_date_'.$i]->setAttribute('value',$date) ; 
+
+      $this->widgetSchema->setLabel('input_date_'.($i),"<a href='#' onclick=\"deleteWidget('Date',".($i).")\"><img src='/images/close_16.png' class='mail_icon' alt='Supprimer' /></a>") ;
+      $this->setValidator('input_date_'.$i,new sfValidatorDate(array('required' => false, 'date_output' => 'd-m-Y'),array('invalid' => 'Cette date n\'est pas valide.'))) ;
     }
 
     $this->setValidator('title', new sfValidatorString(array('max_length' => 255), array('required' => 'Vous devez donner un titre au rendez-vous.', 'max_length' => 'Le titre ne peut pas excéder 255 caractères.'))) ;
     $this->setValidator('description', new sfValidatorString(array('required' => false))) ;
-
 
     $this->validatorSchema->setOption('allow_extra_fields', true) ;
     $this->validatorSchema->setOption('filter_extra_fields', false) ;
@@ -81,9 +97,21 @@ class meetingForm extends BasemeetingForm
     return $w ;
   }
 
+  public function createDateInput($val)
+  {
+    $w = new rdvzWidgetFormInputDateText(array(), array('class' => 'dynamic_date', 'size' => '10')) ;
+    return $w ;
+  }
+
+  public function createCommentInput()
+  {
+    $w = new sfWidgetFormInputText(array(), array('class' => 'dynamic_comment', 'size' => '30')) ;
+    return $w ;
+  }
+
   public function getJavascripts()
   {
-    return array('jquery-ui-1.7.2.custom.min.js','jquery.livequery.js','add_input.js','ui.datepicker-fr.js') ;
+    return array('jquery-ui-1.7.2.custom.min.js','ui.datepicker-fr.js','jquery.livequery.js','add_input.js') ;
   }
 
   public function getStylesheets()

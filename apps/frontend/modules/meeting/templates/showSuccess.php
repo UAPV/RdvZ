@@ -64,11 +64,23 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
   <!-- La ligne qui affiche les commentaires... -->
     <td class="poll_empty"></td>
     <?php foreach($comments as $comment): ?>
-      <td colspan="1" class="poll_td">
-        <?php echo $comment ?>
-      </td>
+        <td colspan="1" 
+        <?php if($comment != ''): ?>
+          class="poll_td"
+        <?php endif; ?> >
+          <?php echo $comment ?>
+        </td>
     <?php endforeach; ?>
   </tr>
+
+  <?php 
+    $user_is_creator = false ;
+    if($sf_user->isAuthenticated()) 
+      if($sf_user->getProfileVar(sfConfig::get('app_user_id')) == $meeting->getUid())
+        $user_is_creator = true ;
+  ?>
+
+  <?php $i = 0 ; ?>
   <!-- Les lignes qui affichent les votes effectués... -->
   <?php foreach($votes as $user => $dts): ?>
   <tr>
@@ -84,7 +96,15 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
     <?php endif; ?>
 
     <?php foreach($dts as $did => $poll): ?>
-      <td colspan="1" title="<?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?>" class="<?php echo ($poll->getPoll() ? 'ok' : 'not_ok' ) ?>">
+      <td colspan="1" 
+      <?php if($poll->getPoll() == -1000): ?>
+        title="Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur <strong>Modifier mes votes</strong> pour le faire !" 
+        class="poll_td no_vote" 
+      <?php else: ?>
+        title="<?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?>" 
+        class="<?php echo ($poll->getPoll() ? 'ok' : 'not_ok' ) ?>"
+      <?php endif; ?>
+      >
       <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
         <input type="checkbox" name="<?php echo $poll->getId() ?>" <?php echo ($poll->getPoll() ? 'checked' : '') ?> />
       <?php endif; ?>
@@ -101,6 +121,10 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
 
     <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
       </form>
+    <?php endif; ?>
+
+    <?php if($user_is_creator): ?>
+      <td> <form action="<?php echo url_for('meeting/razvote?h='.$meeting->getHash().'&u='.$user) ?>" method="post" name="raz_form<?php echo $i ?>"><a href="#" onclick="if(confirm('ATTENTION ! Vous allez supprimer tous les votes de cette personne.\nEtes-vous bien sûr de vouloir réaliser cette action?')) document['raz_form<?php echo $i++ ?>'].submit();"><img src="/images/close_16.png" alt="Remise à zéro des votes de cette personne" title="Remise à zéro des votes de cette personne" /></a></form></td>
     <?php endif; ?>
   </tr>
   <?php endforeach; ?>

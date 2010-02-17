@@ -1,9 +1,6 @@
 showua:
   is_secure: false
 
-show:
-  credentials: [[member, invite]]
-
 vote:
   credentials: [[member, invite]]
 
