@@ -5,7 +5,7 @@ font-family:verdana;
 background-color:#fff;
 }
 
-img {
+fieldset, img {
 border : none ;
 }
 
@@ -210,6 +210,20 @@ background-color : white ;
 padding : 3px ;
 width : 300px ;
 text-align : justify ;
+}
+
+#m_search {
+background: transparent url('/images/search.png') no-repeat 0px 0px;  
+color: #777;
+width: 525px;
+margin-bottom : 20px ;
+margin-left : 20px ;
+}
+
+.search {
+font-size: 1.5em;
+height: 33px;
+padding: 7px 50px 0px;
 }
 
 .contextMenu {

@@ -43,6 +43,18 @@ class meetingActions extends sfActions
     $this->setTemplate('show') ;
   }
 
+  public function executeSearch(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
+    if(!$this->meeting)
+    {
+      $this->getUser()->setFlash('error', 'Aucun rendez-vous ne correspond à ce code.') ;
+      $this->redirect('homepage') ;
+    }
+    else
+      $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+  }
+
   public function executeEditvote(sfWebRequest $request)
   {
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
@@ -116,7 +128,7 @@ class meetingActions extends sfActions
 
   public function executeVoteclose(sfWebRequest $request)
   {
-    $meeting = Doctrine::getTable('meeting')->find($request->getParameter('id'));
+    $meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
 
     $closed = $meeting->getClosed() ? 0 : 1 ;
     $meeting->setClosed($closed) ;
@@ -141,6 +153,24 @@ class meetingActions extends sfActions
       $poll->delete() ;
 
     $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+  }
+
+  public function executeCsv(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h')) ;
+
+    $counts        = Doctrine::getTable('meeting_poll')->getVotesByMeeting($this->meeting->getId()) ;
+    $meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
+
+    $this->counts = array() ;
+    foreach($meeting_dates as $md)
+      foreach($counts as $c)
+        if($c->getDateId() == $md->getId())
+          $this->counts[$md->getId()] = array('date' => $md->getDate(), 'count' => $c->getCnt(), 'comment' => $md->getComment()) ;
+    
+    $this->getResponse()->setContentType('text/comma-separated-values'); 
+    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename='.$this->meeting->getHash().'.csv');
+
   }
 
   public function executeNew(sfWebRequest $request)
