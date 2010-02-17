@@ -25,7 +25,7 @@ Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite 
 <div id="tips">
 <a href="#">Masquer</a>
 <strong>A savoir</strong><br />
-Vous pouvez ajouter un commentaire pour chacun de vos votes en effectuant un clic droit sur la case correspondante.
+Vous pouvez ajouter un commentaire pour chacun de <u>vos votes</u> en effectuant un clic droit sur la case correspondante.
 </div>
 <div class="contextMenu" id="poll_menu">
   <ul>
@@ -37,8 +37,9 @@ Vous pouvez ajouter un commentaire pour chacun de vos votes en effectuant un cli
 <div id="comment" style="display:none">&nbsp;</div>
 <div id="comment_form" style="display:none" title="Nouveau commentaire">
 <form>
-Entrez un commentaire pour ce vote : <input type="text" name="comm" />
-<input type="submit" value="Envoyer" />
+Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
+<input type="hidden" id="comm_poll_id" name="poll_id" />
+<input type="submit" class="awesome blue large" value="Envoyer" />
 </form>
 </div>
 <table id="poll">
@@ -96,14 +97,18 @@ Entrez un commentaire pour ce vote : <input type="text" name="comm" />
     <?php endif; ?>
 
     <?php foreach($dts as $did => $poll): ?>
-      <td colspan="1" 
+      <td id="<?php echo $poll->getId() ?>" colspan="1" 
       <?php if($poll->getPoll() == -1000): ?>
         title="Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur <strong>Modifier mes votes</strong> pour le faire !" 
-        class="poll_td no_vote" 
+        <?php echo "class='poll_td no_vote " ?>
       <?php else: ?>
         title="<?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?>" 
-        class="<?php echo ($poll->getPoll() ? 'ok' : 'not_ok' ) ?>"
+        class=<?php echo "'".($poll->getPoll() ? 'ok' : 'not_ok' ) ?>
       <?php endif; ?>
+      <?php if($sf_user->hasCredential('member') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+        <?php echo ' to_comment ' ?>
+      <?php endif; ?>
+      <?php echo "'" ?>
       >
       <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
         <input type="checkbox" name="<?php echo $poll->getId() ?>" <?php echo ($poll->getPoll() ? 'checked' : '') ?> />

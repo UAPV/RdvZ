@@ -32,6 +32,11 @@ class meetingActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
+    $comm = $request->getParameter('comm');
+
+    if($comm)
+      $this->setComment($request->getParameter('poll_id'),$comm) ;
+
     $this->processShow($request) ;
   }
 
@@ -588,5 +593,12 @@ class meetingActions extends sfActions
     
     foreach($t as $res)
       if($res->getCnt() == $max) $this->bests[] = $res->getDateId() ;
+  }
+
+  private function setComment($poll_id, $comment)
+  {
+    $poll = Doctrine::getTable('meeting_poll')->find($poll_id) ;
+    $poll->setComment($comment) ;
+    $poll->save() ;
   }
 }
