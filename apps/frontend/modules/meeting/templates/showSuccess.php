@@ -3,6 +3,9 @@
 <?php use_javascript('jquery.contextmenu.r2.js') ?>
 <?php use_javascript('poll_comment') ?>
 <?php use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
+<div id="meet_disc_box">
+<div id="url_meet_disc">Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs !</div>
+<input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <h2><img src="/images/book_bookmarks_32.png" alt="Disponibilités" class="icon_32" /> Quelles sont vos disponibilités?</h2>
 <table>
   <tbody>
@@ -20,13 +23,12 @@
     </tr>
   </tbody>
 </table>
-<br />
-Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite le bouton "Participer" pour valider votre vote.
 <div id="tips">
 <a href="#">Masquer</a>
 <strong>A savoir</strong><br />
 Vous pouvez ajouter un commentaire pour chacun de <u>vos votes</u> en effectuant un clic droit sur la case correspondante.
 </div>
+Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite le bouton "Voter" pour valider votre vote.
 <div class="contextMenu" id="poll_menu">
   <ul>
     <li id="comm"><img src="/images/pencil_16.png" /> Commenter</li>

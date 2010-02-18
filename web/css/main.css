@@ -212,6 +212,21 @@ width : 300px ;
 text-align : justify ;
 }
 
+#meet_disc_box {
+position : absolute ;
+top : 10px ;
+left : 200px ;      
+}
+
+#url_meet_disc {
+color: #777;
+font-size: 1.5em;
+letter-spacing: -0.1em ;
+margin-bottom : 7px ;
+margin-left : -10px ;
+text-shadow: 1px 1px 1px #ddd ;
+}
+
 #m_search {
 background: transparent url('/images/search.png') no-repeat 0px 0px;  
 color: #777;
@@ -224,6 +239,12 @@ margin-left : 20px ;
 font-size: 1.5em;
 height: 33px;
 padding: 7px 50px 0px;
+}
+
+.url_meet {
+color: #777;
+width: 400px;
+padding : 7px 30px 0px ;       
 }
 
 .contextMenu {
