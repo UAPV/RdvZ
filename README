@@ -1,8 +1,20 @@
   -=================-
-    RdvZ TODO list.
- version 2.0 pre-alpha 2009/10/06
+     RdvZ Read Me
+ version 2.0 alpha 2009/02/18
   -=================-
 
-** The current version is an alpha development prototype, there's is
-currently no user or developper documentation nor built-in installer. 
-Development is standed by but will resume soon. **
+** Disclaimer :
+The current version is still an alpha : there is no user documentation nor
+built-in installer, although it will come rather quickly I hope. Developper
+documentation will arrive soon too, and you can already read code comments.
+
+1. Introduction
+RdvZ is a web application developed by the Université d’Avignon et des Pays 
+de Vaucluse which allows to create and manage meetings and to poll potential 
+attendee avalibility. The application allows both anonymous and authenticated 
+access (it can be either with MySQL or with a CAS server + LDAP or with a 
+LDAP server alone), but whatever the access mode, everybody is able to vote 
+without being authenticated.
+
+2. Licence
+See the LICENSE file.

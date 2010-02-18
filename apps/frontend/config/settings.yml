@@ -23,7 +23,7 @@ all:
   .settings:
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
-    enabled_modules: [default, authentication]
+    enabled_modules: [default, authentication, error]
 
     # Output escaping settings
     escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
@@ -37,3 +37,5 @@ all:
     login_action: login             #
     secure_module: auth
     secure_action: wrongcred
+    error_404_module: error
+    error_404_action: error404

@@ -1,8 +1,18 @@
 <?php
 /**
- */
+  * Contains the Doctrine SQL request on the meeting_poll table.
+  *
+  * @author     Romain Deveaud <romain.deveaud@univ-avignon.fr>
+  * @project    RdvZ v2.0
+  */
 class meeting_pollTable extends Doctrine_Table
 {
+  /**
+    * Get all the votes associated to a date.
+    *
+    * @param $did integer The date id.
+    * @return array Doctrine_Record The votes.
+    */
   public function retrieveByDateId($did)
   {
     $q = $this->createQuery('m')
@@ -11,6 +21,13 @@ class meeting_pollTable extends Doctrine_Table
     return $q->execute() ;
   }
   
+  /**
+    * Get all the votes associated to a date and a user.
+    *
+    * @param $did integer The date id.
+    * @param $uid integer The user id.
+    * @return array Doctrine_Record The votes.
+    */
   public function retrieveByUserAndDateId($did,$uid)
   {
     $q = $this->createQuery('m')
@@ -21,6 +38,12 @@ class meeting_pollTable extends Doctrine_Table
     return isset($polls[0]) ? $polls[0] : null;
   }
   
+  /**
+    * Get the sum of votes associated to a meeting, grouped by date.
+    *
+    * @param $mid integer The meeting id.
+    * @return array The dates with the vote counts.
+    */
   public function getVotesByMeeting($mid)
   {
     $q = Doctrine_Query::create()
@@ -34,6 +57,12 @@ class meeting_pollTable extends Doctrine_Table
     return $q->execute() ;
   }
 
+  /**
+    * Get all the votes associated to a meeting.
+    *
+    * @param $mid integer The meeting id.
+    * @return array Doctrine_Record The votes.
+    */
   public function retrieveByMid($mid)
   {
     $q = Doctrine_Query::create()
@@ -45,6 +74,13 @@ class meeting_pollTable extends Doctrine_Table
     return $q->execute() ;
   }
 
+  /**
+    * Get all the votes associated to a meeting and a user.
+    *
+    * @param $uid integer The user id.
+    * @param $mid integer The meeting id.
+    * @return array Doctrine_Record The votes.
+    */
   public function getByUid($uid,$mid)
   {
     $q = Doctrine_Query::create()
@@ -57,6 +93,13 @@ class meeting_pollTable extends Doctrine_Table
     return $q->execute() ;
   }
 
+  /**
+    * Get all the votes associated to a meeting and an extern user.
+    *
+    * @param $name string The user participant_name.
+    * @param $mid integer The meeting id.
+    * @return array Doctrine_Record The votes.
+    */
   public function getByParticipantName($name,$mid)
   {
     $q = Doctrine_Query::create()
@@ -69,9 +112,14 @@ class meeting_pollTable extends Doctrine_Table
     return $q->execute() ;
   }
 
+  /**
+    * Get all the user ids from the votes of a meeting.
+    *
+    * @param $mid integer The meeting id.
+    * @return array integer The user ids.
+    */
   public function retrieveUidByMeetingId($mid)
   {
-    //$q = $this->createQuery('m')
     $q = Doctrine_Query::create()
          ->select('DISTINCT mp.uid')
          ->from('meeting_poll mp, meeting_date md')
@@ -88,6 +136,12 @@ class meeting_pollTable extends Doctrine_Table
     return $res ;
   }
 
+  /**
+    * Get all the extern user names from the votes of a meeting.
+    *
+    * @param $mid integer The meeting id.
+    * @return array string The user names.
+    */
   public function retrieveNameByMeetingId($mid)
   {
     //$q = $this->createQuery('m')

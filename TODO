@@ -1,11 +1,11 @@
   -=================-
     RdvZ TODO list.
- version 2.0 pre-alpha 2009/10/06
+ version 2.0 alpha 2010/02/18
   -=================-
 
-** The current version is an alpha development prototype, there's is
-currently no user or developper documentation nor built-in installer. 
-Development is standed by but will resume soon. **
+** The current version is still an alpha : there is no user documentation nor
+built-in installer, although it will come rather quickly I hope. Developper
+documentation will arrive soon too, and you can already read code comments. **
  
 
 None of the following items are in any order of importance or difficulty.
@@ -16,14 +16,6 @@ on the mailing list <gpl@univ-avignon.fr>.
 
 -------------------------------------------------------------------------------
 RdvZ 2.0 development.
-  - usage of the PHP framework Symfony (www.symfony-project.org) for standard
-  programming methods and easy maintenance and community contribution.
-  - three authentication methods : MySQL, CAS + LDAP and LDAP without CAS (which
-  isn't supported now).
-  - display of the meeting's URL in the poll page.
-  - reduction of the size of the URLs.
-  - design improvements.
-  - poll and vote system to be developped.
   - built-in installer.
 
 -------------------------------------------------------------------------------
@@ -31,7 +23,6 @@ Future features.
   - writing meetings in the diary.
   - defining specific meetings (ex : weekly meeting).
   - Shibboleth support.
-  - Sympa integration.
 
 -------------------------------------------------------------------------------
 RdvZ evolution.
