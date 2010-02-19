@@ -100,7 +100,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
 
     <?php foreach($dts as $did => $poll): ?>
       <td id="<?php echo $poll->getId() ?>" colspan="1" 
-      <?php if($poll->getPoll() == -1000): ?>
+      <?php if($poll->getPoll() == 1000): ?>
         title="Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur <strong>Modifier mes votes</strong> pour le faire !" 
         <?php echo "class='poll_td no_vote " ?>
       <?php else: ?>

@@ -89,7 +89,7 @@ class meeting extends Basemeeting
         {
           // If this is a database user.
           $p = new meeting_poll() ;
-          $p->setPoll(-1000) ;
+          $p->setPoll(1000) ;
           $p->setDateId($d->getId()) ;
           $p->setUid($uid) ;
           $p->save() ;
@@ -100,7 +100,7 @@ class meeting extends Basemeeting
         {
           // If this is an extern user.
           $p = new meeting_poll() ;
-          $p->setPoll(-1000) ;
+          $p->setPoll(1000) ;
           $p->setDateId($d->getId()) ;
           $p->setParticipantName($name) ;
           $p->save() ;
@@ -129,13 +129,13 @@ class meeting extends Basemeeting
     $max = 0 ;
 
     foreach($t as $res)
-      if ($res->getCnt() > $max) $max = $res->getCnt() ;
+      if ($res->getCnt()%1000 > $max) $max = $res->getCnt()%1000 ;
 
     $bests = array() ;
     $md = $meeting_dates ;
     
     foreach($t as $res)
-      if($res->getCnt() == $max) $bests[] = $res->getDateId() ;
+      if($res->getCnt()%1000 == $max) $bests[] = $res->getDateId() ;
 
     return array('dates' => $dates, 'comments' => $comments, 'bests' => $bests, 'md' => $md, 'months' => $months, 'votes' => $votes) ;
   }
