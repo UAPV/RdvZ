@@ -319,6 +319,11 @@ margin-bottom : -4px ;
   margin-top : 10px ;                                                                                                 
 }   
 
+.user_icon {
+  margin-bottom : -4px ;
+  margin-right : 3px ;
+}
+
 .awesome,
 .awesome:visited {
   background: #222;

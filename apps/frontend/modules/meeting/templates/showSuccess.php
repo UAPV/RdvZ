@@ -95,7 +95,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
     <?php if(empty($usr)): ?>
       <td class="poll_td"><?php echo $user ?></td>
     <?php else: ?>
-      <td class="poll_td"><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
+      <td class="poll_td"><img class="user_icon" src="/images/user_20.png" alt="Utilisateur authentifié" title="Utilisateur authentifié" /><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
     <?php endif; ?>
 
     <?php foreach($dts as $did => $poll): ?>
