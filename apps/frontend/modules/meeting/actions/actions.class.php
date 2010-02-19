@@ -15,6 +15,7 @@ class meetingActions extends sfActions
     */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->getUser()->setAttribute('participant_name', null) ;
     $this->getUser()->setAttribute('mail', array()) ;
     $this->getUser()->setAttribute('new', false) ; // to remove?
 
@@ -57,6 +58,12 @@ class meetingActions extends sfActions
     // If the hash does not exists, redirect the user.
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
     $this->forward404Unless($this->meeting);
+
+    $comm = $request->getParameter('comm');
+
+    // If a user just entered a comment, save it !
+    if($comm)
+      $this->setComment($request->getParameter('poll_id'),$comm) ;
 
     // The 'invite' credential allows the user only to watch meetings
     // from the 'showua' action.
@@ -101,7 +108,9 @@ class meetingActions extends sfActions
     
     $this->getUser()->setAttribute('edit',true) ;
 
-    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    if($this->getUser()->hasCredential('invite')) $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
+    elseif($this->getUser()->hasCredential('member')) $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    else $this->forward404() ;
   }
 
   /**
@@ -120,7 +129,10 @@ class meetingActions extends sfActions
     {
       // For each date of the meeting, get the votes of the current user
       // and update their values.
-      $poll = Doctrine::getTable('meeting_poll')->retrieveByUserAndDateId($date->getId(),$this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      if($this->getUser()->hasCredential('member'))
+        $poll = Doctrine::getTable('meeting_poll')->retrieveByUserAndDateId($date->getId(),$this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      elseif($this->getUser()->hasCredential('invite'))
+        $poll = Doctrine::getTable('meeting_poll')->retrieveByUserNameAndDateId($date->getId(),$this->getUser()->getAttribute('participant_name')) ;
 
       if(in_array($poll->getId(), array_keys($votes)))
         $poll->setPoll(1) ;
@@ -132,7 +144,9 @@ class meetingActions extends sfActions
 
     $this->getUser()->setAttribute('edit',null) ;
 
-    $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    if($this->getUser()->hasCredential('invite')) $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
+    elseif($this->getUser()->hasCredential('member')) $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    else $this->forward404() ;
   }
 
   /**
@@ -145,6 +159,12 @@ class meetingActions extends sfActions
 
     $votes = $request->getPostParameters() ;
 
+    if($this->getUser()->hasCredential('invite') && $votes['name'] == "")
+    {
+      $this->getUser()->setFlash('error', 'Vous devez entrer votre nom pour voter.') ;
+      $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
+    }
+
     $this->meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->meeting->getId()) ;
     
     foreach($this->meeting_dates as $date)
@@ -154,7 +174,10 @@ class meetingActions extends sfActions
       if($this->getUser()->hasCredential('member'))
         $poll->setUid($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
       else
+      {
         $poll->setParticipantName($votes['name']) ;
+        $this->getUser()->setAttribute('participant_name',$votes['name']) ;
+      }
 
       $poll->setDateId($date->getId()) ;
 

@@ -88,7 +88,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
   <?php foreach($votes as $user => $dts): ?>
   <tr>
     <?php $usr = Doctrine::getTable('user')->find($user) ; ?>
-    <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+    <?php if($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
       <form action="<?php echo url_for('meeting/validvote?h='.$meeting->getHash()) ?>" method="post" name="edit_form"> 
     <?php endif; ?>
       
@@ -107,26 +107,29 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
         title="<?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?>" 
         class=<?php echo "'".($poll->getPoll() ? 'ok' : 'not_ok' ) ?>
       <?php endif; ?>
-      <?php if($sf_user->hasCredential('member') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+      <?php if(($sf_user->hasCredential('member') || $sf_user->hasCredential('invite')) && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
         <?php echo ' to_comment ' ?>
+      <?php endif; ?>
+      <?php if($poll->getComment()): ?>
+        <?php echo ' comment_present ' ?>
       <?php endif; ?>
       <?php echo "'" ?>
       >
-      <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+      <?php if($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
         <input type="checkbox" name="<?php echo $poll->getId() ?>" <?php echo ($poll->getPoll() ? 'checked' : '') ?> />
       <?php endif; ?>
       </td>
     <?php endforeach; ?>
 
-    <?php if($sf_user->hasCredential('member')): ?>
-      <?php if(is_null($sf_user->getAttribute('edit')) && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id'))&& !$meeting->getClosed()): ?>
+    <?php if($sf_user->hasCredential('member') || $sf_user->hasCredential('invite')): ?>
+      <?php if(is_null($sf_user->getAttribute('edit')) && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
         <td><a href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>">Modifier mes votes</a></td>
-      <?php elseif ($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+      <?php elseif ($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id'))|| $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
         <td><a href="#" onclick="document['edit_form'].submit()">Validez mes nouveaux votes</a></td>
       <?php endif; ?>
     <?php endif; ?>
 
-    <?php if($sf_user->getAttribute('edit') && $user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) && !$meeting->getClosed()): ?>
+    <?php if($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
       </form>
     <?php endif; ?>
 
@@ -136,7 +139,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
   </tr>
   <?php endforeach; ?>
 
-<?php if(!($sf_user->isAuthenticated() && $votes->offsetExists($sf_user->getProfileVar(sfConfig::get('app_user_id')))) && !$meeting->getClosed()): ?>
+<?php if(!($sf_user->isAuthenticated() && ($votes->offsetExists($sf_user->getProfileVar(sfConfig::get('app_user_id'))) || $votes->offsetExists($sf_user->getAttribute('participant_name')))) && !$meeting->getClosed()): ?>
   <tr>
 <form action="<?php echo url_for('meeting/vote?h='.$meeting->getHash()) ?>" method="post" > 
     <?php if($sf_user->hasCredential('member')): ?>

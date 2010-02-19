@@ -227,6 +227,10 @@ margin-left : -10px ;
 text-shadow: 1px 1px 1px #ddd ;
 }
 
+#meet_disc_box input {
+font-size : 1.4em ;  
+}
+
 #m_search {
 background: transparent url('/images/search.png') no-repeat 0px 0px;  
 color: #777;
@@ -245,6 +249,10 @@ padding: 7px 50px 0px;
 color: #777;
 width: 450px;
 padding : 7px 30px 0px ;       
+}
+
+.comment_present {
+background : url('/images/19.png') no-repeat ;
 }
 
 .contextMenu {

@@ -1,6 +1,12 @@
 showua:
   is_secure: false
 
+editvote:
+  credentials: [[member, invite]]
+
+validvote:
+  credentials: [[member, invite]]
+
 vote:
   credentials: [[member, invite]]
 

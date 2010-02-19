@@ -37,6 +37,23 @@ class meeting_pollTable extends Doctrine_Table
     $polls = $q->execute() ;
     return isset($polls[0]) ? $polls[0] : null;
   }
+
+  /**
+    * Get all the votes associated to a date and a user name.
+    *
+    * @param $did integer The date id.
+    * @param $uname string The participant_name.
+    * @return array Doctrine_Record The votes.
+    */
+  public function retrieveByUserNameAndDateId($did,$uname)
+  {
+    $q = $this->createQuery('m')
+        ->where('m.date_id = ?', $did) 
+        ->andWhere('m.participant_name = ?', $uname) ;
+
+    $polls = $q->execute() ;
+    return isset($polls[0]) ? $polls[0] : null;
+  }
   
   /**
     * Get the sum of votes associated to a meeting, grouped by date.
