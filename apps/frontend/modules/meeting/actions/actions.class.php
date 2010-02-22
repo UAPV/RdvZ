@@ -332,8 +332,13 @@ class meetingActions extends sfActions
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($meeting = Doctrine::getTable('meeting')->find($request->getParameter('id')), sprintf('Object meeting does not exist (%s).', $request->getParameter('id')));
 
-    $data = $request->getParameter('meeting');
-    
+    $data = $request->getParameter('meeting'); // retrieving meeting datas
+    $data['id'] = $request->getParameter('id') ; // little hack to avoid a huge bug
+                                                 // which I don't know how to fix
+
+    $this->form = new meetingForm($meeting);
+    $this->form->bind($data) ;
+
     $before_dates    = $this->getUser()->getAttribute('date_prime') ;
     $before_comments = $this->getUser()->getAttribute('comment_prime') ;
     $after_dates     = $this->fetchDates($data) ;
@@ -341,9 +346,6 @@ class meetingActions extends sfActions
 
     $this->getUser()->setAttribute('date',$after_dates) ;
     $this->getUser()->setAttribute('comment', $after_comments) ;
-
-    $this->form = new meetingForm($meeting);
-    $this->form->bind($data) ;
 
     if ($this->form->isValid())
     {
