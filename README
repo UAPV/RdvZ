@@ -1,7 +1,6 @@
-  -=================-
-     RdvZ Read Me
- version 2.0 alpha 2009/02/23
-  -=================-
+        -=================-
+  RdvZ version 2.0 alpha 2009/02/23
+        -=================-
 
 
 Bug tracker : https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
@@ -46,6 +45,11 @@ Websites to check :
 
 Of course MySQL is not required, you can use for example PostgreSQL, Oracle...
 
+In addition, the install bash script requires php-cli to run (PHP Command Line),
+if you are running a Debian based distribution, just do :
+ $ apt-get install php5-cli
+ 
+
 3.2. Symfony requirements
 The symfony version used for RdvZ is symfony1.3. It requires :
  - PHP >= 5.2.4, but ideally not 5.2.9
@@ -60,8 +64,22 @@ discover. That's because PHP can have a distinct php.ini configuration file for
 these two environments, with different settings.
 
 
+3.3 CAS requirements
+If you plan to run RdvZ with a CAS authentication, note that the php-cas library
+is already include in the RdvZ sources, but it requires the curl library :
+ $ apt-get install php5-curl
+
+
+3.4 LDAP requirements
+If you plan to run RdvZ with a LDAP (with or without CAS), note that the php-ldap
+library is required :
+ $ apt-get install php5-ldap
+
+
 
 4. Install
+
+See the INSTALL file.
 
 
 
@@ -94,3 +112,22 @@ Of course this configuration only works on your local machine, you need to adapt
 it in order to access your Apache server from the Internet.
 
 Don't forget to reload your Apache server after setting up the VirtualHost.
+
+
+
+6. Did you find a bug?
+
+Or maybe you think the application or the installer can be improved? Visit our
+bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
+and create a ticket to describe your problem (you can leave your messages in 
+french if you are comfortable with it) ; we will answer as soon as possible.
+
+
+
+7. For a better RdvZ experience...
+
+RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
+is optimized for the following versions :
+ - Firefox >= 3.6 (which is a major update, if you are not currently using you
+   should seriously consider upgrading your version),
+ - All Google Chrome versions

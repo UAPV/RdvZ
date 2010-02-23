@@ -1,0 +1,37 @@
+        -=================-
+  RdvZ version 2.0 alpha 2009/02/23
+        -=================-
+
+Before running the install script please read carefully the README file,
+especially the 'Requirements' section.
+
+When your web server setup is complete, take the time to prepare the
+information you will be asked in the install script, like :
+ - database server address
+ - database user (with privileges !!!)
+ - database user password
+ - database name (no need to create the database itself, the script
+   handles it
+
+If you want to use a LDAP server :
+ - ldap server address
+ - ldap server port
+ - ldap base dn (the branch where the users are stored)
+ - some ldap fields name, prepare your LDAP attributes glossary !
+
+If you want to use CAS authentication :
+ - cas server address
+ - cas server port
+
+
+Then, when you are ready, launch the script and read carefully 
+everything it displays :
+
+ $ ./install or bash install
+
+
+Then you need to activate the mod_rewrite Apache module and restart
+the Apache server. You may need root privileges to do this :
+
+ $ a2enmod rewrite
+ $ /etc/init.d/apache2 restart (or start if it is not started)

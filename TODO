@@ -1,7 +1,6 @@
-  -=================-
-    RdvZ TODO list.
- version 2.0 alpha 2010/02/23
-  -=================-
+        -=================-
+  RdvZ version 2.0 alpha 2009/02/23
+        -=================-
 
 ** The current version is still an alpha : there is no user documentation nor
 built-in installer, although it will come rather quickly I hope. Developper
@@ -15,15 +14,21 @@ Before implementing any of these, we suggest that you ask about it (them)
 on the mailing list <gpl@univ-avignon.fr>.
 
 -------------------------------------------------------------------------------
+RdvZ development.
+  - installer doesn't work for database authentication.
+
+-------------------------------------------------------------------------------
 Future features.
-  - writing meetings in the diary.
+  - writing meetings in a diary.
   - defining specific meetings (ex : weekly meeting).
   - Shibboleth support.
 
 -------------------------------------------------------------------------------
 RdvZ evolution.
+  - merging identical dates when showing the poll table.
   - installer improvement (importing previous RdvZ version's data, connecting
     with existing user database)
+  - installer : set default values on user input.
   - bugfixes.
   - deployment procedures improvement.
   - community development and support.
