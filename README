@@ -7,12 +7,6 @@ Bug tracker : https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=brow
 Developper contact : romain.deveaud@univ-avignon.fr
 
 
-** Disclaimer :
-The current version is still an alpha : there is no user documentation nor
-built-in installer, although it will come rather quickly I hope. Developper
-documentation will arrive soon too, and you can already read code comments.
-
-
 
 1. Introduction
 
@@ -52,7 +46,7 @@ if you are running a Debian based distribution, just do :
 
 3.2. Symfony requirements
 The symfony version used for RdvZ is symfony1.3. It requires :
- - PHP >= 5.2.4, but ideally not 5.2.9
+ - PHP >= 5.2.4, and ideally not 5.2.9
 
 It also requires some optional things, if you want to perform a clean install
 you may want to check it, do :
