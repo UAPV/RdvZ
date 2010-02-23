@@ -1,6 +1,6 @@
   -=================-
     RdvZ TODO list.
- version 2.0 alpha 2010/02/18
+ version 2.0 alpha 2010/02/23
   -=================-
 
 ** The current version is still an alpha : there is no user documentation nor
@@ -15,10 +15,6 @@ Before implementing any of these, we suggest that you ask about it (them)
 on the mailing list <gpl@univ-avignon.fr>.
 
 -------------------------------------------------------------------------------
-RdvZ 2.0 development.
-  - built-in installer.
-
--------------------------------------------------------------------------------
 Future features.
   - writing meetings in the diary.
   - defining specific meetings (ex : weekly meeting).
@@ -26,6 +22,8 @@ Future features.
 
 -------------------------------------------------------------------------------
 RdvZ evolution.
+  - installer improvement (importing previous RdvZ version's data, connecting
+    with existing user database)
   - bugfixes.
   - deployment procedures improvement.
   - community development and support.

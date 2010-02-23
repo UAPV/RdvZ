@@ -1,20 +1,96 @@
   -=================-
      RdvZ Read Me
- version 2.0 alpha 2009/02/18
+ version 2.0 alpha 2009/02/23
   -=================-
+
+
+Bug tracker : https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
+Developper contact : romain.deveaud@univ-avignon.fr
+
 
 ** Disclaimer :
 The current version is still an alpha : there is no user documentation nor
 built-in installer, although it will come rather quickly I hope. Developper
 documentation will arrive soon too, and you can already read code comments.
 
+
+
 1. Introduction
+
 RdvZ is a web application developed by the Université d’Avignon et des Pays 
 de Vaucluse which allows to create and manage meetings and to poll potential 
 attendee avalibility. The application allows both anonymous and authenticated 
-access (it can be either with MySQL or with a CAS server + LDAP or with a 
+access (it can be either with Database or with a CAS server + LDAP or with a 
 LDAP server alone), but whatever the access mode, everybody is able to vote 
 without being authenticated.
 
+
+
 2. Licence
+
 See the LICENSE file.
+
+
+
+3. Requirements
+
+3.1. Web Server requirements
+RdvZ is developped with the web framework symfony and is based on a LAMP
+architecture (Linux, Apache, MySQL, PHP), so you need to setup a web server 
+in order to run RdvZ. 
+
+Websites to check :
+ - https://help.ubuntu.com/community/ApacheMySQLPHP if you are running Ubuntu, 
+ - http://wiki.debian.org/LaMp if you are running Debian,
+ - http://www.lamphowto.com/ if you need further help.
+
+Of course MySQL is not required, you can use for example PostgreSQL, Oracle...
+
+3.2. Symfony requirements
+The symfony version used for RdvZ is symfony1.3. It requires :
+ - PHP >= 5.2.4, but ideally not 5.2.9
+
+It also requires some optional things, if you want to perform a clean install
+you may want to check it, do :
+ $ wget http://sf-to.org/1.4/check.php
+ $ php check_configuration.php
+
+You should also execute the checker from a browser and fix the issues it might 
+discover. That's because PHP can have a distinct php.ini configuration file for 
+these two environments, with different settings.
+
+
+
+4. Install
+
+
+
+5. Apache VirtualHost sample
+
+After installing RdvZ, you need to set up a VirtualHost for your Apache server.
+Here is a sample file, don't forget to change the pathes :
+
+[/etc/apache2/httpd.conf]
+<VirtualHost 127.0.0.1:80>
+  ServerName rdvz.localhost
+  DocumentRoot "/home/symfony/rdvz/web"
+  DirectoryIndex index.php
+  <Directory "/home/symfony/rdvz/web">
+    AllowOverride All
+    Allow from All
+  </Directory>
+
+  Alias /sf /home/symfony/rdvz/lib/vendor/symfony/data/web/sf
+  <Directory "/home/symfony/rdvz/lib/vendor/symfony/data/web/sf">
+    AllowOverride All
+    Allow from All
+  </Directory>
+</VirtualHost>
+
+[/etc/hosts]
+127.0.0.1 rdvz.localhost
+
+Of course this configuration only works on your local machine, you need to adapt
+it in order to access your Apache server from the Internet.
+
+Don't forget to reload your Apache server after setting up the VirtualHost.

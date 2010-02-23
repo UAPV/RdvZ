@@ -1,7 +1,7 @@
 RdvZ ChangeLog
 
 version 2.0a
-  2010-02-18 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+  2010-02-23 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
   * stable development code commit.
   * code comments in model and action files.
@@ -10,6 +10,7 @@ version 2.0a
   * meeting editing now works and does not reset votes anymore.
   * users can now comment their votes.
   * various bugfixes.
+  * application installer, building the database.
 
 version 2.0
   2009-12-04 Romain Deveaud <romain.deveaud@univ-avignon.fr>
