@@ -41,7 +41,7 @@ class uapvDB
       $conf['user_tab']     = sfConfig::has('app_bdd_infos_user_table_name') ? sfConfig::get('app_bdd_infos_user_table_name') : 'user' ;
       $conf['user_login']   = sfConfig::has('app_bdd_infos_user_login_field') ? sfConfig::get('app_bdd_infos_user_login_field') : 'login' ;
       $conf['user_pass']    = sfConfig::has('app_bdd_infos_user_pass_field') ? sfConfig::get('app_bdd_infos_user_pass_field') : 'pass' ;
-      $conf['pass_crypt']   = sfConfig::has('app_bdd_infos_user_pass_encrypt') ? sfConfig::get('app_bdd_infos_user_pass_encrypt') : 'md5' ;
+      $conf['pass_crypt']   = sfConfig::has('app_bdd_infos_user_pass_encrypt') ? sfConfig::get('app_bdd_infos_user_pass_encrypt') : 'sha1' ;
     }
 
     $this->config = $conf;

@@ -32,10 +32,13 @@ all:
     # Cache settings
     lazy_cache_key:         true        # Delays creation of a cache key until after checking whether an action or partial is cacheable
 
-  .actions:                         # Uniquement pour login par
-    login_module: authentication    # base de données ou ldap seul.
-    login_action: login             #
+  .actions:                         
     secure_module: auth
     secure_action: wrongcred
     error_404_module: error
     error_404_action: error404
+
+                                    # Uniquement pour login par
+    login_module: authentication    # base de données ou ldap seul.
+    login_action: login             #
+  
