@@ -30,7 +30,40 @@ everything it displays :
  $ ./install or bash install
 
 
-Then you need to activate the mod_rewrite Apache module and restart
+Then you need to set up a VirtualHost for your Apache server. Here are sample 
+files, don't forget to change the pathes :
+
+[/etc/apache2/httpd.conf]
+<VirtualHost 127.0.0.1:80>
+  ServerName rdvz.localhost
+  DocumentRoot "/home/symfony/rdvz/web"
+  DirectoryIndex index.php
+  <Directory "/home/symfony/rdvz/web">
+    AllowOverride All
+    Allow from All
+  </Directory>
+
+  Alias /sf /home/symfony/rdvz/lib/vendor/symfony/data/web/sf
+  <Directory "/home/symfony/rdvz/lib/vendor/symfony/data/web/sf">
+    AllowOverride All
+    Allow from All
+  </Directory>
+</VirtualHost>
+
+[/etc/hosts]
+127.0.0.1 rdvz.localhost
+
+Of course this sample configuration only works on your local machine, you need 
+to adapt it in order to access your Apache server from the Internet.
+
+
+Now you have to define the cache/ and log/ directories as writable for your
+Apache server. The safest way is to switch the owner to www-data :
+
+ $ chown -R www-data cache/ log/
+
+
+Finally you need to activate the mod_rewrite Apache module and restart
 the Apache server. You may need root privileges to do this :
 
  $ a2enmod rewrite

@@ -55,6 +55,13 @@ echo "all:" > apps/frontend/config/app.yml
 if [ "$type" = "Base de données" ]; then
 read -er -p "Type de cryptage du mot de passe [sha1, md5, none] : " bdd_crypt
   echo "
+  bdd_server:
+    host: ${bd_serv}
+    pdo: ${bd_pdo}
+    dbname: ${bd_name}
+    username: ${bd_uname}
+    password: ${bd_upass}
+
   bdd_infos:
     user_pass_encrypt: ${bdd_crypt}
     user_table_name: user

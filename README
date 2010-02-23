@@ -57,6 +57,8 @@ You should also execute the checker from a browser and fix the issues it might
 discover. That's because PHP can have a distinct php.ini configuration file for 
 these two environments, with different settings.
 
+Don't forget to remove the index.html file in your root web browser directory.
+
 
 3.3 CAS requirements
 If you plan to run RdvZ with a CAS authentication, note that the php-cas library
@@ -77,39 +79,7 @@ See the INSTALL file.
 
 
 
-5. Apache VirtualHost sample
-
-After installing RdvZ, you need to set up a VirtualHost for your Apache server.
-Here is a sample file, don't forget to change the pathes :
-
-[/etc/apache2/httpd.conf]
-<VirtualHost 127.0.0.1:80>
-  ServerName rdvz.localhost
-  DocumentRoot "/home/symfony/rdvz/web"
-  DirectoryIndex index.php
-  <Directory "/home/symfony/rdvz/web">
-    AllowOverride All
-    Allow from All
-  </Directory>
-
-  Alias /sf /home/symfony/rdvz/lib/vendor/symfony/data/web/sf
-  <Directory "/home/symfony/rdvz/lib/vendor/symfony/data/web/sf">
-    AllowOverride All
-    Allow from All
-  </Directory>
-</VirtualHost>
-
-[/etc/hosts]
-127.0.0.1 rdvz.localhost
-
-Of course this configuration only works on your local machine, you need to adapt
-it in order to access your Apache server from the Internet.
-
-Don't forget to reload your Apache server after setting up the VirtualHost.
-
-
-
-6. Did you find a bug?
+5. Did you find a bug?
 
 Or maybe you think the application or the installer can be improved? Visit our
 bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
@@ -118,7 +88,7 @@ french if you are comfortable with it) ; we will answer as soon as possible.
 
 
 
-7. For a better RdvZ experience...
+6. For a better RdvZ experience...
 
 RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
 is optimized for the following versions :
