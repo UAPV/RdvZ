@@ -14,7 +14,7 @@ txtrst=$(tput sgr0)       # Text reset
 echo -e "${txtbld}
 * * * * * * * * * * * * * * *
 *                           *
-*   Installeur RdvZ v2.0a   *
+*   Installeur RdvZ v2.0    *
 *                           *
 * * * * * * * * * * * * * * *
 
@@ -31,7 +31,7 @@ tout resaisir.${txtrst}
 ${txtcyn} ** Configuration base de données...${txtrst}"
 read -er -p "Adresse du serveur (localhost si elle est sur cette machine) : " bd_serv
 read -er -p "Type [mysql, pgsql, dblib, firebird, ibm, informix, oci, odbc, sqlite] : " bd_pdo
-read -er -p "Nom de la base : " bd_name
+read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé) : " bd_name
 read -er -p "Nom d'utilisateur (doit absolument avoir les droits sur la base !) : " bd_uname
 read -ers -p "Mot de passe utilisateur : " bd_upass
 echo -n "
@@ -73,7 +73,7 @@ read -er -p "Type de cryptage du mot de passe [sha1, md5, none] : " bdd_crypt
     
   profile_builder_class: uapvProfileBuilderDatabase
   authentication_type: bdd
-  user_id: user_id
+  user_id: id
   " >> apps/frontend/config/app.yml
 
   echo "
