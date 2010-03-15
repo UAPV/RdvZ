@@ -15,10 +15,12 @@ on the mailing list <gpl@univ-avignon.fr>.
 
 -------------------------------------------------------------------------------
 RdvZ development.
-  - installer doesn't work for database authentication.
+  - recovering datas from previous RdvZ version.
+  - web installer.
+  - internationalization (french/english, currently only french is available).
 
 -------------------------------------------------------------------------------
-Future features.
+Features that would be nice.
   - writing meetings in a diary.
   - defining specific meetings (ex : weekly meeting).
   - Shibboleth support.
