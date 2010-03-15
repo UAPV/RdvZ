@@ -11,7 +11,6 @@
     <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script> 
     <?php include_http_metas() ?>
     <?php include_metas() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
   </head>
   <body>

@@ -22,12 +22,6 @@ class meetingForm extends BasemeetingForm
     //$this->widgetSchema['aifna'] = new sfWidgetFormChoice(array('choices' => Doctrine::getTable('meeting')->getChoices(), 'expanded' => true)) ;
     $this->widgetSchema['notif'] = new sfWidgetFormChoice(array('choices' => Doctrine::getTable('meeting')->getChoices(), 'expanded' => true)) ;
     
-    $this->widgetSchema->setLabels(array(
-      'title' => 'Titre : ',
-      'description' => 'Description : ',
-      //'aifna' => 'Autoriser les votes<br />"Disponible en cas de besoin" : ',
-      'notif' => 'Recevoir une notification<br />par mail lors d\'un vote : '
-      )) ;
     
 /*
     foreach ($this->object['meeting_dates'] as $index => $date)
@@ -51,6 +45,8 @@ class meetingForm extends BasemeetingForm
       $this->widgetSchema->setLabel($name, $label);    
     }
 */    
+//    $this->widgetSchema['datee'] = new rdvzWidgetDatepicker() ; 
+
     $mails = sfContext::getInstance()->getUser()->getAttribute('mail') ;
 
     foreach($mails as $i => $mail)
@@ -69,6 +65,7 @@ class meetingForm extends BasemeetingForm
       }
     }
 
+
     $dates    = sfContext::getInstance()->getUser()->getAttribute('date') ;
     $comments = sfContext::getInstance()->getUser()->getAttribute('comment') ;
 
@@ -84,7 +81,16 @@ class meetingForm extends BasemeetingForm
       $this->setValidator('input_date_'.$i,new sfValidatorDate(array('required' => false, 'date_output' => 'd-m-Y'),array('invalid' => 'Cette date n\'est pas valide.'))) ;
     }
 
-    $this->setValidator('title', new sfValidatorString(array('max_length' => 255), array('required' => 'Vous devez donner un titre au rendez-vous.', 'max_length' => 'Le titre ne peut pas excéder 255 caractères.'))) ;
+
+    $this->widgetSchema->setLabels(array(
+      'title' => 'Titre : ',
+      'description' => 'Description : ',
+      //'aifna' => 'Autoriser les votes<br />"Disponible en cas de besoin" : ',
+      'notif' => 'Recevoir une notification<br />par mail lors d\'un vote : ',
+//      'datee' => 'Dates à retenir <br /><span class="em">(cliquez sur les dates voulues)</span> : '
+      )) ;
+
+    $this->setValidator('title', new sfValidatorString(array('max_length' => 30), array('required' => 'Vous devez donner un titre au rendez-vous.', 'max_length' => 'Le titre ne peut pas excéder 30 caractères, vous pouvez également utiliser la description.'))) ;
     $this->setValidator('description', new sfValidatorString(array('required' => false))) ;
 
     $this->validatorSchema->setOption('allow_extra_fields', true) ;

@@ -192,7 +192,17 @@ class meetingActions extends sfActions
     // If the creator wants to know when there is a new vote, send him a 
     // mail right now !
     if ($this->meeting->getNotif())
-      $this->sendNotifMail($this->meeting) ;
+    {
+      if($this->getUser()->hasCredential('member'))
+      {
+        $user = Doctrine::getTable('user')->find($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+        $u_name = $user->getSurname().' '.$user->getName() ;
+      }
+      else
+        $u_name = $this->getUser()->getAttribute('participant_name') ;
+
+      $this->sendNotifMail($this->meeting,$u_name) ;
+    }
 
     // Different redirection depending on the credentials of the user.
     if($this->getUser()->hasCredential('invite')) $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
@@ -537,13 +547,13 @@ class meetingActions extends sfActions
     * The function which sends mails when the owner of the meeting
     * wants to be notified if a change occurs in the votes.
     */
-  protected function sendNotifMail($meeting)
+  protected function sendNotifMail($meeting,$uname)
   {
     $subject = "[RdvZ] Nouveau vote pour votre rendez-vous" ;
 
     $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
     try {
-      $mailBody = $this->getPartial('meeting/notif_new_vote', array('meeting' => $meeting)) ;
+      $mailBody = $this->getPartial('meeting/notif_new_vote', array('meeting' => $meeting, 'uname' => $uname)) ;
       $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $user->getMail(), $subject, $mailBody);
     }
     catch(Exception $e)

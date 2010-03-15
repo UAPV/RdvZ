@@ -29,7 +29,6 @@ textarea {
   background: #FBFAF8;
   -moz-border-radius:    4px;
   -webkit-border-radius: 4px;
-  border-radius:         4px;
   border: 1px solid rgba(0,0,0,0.3);
   -moz-box-shadow:    inset 0 4px 4px rgba(0,0,0,0.05);
   -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,0.05);
@@ -98,49 +97,103 @@ background-color : #e5e5e5 ;
 border : 1px solid grey ;
 }
 
-table.my_meetings { 
-  border-collapse:collapse; 
+ul.my_meetings { 
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border : 1px solid #d5d5d5 ; 
 /*  text-align : center ; */
-  margin-bottom : 20px ;
+padding : 0px ;
+margin : 0px ;          
+list-style: none ;
+float : left ;
+width : 700px ;        
+letter-spacing : -1px ;
 }
-    
-table.my_meetings td {
-/*  width : 160px ;*/                                                                                                 
-  padding-left : 20px ;
-  padding-right : 20px ;                                                                                              
+
+ul.my_meetings li {
+min-height : 55px ;  
 }
 
-table.my_meetings th {
-/*  width : 160px ;*/
-  padding-left : 20px ;
-  padding-right : 20px ;
-}       
+ul.my_meetings hr {
+display : none ;
+}
 
-table.my_meetings tbody tr {
-}        
+ul.my_meetings li .meeting_delete_expires {
+float : right ;
+padding : 10px ;
+text-align : right ;
+}
 
-table.my_meetings tbody tr.odd {
-  background-color : #e5e5e5 ;
+ul.my_meetings li.odd {
+  background-color : #ededed ;
 } 
-        
-table.my_meetings thead th.first {
-  -moz-border-radius-topleft : 5px; 
-  -webkit-border-top-left-radius: 5px; 
-  -moz-border-radius-bottomleft : 5px;                                                                                
-  -webkit-border-bottom-left-radius: 5px;  
-}       
 
-table.my_meetings thead th.last {                                                                                       
-  -moz-border-radius-topright : 5px;                                                                                  
-  -webkit-border-top-right-radius: 5px; 
-  -moz-border-radius-bottomright : 5px; 
-  -webkit-border-bottom-right-radius: 5px;                                                                            
+ul.my_meetings li:hover {
+  background-color : #FFFDDE ;
 }
 
-table.my_meetings thead th {
-  background-color :  #1E52A1  ;
-  color : white ;
-  font-weight : normal ;
+ul.my_meetings li .meeting_name {
+padding-top : 10px;
+margin-left : 15px ;
+font-size : 1.4em ;
+}
+
+ul.my_meetings li .actions_container {
+  margin-top : 30px ;
+}
+
+ul.my_meetings li .meeting_name {
+color : #3337A1 ;
+font-weight: bold ;        
+text-shadow: 1px 1px 1px #efefef;
+}
+
+ul.my_meetings li .meeting_code_div {
+display : none ;
+padding-top : 10px;
+margin-left : 15px ;
+font-size : 1.4em ;
+}
+
+ul.my_meetings li .meeting_code_div a {
+font-weight : normal ;  
+color : #686868 ;
+}
+
+ul.my_meetings li .meeting_code {
+font-weight : bold ;
+color : black ;
+}
+
+hr { width: 95%; margin-top: 2em; height:1px;border-width:0;background-color:#d8d8d8; }
+
+ul.my_meetings .actions {
+width : 95% ;  
+margin-top : 30px ;        
+margin-left : 10px ;
+padding-bottom : 5px ;
+padding-left : 10px ;  
+border-top : 1px solid #d8d8d8 ;
+padding-top : 5px ;
+display: none ;
+}
+
+ul.my_meetings .actions li {
+display : inline ;
+}
+
+ul.my_meetings .actions_container {
+display : none ;
+}
+
+ul.my_meetings li .actions a {
+padding-left : 10px ;  
+padding-right : 10px ;  
+border-left : 1px solid #d8d8d8 ;
+}
+
+ul.my_meetings li .actions a.no_border {
+border : none ;
 }
 
 #legende {
@@ -239,6 +292,10 @@ margin-bottom : 20px ;
 margin-left : 20px ;
 }
 
+.error_name {
+border : 4px solid #a00000;
+}
+
 .search {
 font-size: 1.5em;
 height: 33px;
@@ -293,6 +350,11 @@ margin-bottom : -2px ;
   margin-bottom : -8px ;
 }
 
+.em {
+font-weight : normal ;
+font-style : italic ;
+}
+
 .mini_help {
   font-size : 0.8em ;
   font-style : italic ;
@@ -324,6 +386,7 @@ margin-bottom : -4px ;
   margin-right : 3px ;
 }
 
+
 .awesome,
 .awesome:visited {
   background: #222;
@@ -352,3 +415,50 @@ margin-bottom : -4px ;
 .awesome.large {
   padding: 6px 20px 6px 20px;
 }
+
+/*---------- bubble tooltip -----------*/
+/*
+td.tt{
+    position:relative;
+    z-index:24;
+    color:#3CA3FF;
+  font-weight:bold;
+    text-decoration:none;
+}
+td.tt span{ display: none; }
+*/
+/*background:; ie hack, something must be changed in a for ie to execute it*/
+/*
+td.tt:hover { z-index:25;  color: #aaaaff; }
+*/
+/*
+#tooltip {
+  display:block;
+  position:absolute;
+  top:0px; left:0;
+  padding: 15px 0 0 0;
+  width:200px;
+  color: #993300;
+  text-align: center;
+  filter: alpha(opacity:90);
+  KHTMLOpacity: 0.90;
+  MozOpacity: 0.90;
+  opacity: 0.90;
+}
+#tooltip.top{
+  display: block;
+  padding: 30px 8px 0;
+    background: url(/images/bubble.gif) no-repeat top;
+}
+#tooltip.middle{ 
+  display: block;
+  padding: 0 8px; 
+  background: url(/images/bubble_filler.gif) repeat bottom; 
+}
+#tooltip.bottom{
+  display: block;
+  padding:3px 8px 10px;
+  color: #548912;
+    background: url(/images/bubble.gif) no-repeat bottom;
+}
+*/

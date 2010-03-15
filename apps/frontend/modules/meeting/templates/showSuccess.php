@@ -3,9 +3,18 @@
 <?php use_javascript('jquery.contextmenu.r2.js') ?>
 <?php use_javascript('poll_comment') ?>
 <?php use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
+<?php 
+  $user_is_creator = false ;
+  if($sf_user->isAuthenticated()) 
+    if($sf_user->getProfileVar(sfConfig::get('app_user_id')) == $meeting->getUid())
+      $user_is_creator = true ;
+?>
+
+<?php if($user_is_creator): ?>
 <div id="meet_disc_box">
 <div id="url_meet_disc">Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs !</div>
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
+<?php endif; ?>
 <h2><img src="/images/book_bookmarks_32.png" alt="Disponibilités" class="icon_32" /> Quelles sont vos disponibilités?</h2>
 <table>
   <tbody>
@@ -26,7 +35,7 @@
 <div id="tips">
 <a href="#">Masquer</a>
 <strong>A savoir</strong><br />
-Vous pouvez ajouter un commentaire pour chacun de <u>vos votes</u> en effectuant un clic droit sur la case correspondante.
+Vous pouvez ajouter un commentaire pour chacun des votes que vous avez validés en effectuant un clic droit sur la case correspondante.
 </div>
 Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite le bouton "Voter" pour valider votre vote.
 <div class="contextMenu" id="poll_menu">
@@ -76,12 +85,6 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
     <?php endforeach; ?>
   </tr>
 
-  <?php 
-    $user_is_creator = false ;
-    if($sf_user->isAuthenticated()) 
-      if($sf_user->getProfileVar(sfConfig::get('app_user_id')) == $meeting->getUid())
-        $user_is_creator = true ;
-  ?>
 
   <?php $i = 0 ; ?>
   <!-- Les lignes qui affichent les votes effectués... -->
@@ -140,13 +143,17 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
   <?php endforeach; ?>
 
 <?php if(!($sf_user->isAuthenticated() && ($votes->offsetExists($sf_user->getProfileVar(sfConfig::get('app_user_id'))) || $votes->offsetExists($sf_user->getAttribute('participant_name')))) && !$meeting->getClosed()): ?>
-  <tr>
+  <tr id="form">
 <form action="<?php echo url_for('meeting/vote?h='.$meeting->getHash()) ?>" method="post" > 
     <?php if($sf_user->hasCredential('member')): ?>
       <?php $user = Doctrine::getTable('user')->find($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ; ?>
       <td class="poll_td"><?php echo $user->getSurname().' '.$user->getName()  ?></td>
     <?php else: ?>
-        <td class="poll_td"><input type="text" name="name" size="10" /></td>
+        <td class="poll_td"><input 
+          <?php if ($sf_user->hasFlash('error')): ?>
+           class="error_name" 
+          <?php endif; ?>
+          type="text" name="name" size="10" /></td>
     <?php endif; ?>
     <?php foreach($dates as $m => $days): ?>
       <?php foreach($days as $id => $d): ?>
