@@ -1,0 +1,38 @@
+RdvZ ChangeLog
+
+version 2.0b
+  2010-03-16 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+
+  * stable development code commit.
+  * code comments in model and action files.
+  * new date selection method when creating a meeting.
+  * meeting search field on the homepage.
+  * meeting editing now works and does not reset votes anymore.
+  * users can now comment their votes.
+  * various bugfixes.
+  * application installer, building the database.
+  * user documentation in README and INSTALL files.
+
+version 2.0
+  2009-12-04 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+
+  * beginning of the RdvZ 2.0 Symfony project, first development code commit. 
+
+version 1.2.2
+  2009-10-06 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+
+  * includes/install/connection.php : fixes bugs in the install process where 
+  relative pathes weren't pointing to the correct files.
+  
+  * templates/uapv/calendar.tpl.php : fixes a PHP syntax which raised a Fatal 
+  Error.
+
+  * ChangeLog : beginning of this ChangeLog.
+
+version 1.2.1
+  2009-10-01 Arnaud Didry <arnaud.didry@univ-avignon.fr>
+
+  * includes/ldap_lecture.php : get_infos() function bugfix.
+
+  * includes/install/write_conf_cas.php : date_comments is now datecomments in
+  the database creation script.

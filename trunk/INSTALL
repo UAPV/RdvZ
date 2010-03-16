@@ -1,0 +1,70 @@
+        -=================-
+  RdvZ version 2.0 beta 2009/03/16
+        -=================-
+
+Before running the install script please read carefully the README file,
+especially the 'Requirements' section.
+
+When your web server setup is complete, take the time to prepare the
+information you will be asked in the install script, like :
+ - database server address
+ - database user (with privileges !!!)
+ - database user password
+ - database name (no need to create the database itself, the script
+   handles it
+
+If you want to use a LDAP server :
+ - ldap server address
+ - ldap server port
+ - ldap base dn (the branch where the users are stored)
+ - some ldap fields name, prepare your LDAP attributes glossary !
+
+If you want to use CAS authentication :
+ - cas server address
+ - cas server port
+
+
+Then, when you are ready, launch the script and read carefully 
+everything it displays :
+
+ $ ./install or bash install
+
+
+Then you need to set up a VirtualHost for your Apache server. Here are sample 
+files, don't forget to change the pathes :
+
+[/etc/apache2/httpd.conf]
+<VirtualHost 127.0.0.1:80>
+  ServerName rdvz.localhost
+  DocumentRoot "/home/symfony/rdvz/web"
+  DirectoryIndex index.php
+  <Directory "/home/symfony/rdvz/web">
+    AllowOverride All
+    Allow from All
+  </Directory>
+
+  Alias /sf /home/symfony/rdvz/lib/vendor/symfony/data/web/sf
+  <Directory "/home/symfony/rdvz/lib/vendor/symfony/data/web/sf">
+    AllowOverride All
+    Allow from All
+  </Directory>
+</VirtualHost>
+
+[/etc/hosts]
+127.0.0.1 rdvz.localhost
+
+Of course this sample configuration only works on your local machine, you need 
+to adapt it in order to access your Apache server from the Internet.
+
+
+Now you have to define the cache/ and log/ directories as writable for your
+Apache server. The safest way is to switch the owner to www-data :
+
+ $ chown -R www-data cache/ log/
+
+
+Finally you need to activate the mod_rewrite Apache module and restart
+the Apache server. You may need root privileges to do this :
+
+ $ a2enmod rewrite
+ $ /etc/init.d/apache2 restart (or start if it is not started)

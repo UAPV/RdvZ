@@ -1,0 +1,26 @@
+<?php
+$configuration = ProjectConfiguration::getApplicationConfiguration
+('frontend', 'prod', false);
+
+sfContext::createInstance($configuration);
+?>
+
+meeting:
+  meeting_5:
+    title: plop
+    description: plopsfz
+    hash: 12lka5
+    uid: '8802366'
+    closed: '0'
+    date_del: '2010-03-25 00:00:00'
+    date_end: '2010-02-25 00:00:00'
+    aifna: '0'
+    notif: '0'
+    created_at: '2009-11-25 15:47:33'
+    updated_at: '2009-11-26 17:40:25'
+user:
+  user_1:
+    login: sit
+    pass: celine
+    name: Deveaud
+    surname: Romain
