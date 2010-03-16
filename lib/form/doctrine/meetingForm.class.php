@@ -90,7 +90,7 @@ class meetingForm extends BasemeetingForm
 //      'datee' => 'Dates à retenir <br /><span class="em">(cliquez sur les dates voulues)</span> : '
       )) ;
 
-    $this->setValidator('title', new sfValidatorString(array('max_length' => 30), array('required' => 'Vous devez donner un titre au rendez-vous.', 'max_length' => 'Le titre ne peut pas excéder 30 caractères, vous pouvez également utiliser la description.'))) ;
+    $this->setValidator('title', new sfValidatorString(array('max_length' => 100), array('required' => 'Vous devez donner un titre au rendez-vous.', 'max_length' => 'Le titre ne peut pas excéder 100 caractères, vous pouvez également utiliser la description.'))) ;
     $this->setValidator('description', new sfValidatorString(array('required' => false))) ;
 
     $this->validatorSchema->setOption('allow_extra_fields', true) ;

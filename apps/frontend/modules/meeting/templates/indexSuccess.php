@@ -11,10 +11,23 @@
   <?php foreach ($meeting_list as $meeting): ?>
   <li class="<?php echo $i++%2 ? 'even' : 'odd' ?>">
     <div class="meeting_delete_expires">
+
+    <?php if(time() >= strtotime($meeting->getDateEnd()) || $meeting->getClosed()): ?>
+    <div style="color : red; font-weight: bold;">Votes clos.</div>
+    <?php else: ?>
     <div>Fermeture automatique des votes le <strong><?php echo strftime("%a %d %b %Y", strtotime($meeting->getDateEnd())) ?></strong>.</div>
+    <?php endif ; ?>
+
     <div>Suppression automatique du sondage le <strong><?php echo strftime("%a %d %b %Y", strtotime($meeting->getDateDel())) ?></strong>.</div>
     </div>
-    <div class="meeting_name"><?php echo $meeting->getTitle() ?></div>
+    <div class="meeting_name">
+      <?php if(strlen($meeting->getTitle()) > 27): ?>
+        <?php echo substr_replace($meeting->getTitle(), '...', 27, strlen($meeting->getTitle())) ; ?>
+      <?php else: ?>
+        <?php echo $meeting->getTitle() ; ?>
+      <?php endif; ?>
+    </div>
+
     <div class="meeting_code_div"><a href="<?php echo url_for('meeting/show?h='.$meeting->getHash()) ?>">Code du sondage : <span class="meeting_code"><?php echo $meeting->getHash() ?></span></a></div>
     <ul class="actions">
       <li><a class="no_border" href="<?php echo url_for('meeting/edit?id='.$meeting->getId()) ?>"><img class="icon_16" src="/images/book_16.png" alt="Modifier" /> Modifier</a></li>

@@ -12,10 +12,12 @@ $(document).ready(function()
   }
     );
 */
+/*
   $('td.tt').mouseover(function(e)
   {
     $(this).children('.tooltip').offset({ top: e.pageY, left: e.pageX }) ;
   });
+*/
 
    $(/*'.ok, .not_ok'*/'.to_comment').contextMenu('poll_menu', {
       menuStyle: {

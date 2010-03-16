@@ -91,7 +91,7 @@ class meetingActions extends sfActions
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
     if(!$this->meeting)
     {
-      $this->getUser()->setFlash('error', 'Aucun rendez-vous ne correspond à ce code.') ;
+      $this->getUser()->setFlash('error', 'Aucun sondage ne correspond à ce code.') ;
       $this->redirect('homepage') ;
     }
     else

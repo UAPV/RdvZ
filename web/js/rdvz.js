@@ -30,15 +30,18 @@ $(document).ready(function()
 
   $(".my_meetings").children('li').mouseenter(function()
   {
-    $(this).children('.meeting_name').hide() ;
-    $(this).children('.meeting_code_div').show() ;
-    $(this).children('.actions').slideDown('fast') ;
+    $('.meeting_name', this).hide() ;
+    $('.meeting_code_div', this).show() ;
+    $('.actions', this).slideDown('fast') ;
   }) ;
 
   $(".my_meetings").children('li').mouseleave(function()
   {
-    $(this).children('.actions').slideUp('fast') ;
-    $(this).children('.meeting_name').show() ;
-    $(this).children('.meeting_code_div').hide() ;
+    $('.actions', this).slideUp('fast') ;
+    $('.meeting_name', this).show() ;
+    $('.meeting_code_div', this).hide() ;
   }) ;
+
+// A modifier, ça rame pour le moment.
+//  $('form').nextAll('td').click(function () { $('input:checkbox', this).click(); });
 }) ;
