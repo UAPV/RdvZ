@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0 alpha 2009/02/24
+  RdvZ version 2.0 beta 2009/03/16
         -=================-
 
 ** The current version is still an alpha : there is no user documentation nor
@@ -18,6 +18,8 @@ RdvZ development.
   - recovering datas from previous RdvZ version.
   - web installer.
   - internationalization (french/english, currently only french is available).
+  - when creating a new meeting, adding a new date moves the calendar but it
+    shouldn't.
 
 -------------------------------------------------------------------------------
 Features that would be nice.

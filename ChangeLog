@@ -1,7 +1,7 @@
 RdvZ ChangeLog
 
-version 2.0a
-  2010-02-24 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+version 2.0b
+  2010-03-16 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
   * stable development code commit.
   * code comments in model and action files.
