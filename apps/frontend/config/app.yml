@@ -11,13 +11,6 @@ all:
     basedn: dc=univ-avignon,dc=fr
     options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
 
-  bdd_server:
-    host: localhost
-    pdo: mysql
-    dbname: rdvz
-    username: root
-    password: celine
-
   bdd_infos:
     user_pass_encrypt: none
     user_table_name: user
