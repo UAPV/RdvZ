@@ -4,6 +4,7 @@
 </form>
 </fieldset>
 
+<?php if(count($meeting_list)): ?>
 <ul class="my_meetings">
   <?php setlocale(LC_TIME,'fr_FR.utf8','fra') ; ?>
   <?php $i = 0 ; ?>
@@ -24,6 +25,7 @@
   </li>
   <?php endforeach; ?>
 </ul>
+<?php endif; ?>
 <div style="clear : both; height : 30px ;"></div>
 
   <a href="<?php echo url_for('meeting/new') ?>"><img class="icon_32" src="/images/book_add_32.png" alt="Nouveau rendez-vous"  /> Nouveau rendez-vous</a>
