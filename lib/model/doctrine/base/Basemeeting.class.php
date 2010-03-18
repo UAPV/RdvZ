@@ -8,7 +8,7 @@
  * @property string $hash
  * @property string $title
  * @property string $description
- * @property integer $uid
+ * @property string $uid
  * @property integer $closed
  * @property timestamp $date_del
  * @property timestamp $date_end
@@ -19,7 +19,7 @@
  * @method string              getHash()          Returns the current record's "hash" value
  * @method string              getTitle()         Returns the current record's "title" value
  * @method string              getDescription()   Returns the current record's "description" value
- * @method integer             getUid()           Returns the current record's "uid" value
+ * @method string              getUid()           Returns the current record's "uid" value
  * @method integer             getClosed()        Returns the current record's "closed" value
  * @method timestamp           getDateDel()       Returns the current record's "date_del" value
  * @method timestamp           getDateEnd()       Returns the current record's "date_end" value
@@ -62,8 +62,9 @@ abstract class Basemeeting extends sfDoctrineRecord
              'notnull' => true,
              'length' => '4000',
              ));
-        $this->hasColumn('uid', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('uid', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
              ));
         $this->hasColumn('closed', 'integer', null, array(
              'type' => 'integer',

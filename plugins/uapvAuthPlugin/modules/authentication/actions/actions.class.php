@@ -37,7 +37,7 @@ class authenticationActions extends sfActions
 
           // "uid=..." à changer, pour utiliser les paramètres de configuration
           // pour que ça marche avec un LDAP qui n'a pas des uid mais des trululuid.
-          $resp = $ldap->checkPassword("uid=".$form_info['username'], $form_info['password']) ;
+          $resp = $ldap->checkPassword(sfConfig::get('app_profile_var_translation_uid','uid')."=".$form_info['username'], $form_info['password']) ;
           
           if($resp)
           {

@@ -12,7 +12,10 @@ class authActions extends sfActions
 {
   public function executeMh(sfWebRequest $request)
   {
-    $this->meeting = $request->getParameter('m') ;
+    //$this->meeting = $request->getParameter('m') ;
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('m')) ;
+    if($this->getUser()->isAuthenticated())
+      $this->redirect($this->meeting->getHash().'/show') ;
   }
 
   public function executeWrongcred(sfWebRequest $request)

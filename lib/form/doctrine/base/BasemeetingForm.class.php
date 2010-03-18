@@ -34,7 +34,7 @@ abstract class BasemeetingForm extends BaseFormDoctrine
       'hash'        => new sfValidatorString(array('max_length' => 6)),
       'title'       => new sfValidatorString(array('max_length' => 255)),
       'description' => new sfValidatorString(array('max_length' => 4000)),
-      'uid'         => new sfValidatorInteger(array('required' => false)),
+      'uid'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'closed'      => new sfValidatorInteger(array('required' => false)),
       'date_del'    => new sfValidatorDateTime(array('required' => false)),
       'date_end'    => new sfValidatorDateTime(array('required' => false)),

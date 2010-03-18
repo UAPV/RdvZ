@@ -5,7 +5,7 @@ meeting:
     hash: { type: string(6), notnull: true }
     title: { type: string(255), notnull: true }
     description: { type: string(4000), notnull: true }
-    uid: { type: integer }
+    uid: { type: string(255) }
     closed: { type: integer, default: 0 }
     date_del: { type: timestamp }
     date_end: { type: timestamp }

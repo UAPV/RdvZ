@@ -11,6 +11,8 @@ dev:
     no_script_name:         false
     etag:                   false
 
+    enabled_modules: [uapvAuthProfile]
+
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
@@ -40,5 +42,4 @@ all:
 
                                     # Uniquement pour login par
     login_module: authentication    # base de données ou ldap seul.
-    login_action: login             #
-  
+    login_action: login             # 

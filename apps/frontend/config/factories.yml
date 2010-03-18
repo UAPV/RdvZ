@@ -1,9 +1,10 @@
 prod:
   logger:
-    class:   sfNoLogger
+    class:   sfFileLogger
     param:
       level:   err
       loggers: ~
+      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log 
 
 cli:
   controller:
@@ -34,7 +35,7 @@ dev:
     param:
       delivery_strategy: none
 #      delivery_strategy: single_address
-#      delivery_address:  romain.deveaud@gmail.com
+#      delivery_address:  romain.deveaud@univ-avignon.fr
 
 all:
   mailer:

@@ -1,19 +1,45 @@
 meeting:
   class: sfDoctrineRouteCollection
   options: { model: meeting }         
+
+out:
+  url: /authentication/logout
+  param: { module: authentication, action: logout }
+
+auth_mh:
+  url: /:m
+  param: { module: auth, action: mh }
+
 meeting_show:
-  url: /meeting/show/h/:h
+  url: /:h/show
   param: { module: meeting, action: show }
+
+meeting_csv:
+  url: /:h/csv
+  param: { module: meeting, action: csv }
+
+meeting_voteclose:  
+  url: /:h/voteclose
+  param: { module: meeting, action: voteclose }
+
+meeting_search:
+  url: /meeting/search
+  param: { module: meeting, action: search }
 # default rules
 homepage:
   url:   /
   param: { module: meeting, action: index }
 
-# generic rules
-# please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
 
 default:
-  url:   /:module/:action/*
+  url: /:module/:action/*
+
+#logout:
+#  url: /logout
+#  param: { module: authentication, action: logout }
+
+# generic rules
+# please, remove them by adding more specific rules
+# default_index:
+#  url:   /:module
+#  param: { action: index }

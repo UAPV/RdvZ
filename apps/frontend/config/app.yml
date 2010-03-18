@@ -1,4 +1,5 @@
 # default values
+
 all:
   cas_server:
     host: cas.univ-avignon.fr
@@ -20,11 +21,11 @@ all:
     user_surname_field: surname
     user_mail_field: mail
 
-  ldap_infos:
-    user_id_field: uidnumber
-    user_name_field: sn
-    user_surname_field: givenname
-    user_mail_field: mail
+  profile_var_translation:
+    uid: uid
+    name: sn
+    surname: givenname
+    mail: mail
 
   url: rdvz2-test.univ-avignon.fr
 #  profile_builder_class: uapvProfileBuilderDatabase

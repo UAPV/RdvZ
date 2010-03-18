@@ -28,13 +28,13 @@
 
     <?php echo $sf_content ?>
     </div>
-    <div id="user_infos">
-      <?php if($sf_user->isAuthenticated()): ?>
+    <?php if($sf_user->isAuthenticated() && $sf_user->hasCredential('member')): ?>
+      <div id="user_infos">
         <?php $usr = Doctrine::getTable('user')->find($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ; ?>
         <?php echo $usr->getMail() ?>
-        <?php echo link_to('<img src="/images/shutdown.png" alt="Déconnexion" />', 'authentication/logout') ?>
-      <?php endif ; ?>
-    </div>
+        <?php echo link_to('<img src="/images/shutdown.png" alt="Déconnexion" />', 'out') ?>
+      </div>
+    <?php endif ; ?>
     <?php include_javascripts() ?>
   </body>
 </html>

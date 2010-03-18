@@ -123,8 +123,8 @@ all:
   " > apps/frontend/config/settings.yml
 
   echo "
-security: ~
 rendering: ~
+security: ~
 
 cache: ~
 execution: ~
@@ -159,11 +159,11 @@ elif [ "$type" = "LDAP seul" ]; then
     basedn: ${ldap_basedn}
     options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
   
-  ldap_infos:
-    user_id_field: ${ldap_user_id}
-    user_name_field: ${ldap_user_name}
-    user_surname_field: ${ldap_user_surname}
-    user_mail_field: ${ldap_user_mail}
+  profile_var_translation:
+    uid: ${ldap_user_id}
+    name: ${ldap_user_name}
+    surname: ${ldap_user_surname}
+    mail: ${ldap_user_mail}
 
   profile_builder_class: uapvProfileBuilderLdap
   authentication_type: ldap
@@ -217,8 +217,8 @@ all:
   " > apps/frontend/config/settings.yml
 
   echo "
-security: ~
 rendering: ~
+security: ~
 
 cache: ~
 execution: ~
@@ -247,7 +247,7 @@ ${txtcyn} ** Configuration serveur LDAP...${txtrst}"
   read -er -p "Adresse du serveur LDAP : " ldap_serv
   read -er -p "Port du serveur LDAP : " ldap_port
   read -er -p "Branche utilisée (basedn) : " ldap_basedn
-  read -er -p "Champ identifiant utilisateur (ex : uidnumber) : " ldap_user_id
+  read -er -p "Champ identifiant utilisateur (ex : uid) : " ldap_user_id
   read -er -p "Champ nom utilisateur : " ldap_user_name
   read -er -p "Champ prénom utilisateur : " ldap_user_surname
   read -er -p "Champ mail utilisateur : " ldap_user_mail
@@ -263,11 +263,11 @@ ${txtcyn} ** Configuration serveur LDAP...${txtrst}"
     basedn: ${ldap_basedn}
     options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
   
-  ldap_infos:
-    user_id_field: ${ldap_user_id}
-    user_name_field: ${ldap_user_name}
-    user_surname_field: ${ldap_user_surname}
-    user_mail_field: ${ldap_user_mail}
+  profile_var_translation:
+    uid: ${ldap_user_id}
+    name: ${ldap_user_name}
+    surname: ${ldap_user_surname}
+    mail: ${ldap_user_mail}
 
   profile_builder_class: uapvProfileBuilderLdap
   authentication_type: ldap
@@ -317,11 +317,11 @@ all:
   " > apps/frontend/config/settings.yml
 
   echo "
+rendering: ~
 security:
   class: uapvSecurityFilterCas
   param:
     type: security
-rendering: ~
 
 cache: ~
 execution: ~
@@ -342,10 +342,83 @@ all:
 fi
 
 echo -e "
+${txtcyn} ** Configuration SMTP...${txtrst}"
+read -er -p "Adresse du serveur SMTP (ex : smtp.univ-avignon.fr) : " smtp_url
+read -er -p "Port du SMTP : " smtp_port                                                                     
+
+echo -e "
 ${txtcyn} ** Informations complémentaires...${txtrst}"
 read -er -p "Url de la page RdvZ (ex : rdvz.univ-avignon.fr) : " url
 read -er -p "Nom de votre organisation (ex : Université d'Avignon) : " org
 
+echo "
+prod:
+  logger:
+    class:   sfFileLogger
+    param:
+      level:   err
+      loggers: ~
+      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log 
+
+cli:
+  controller:
+    class: sfConsoleController
+  request:
+    class: sfConsoleRequest
+  response:
+    class: sfConsoleResponse
+
+test:
+  storage:
+    class: sfSessionTestStorage
+    param:
+      session_path: %SF_TEST_CACHE_DIR%/sessions
+
+  response:
+    class: sfWebResponse
+    param:
+      send_http_headers: false
+
+#prod:           
+#  mailer:
+#    param:
+#      delivery_strategy: realtime
+
+dev:
+  mailer:
+    param:
+      delivery_strategy: none
+#      delivery_strategy: single_address
+#      delivery_address:  romain.deveaud@univ-avignon.fr
+
+all:
+  mailer:
+    class: sfMailer
+    param:
+      logging:           %SF_LOGGING_ENABLED%
+      charset:           %SF_CHARSET%
+      delivery_strategy: realtime
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host:       ${smtp_url}
+          port:       ${smtp_port}
+          encryption: ~
+          username:   ~
+          password:   ~
+
+  routing:
+    class: sfPatternRouting
+    param:
+      generate_shortest_url:            true
+      extra_parameters_as_query_string: true
+
+  view_cache_manager:
+    class: sfViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    true" > apps/frontend/config/factories.yml
+                                                                       
 echo "
   url: ${url}
   org_name: \"${org}\"" >> apps/frontend/config/app.yml

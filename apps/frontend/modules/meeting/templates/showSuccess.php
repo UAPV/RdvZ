@@ -1,8 +1,8 @@
-<?php use_javascript('tools.tooltip-1.1.3.js') ?>
-<?php use_javascript('jquery-ui-1.7.2.custom.min.js') ?>
-<?php use_javascript('jquery.contextmenu.r2.js') ?>
-<?php use_javascript('poll_comment') ?>
-<?php use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
+<?php //use_javascript('tools.tooltip-1.1.3.js') ?>
+<?php //use_javascript('jquery-ui-1.7.2.custom.min.js') ?>
+<?php //use_javascript('jquery.contextmenu.r2.js') ?>
+<?php //use_javascript('poll_comment.js') ?>
+<?php //use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
 <?php 
   $user_is_creator = false ;
   if($sf_user->isAuthenticated()) 
@@ -35,7 +35,7 @@
 <div id="tips">
 <a href="#">Masquer</a>
 <strong>A savoir</strong><br />
-Vous pouvez ajouter un commentaire pour chacun des votes que vous avez validés en effectuant un clic droit sur la case correspondante.
+Vous pouvez ajouter un commentaire pour chacun des votes <strong>après avoir voté</strong> en effectuant un clic droit sur la case correspondante.
 </div>
 Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite le bouton "Voter" pour valider votre vote.
 <div class="contextMenu" id="poll_menu">

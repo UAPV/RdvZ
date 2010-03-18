@@ -16,7 +16,7 @@ class uapvProfileBuilderLdap implements uapvProfileBuilderInterface
    */
   public static function buildProfile (&$profile, $id)
   {
-    if (($result = self::getLdap ()->searchOne ("uid=$id")) !== null)
+    if (($result = self::getLdap ()->searchOne (sfConfig::get('app_profile_var_translation_uid','uid')."=$id")) !== null)
       $profile->add ($result);
   }
 

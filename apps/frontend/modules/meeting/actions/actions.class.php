@@ -55,31 +55,12 @@ class meetingActions extends sfActions
     */
   public function executeShowua(sfWebRequest $request)
   {
-    // If the hash does not exists, redirect the user.
-    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
-    $this->forward404Unless($this->meeting);
-
-    $comm = $request->getParameter('comm');
-
-    // If a user just entered a comment, save it !
-    if($comm)
-      $this->setComment($request->getParameter('poll_id'),$comm) ;
-
     // The 'invite' credential allows the user only to watch meetings
     // from the 'showua' action.
     $this->getUser()->setAuthenticated(true) ;
     $this->getUser()->addCredential('invite') ;
 
-    $vars = $this->meeting->processShow() ;
-
-    $this->dates    = $vars['dates'] ;
-    $this->comments = $vars['comments'] ;
-    $this->bests    = $vars['bests'] ;
-    $this->md       = $vars['md'] ;
-    $this->months   = $vars['months'] ;
-    $this->votes    = $vars['votes'] ;
-
-    $this->setTemplate('show') ;
+    $this->executeShow($request) ;
   }
 
   /**

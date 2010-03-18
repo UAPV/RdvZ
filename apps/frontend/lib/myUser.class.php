@@ -23,16 +23,16 @@ class myUser extends uapvBasicSecurityUser
    */
   public function getUserFromDatabase ()
   {
-    $user = Doctrine::getTable('user')->retrieveByLdapId($this->getProfileVar(sfConfig::get('app_ldap_infos_user_id_field'))) ;
+    $user = Doctrine::getTable('user')->retrieveByLdapId($this->getProfileVar(sfConfig::get('app_profile_var_translation_uid'))) ;
 
     if ($user === null)
     {
       // L'utilisateur se connecte pour la première fois
       $user = new user();
-      $user->setLdapId($this->getProfileVar(sfConfig::get('app_ldap_infos_user_id_field'))) ;
-      $user->setName($this->getProfileVar(sfConfig::get('app_ldap_infos_user_name_field'))) ;
-      $user->setSurname($this->getProfileVar(sfConfig::get('app_ldap_infos_user_surname_field'))) ;
-      $user->setMail($this->getProfileVar(sfConfig::get('app_ldap_infos_user_mail_field'))) ;
+      $user->setLdapId($this->getProfileVar(sfConfig::get('app_profile_var_translation_uid'))) ;
+      $user->setName($this->getProfileVar(sfConfig::get('app_profile_var_translation_name'))) ;
+      $user->setSurname($this->getProfileVar(sfConfig::get('app_profile_var_translation_surname'))) ;
+      $user->setMail($this->getProfileVar(sfConfig::get('app_profile_var_translation_mail'))) ;
       $user->save();
     }
 

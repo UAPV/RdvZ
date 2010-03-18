@@ -1,5 +1,13 @@
 RdvZ ChangeLog
 
+verion 2.0.1b
+
+  * apps/frontend/config/routing.yml : better routing configuration.
+  * install : the install script now asks you for a SMTP server.
+  * fixed the bug that occured when unauthenticated users wanted to comment 
+  their votes.
+  * fixed a critical bug in the LDAP connection plugin.
+
 version 2.0b
   2010-03-16 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
