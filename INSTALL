@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0 beta 2009/03/16
+  RdvZ version 2.0.1 beta 2009/03/18
         -=================-
 
 Before running the install script please read carefully the README file,
@@ -58,9 +58,15 @@ to adapt it in order to access your Apache server from the Internet.
 
 
 Now you have to define the cache/ and log/ directories as writable for your
-Apache server. The safest way is to switch the owner to www-data :
+Apache server. The safest way is to switch the directory group to www-data,
+and grant associated permissions :       
 
- $ chown -R www-data cache/ log/
+ $ chmod 775 cache/ log/
+ $ chown -R :www-data cache/ log/
+
+But you can also choose the easy way :
+
+ $ chmod 777 cache/ log/
 
 
 Finally you need to activate the mod_rewrite Apache module and restart
