@@ -63,6 +63,11 @@ class meetingActions extends sfActions
     $this->executeShow($request) ;
   }
 
+  public function executeOldmeet(sfWebRequest $request)
+  {
+    echo $request->getParameter('mid') ;
+  }
+
   /**
     * The action called by the big search field on the top of the
     * homepage.
@@ -483,6 +488,13 @@ class meetingActions extends sfActions
     if ($form->isValid())
     {
       $meeting = $form->save();
+
+      // Retrieving meeting creator's id.
+      // This line was originally in the model, but it triggered bugs
+      // with the fixtures.
+      // Note : NEVER USE sfContext IN MODELS. Yes, it's tough...
+      $meeting->setUid(sfContext::getInstance()->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      $meeting->save() ;
 
       // Fetching the dynamic information...
       $mails =    $this->fetchMails($data,true) ;

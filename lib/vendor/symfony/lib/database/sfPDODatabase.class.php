@@ -84,7 +84,6 @@ class sfPDODatabase extends sfDatabase
     }
 
     $this->resource = $this->connection;
-
   }
 
   /**

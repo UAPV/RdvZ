@@ -4,53 +4,50 @@ $configuration = ProjectConfiguration::getApplicationConfiguration
 
 sfContext::createInstance($configuration);
 ?>
+
 meeting:
   meeting_1:
-    hash: 9h9
+    hash: 8b0
     title: yep
     description: dazd
     uid: '1'
-    closed: '0'
-    date_del: '2010-06-23 00:00:00'
-    date_end: '2010-05-23 00:00:00'
-    aifna: '0'
-    notif: '0'
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-02-23 09:21:30'
     updated_at: '2010-03-17 17:54:37'
   meeting_2:
-    hash: w7h
+    hash: lds
     title: bla
     description: 'Un rendez-vous de test'
     uid: '1'
-    closed: '0'
-    date_del: '2010-07-15 00:00:00'
-    date_end: '2010-06-15 00:00:00'
-    aifna: '0'
-    notif: '0'
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-15 14:40:21'
     updated_at: '2010-03-17 14:25:58'
   meeting_3:
-    hash: ekr
+    hash: z3q
     title: 'Mon nouveau rendez-vous'
     description: 'Un bon rendez-vous'
     uid: '1'
-    closed: '1'
-    date_del: '2010-07-15 00:00:00'
-    date_end: '2010-06-15 00:00:00'
-    aifna: '0'
-    notif: '0'
+    closed: true
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-15 16:50:48'
     updated_at: '2010-03-16 11:41:12'
   meeting_4:
-    hash: 6ri
+    hash: 9gl
     title: 'Mon super rendez-vous qui tue les patates'
     description: 'Yes !'
     uid: '1'
-    closed: '0'
-    date_del: '2010-07-16 00:00:00'
-    date_end: '2010-06-16 00:00:00'
-    aifna: '0'
-    notif: '0'
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-16 15:51:37'
     updated_at: '2010-03-18 10:04:47'
 meeting_poll:
@@ -64,12 +61,12 @@ meeting_poll:
     updated_at: '2010-02-23 09:21:40'
   meeting_poll_2:
     meeting_date: meeting_date_2
-    poll: '1'
+    poll: '0'
     uid: '1'
     comment: pro
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 14:36:20'
+    updated_at: '2010-03-18 18:05:43'
   meeting_poll_3:
     meeting_date: meeting_date_3
     poll: '1'
@@ -77,15 +74,15 @@ meeting_poll:
     comment: pozfzfaz
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 15:21:50'
+    updated_at: '2010-03-18 12:03:13'
   meeting_poll_4:
     meeting_date: meeting_date_4
-    poll: '1'
+    poll: '0'
     uid: '1'
     comment: blablabla
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 14:36:30'
+    updated_at: '2010-03-18 11:50:43'
   meeting_poll_5:
     meeting_date: meeting_date_5
     poll: '0'
@@ -510,6 +507,46 @@ meeting_poll:
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
     updated_at: '2010-03-18 10:03:55'
+  meeting_poll_58:
+    meeting_date: meeting_date_1
+    poll: '0'
+    uid: null
+    comment: null
+    participant_name: hihi
+    created_at: '2010-03-18 12:02:21'
+    updated_at: '2010-03-18 12:02:21'
+  meeting_poll_59:
+    meeting_date: meeting_date_5
+    poll: '1'
+    uid: null
+    comment: null
+    participant_name: hihi
+    created_at: '2010-03-18 12:02:21'
+    updated_at: '2010-03-18 12:02:21'
+  meeting_poll_60:
+    meeting_date: meeting_date_2
+    poll: '0'
+    uid: null
+    comment: null
+    participant_name: hihi
+    created_at: '2010-03-18 12:02:21'
+    updated_at: '2010-03-18 12:02:21'
+  meeting_poll_61:
+    meeting_date: meeting_date_3
+    poll: '1'
+    uid: null
+    comment: null
+    participant_name: hihi
+    created_at: '2010-03-18 12:02:21'
+    updated_at: '2010-03-18 12:02:26'
+  meeting_poll_62:
+    meeting_date: meeting_date_4
+    poll: '0'
+    uid: null
+    comment: null
+    participant_name: hihi
+    created_at: '2010-03-18 12:02:21'
+    updated_at: '2010-03-18 12:02:21'
 meeting_date:
   meeting_date_1:
     meeting: meeting_1
@@ -589,14 +626,14 @@ meeting_date:
     comment: ''
 user:
   user_1:
-    ldap_id: 'uapv8802366'
+    ldap_id: uapv8802366
     login: null
     pass: null
     name: Deveaud
     surname: Romain
     mail: romain.deveaud@etd.univ-avignon.fr
   user_2:
-    ldap_id: 'deveaudr'
+    ldap_id: deveaudr
     login: null
     pass: null
     name: Deveaud

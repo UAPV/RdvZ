@@ -1,8 +1,3 @@
-<?php //use_javascript('tools.tooltip-1.1.3.js') ?>
-<?php //use_javascript('jquery-ui-1.7.2.custom.min.js') ?>
-<?php //use_javascript('jquery.contextmenu.r2.js') ?>
-<?php //use_javascript('poll_comment.js') ?>
-<?php //use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
 <?php 
   $user_is_creator = false ;
   if($sf_user->isAuthenticated()) 
@@ -72,6 +67,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
       <?php endforeach; ?>
     <?php endforeach; ?>
   </tr>
+
   <tr class="poll_comments">
   <!-- La ligne qui affiche les commentaires... -->
     <td class="poll_empty"></td>

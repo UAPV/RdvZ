@@ -22,9 +22,6 @@ class meeting extends Basemeeting
   {
     if($this->isNew())
     {    
-      // Retrieving meeting creator's id.
-      $this->setUid(sfContext::getInstance()->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
-
       $min = 0;
       $max = base_convert ('zzz', 36, 10); // hash is 3 chars max.
       $id = rand($min, $max) ;
@@ -174,7 +171,10 @@ class meeting extends Basemeeting
         // If not, let's create it !
         $d = new meeting_date() ;
         $d->setDate(date_format(date_create($val),'Y-m-d')) ;
-        $d->setComment($comments_to_add[$did]) ;
+
+        if($comments_to_add[$did] != '')
+          $d->setComment($comments_to_add[$did]) ;
+
         $d->setMid($this->getId()) ;
       }
       else

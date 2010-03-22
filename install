@@ -31,7 +31,7 @@ tout resaisir.${txtrst}
 ${txtcyn} ** Configuration base de données...${txtrst}"
 read -er -p "Adresse du serveur (localhost si elle est sur cette machine) : " bd_serv
 read -er -p "Type [mysql, pgsql, dblib, firebird, ibm, informix, oci, odbc, sqlite] : " bd_pdo
-read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé) : " bd_name
+read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé ! Si vous utilisez déjà une version de RdvZ < 2.0, l'utilitaire 'patch1.xto2.0' vous permettra de transférer toutes vos données de la précédente base vers la nouvelle) : " bd_name
 read -er -p "Nom d'utilisateur (doit absolument avoir les droits sur la base !) : " bd_uname
 read -ers -p "Mot de passe utilisateur : " bd_upass
 echo -n "
