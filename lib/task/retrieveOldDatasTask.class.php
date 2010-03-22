@@ -41,15 +41,14 @@ EOF;
       * This part is about fetching the datas from the old database
       * and formatting them before inserting into the new one.
       */
-    $ldap = new uapvLdap() ;
     
 
     // initialize the database connection for RdvZ 2.0 database
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
-    $sql = 'select * from meeting' ;
-    foreach($rdvz1->query($sql) as $meet)
+    $res = $rdvz1->query('select * from meeting')->fetchAll() ;
+    foreach($res as $meet)
     {
       // If the user doesn't exists in the new database, we have to retrieve his information
       // from the ldap server.
@@ -74,8 +73,8 @@ EOF;
 
 //      $meeting_id = $connection->query("select id from meeting where hash = '".$meet['mid']."')")->fetchColumn() ;
 
-      $sql2 = "select * from meeting_date where mid = '".$meet['mid']."'" ;
-      foreach($rdvz1->query($sql2) as $date)
+      $res2 = $rdvz1->query("select * from meeting_date where mid = '".$meet['mid']."'")->fetchAll() ;
+      foreach($res2 as $date)
       {
         //$connection->exec("insert into meeting_date (mid,date,comment) values ($meeting_id,'".$date['date']."','".$date['comment']."')") ;
         $meeting_date = new meeting_date() ;
@@ -84,13 +83,15 @@ EOF;
         $meeting_date->setComment($date['comment']) ;
         $meeting_date->save() ;
         
-        $sql3 = "select * from meeting_poll where pollid = ".$date['pollid'] ;
-        foreach($rdvz1->query($sql3) as $poll)
+        $res3 = $rdvz1->query("select * from meeting_poll where pollid = ".$date['pollid'])->fetchAll() ;
+        foreach($res3 as $poll)
         {
           $meeting_poll = new meeting_poll() ;
           $meeting_poll->setDateId($meeting_date->getId()) ;
           $meeting_poll->setPoll($poll['poll']) ;
-          $meeting_poll->setComment($poll['user_comment']) ;
+
+          if ($poll['user_comment'])
+            $meeting_poll->setComment($poll['user_comment']) ;
 
           if ($poll['uid'] != '')
           {
@@ -111,6 +112,7 @@ EOF;
 
   private function getUserFromDatabase($ldap_id)
   {
+    $ldap = new uapvLdap() ;
     $user = Doctrine::getTable('user')->retrieveByLdapId($ldap_id);
 
     if ($user === null)
