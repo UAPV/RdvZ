@@ -66,7 +66,8 @@ class meetingActions extends sfActions
 
   public function executeOldmeet(sfWebRequest $request)
   {
-    echo $request->getParameter('mid') ;
+    $request->setParameter('h',$request->getParameter('mid')) ;
+    $this->executeShow($request) ;
   }
 
   /**

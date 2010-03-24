@@ -52,33 +52,46 @@ EOF;
       // If the user doesn't exists in the new database, we have to retrieve his information
       // from the ldap server.
       if(sfConfig::get('app_authentication_type') == 'ldap') 
+      {
         $user = $this->getUserFromDatabase($meet['uid']) ;
+        $user_id = $user->getId() ;
+        $user->free() ;
+        unset($user) ;
+      }
 
       $meeting = new meeting() ;
       $meeting->setHash($meet['mid']) ;
       $meeting->setTitle($meet['title']) ;
       $meeting->setDescription($meet['description']) ;
-      $meeting->setUid($user->getId()) ;
+      $meeting->setUid($user_id) ;
       $meeting->setClosed($meet['closed']) ;
       $meeting->setDateDel($meet['date_del']) ;
       $meeting->setDateEnd($meet['date_end']) ;
       $meeting->setNotif(($meet['notif'] == 'Y' ? 1 : 0)) ;
-      $meeting->save() ;
+      $meeting->save(null,true) ;
+
+      $meeting_id = $meeting->getId() ;
+      $meeting->free() ;
+      unset($meeting) ;
 
       $res2 = $rdvz1->query("select * from meeting_date where mid = '".$meet['mid']."'")->fetchAll() ;
       foreach($res2 as $date)
       {
         $meeting_date = new meeting_date() ;
-        $meeting_date->setMid($meeting->getId()) ;
+        $meeting_date->setMid($meeting_id) ;
         $meeting_date->setDate($date['date']) ;
         $meeting_date->setComment($date['comment']) ;
         $meeting_date->save() ;
+
+        $meeting_date_id = $meeting_date->getId() ;
+        $meeting_date->free() ;
+        unset($meeting_date) ;
         
         $res3 = $rdvz1->query("select * from meeting_poll where pollid = ".$date['pollid'])->fetchAll() ;
         foreach($res3 as $poll)
         {
           $meeting_poll = new meeting_poll() ;
-          $meeting_poll->setDateId($meeting_date->getId()) ;
+          $meeting_poll->setDateId($meeting_date_id) ;
           $meeting_poll->setPoll($poll['poll']) ;
 
           if ($poll['user_comment'])
@@ -88,12 +101,16 @@ EOF;
           {
             $poll_user = $this->getUserFromDatabase($poll['uid']) ;
             $meeting_poll->setUid($poll_user->getId()) ;
+            $poll_user->free() ;
+            unset($poll_user) ;
           }
 
           if ($poll['participant_name'] != '')
             $meeting_poll->setParticipantName($poll['participant_name']) ;
 
           $meeting_poll->save() ;
+          $meeting_poll->free() ;
+          unset($meeting_poll) ;
         }
       }
     }

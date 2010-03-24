@@ -18,9 +18,9 @@ class meeting extends Basemeeting
     *
     * @return The Meeting object inserted in the database.
     */
-  public function save(Doctrine_Connection $conn = null)
+  public function save(Doctrine_Connection $conn = null, $dont = false)
   {
-    if($this->isNew())
+    if($this->isNew() && $dont)
     {    
       $min = 0;
       $max = base_convert ('zzz', 36, 10); // hash is 3 chars max.
