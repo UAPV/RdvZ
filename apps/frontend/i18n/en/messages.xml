@@ -291,6 +291,10 @@
         <source>Non</source>
         <target>No</target>
       </trans-unit>
+      <trans-unit id="73">
+        <source>Ce mail ne semble pas valide</source>
+        <target>This mail doesn't seem to be valid</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

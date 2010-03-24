@@ -82,10 +82,12 @@
     };
 })();
 
+/*
 var my_dictionary = {
   "Ce mail ne semble pas valide" : "This mail doesn't seem to be valid"
 }
 $.i18n.setDictionary(my_dictionary);
+*/
 
 var elementState = 'ready';
 var countMail = $('.dynamic_mail').length ;
@@ -160,29 +162,6 @@ $(document).ready(function()
     }
   });
 
-  $('.dynamic_mail').live('blur',function()
-  {
-//    var loader = " <img src='/images/ajax-loader.gif' alt='loader' />" ;
-    var not_mail = " <span class='mail_error'><img src='/images/invalid.png' alt='invalid' class='mail_icon' /> "+$.i18n._('Ce mail ne semble pas valide')+".</span>" ;
-    var known_mail = " <span class='mail_ok'><img src='/images/valid.png' alt='valid' class='mail_icon' /></span>" ;
-//    var unknown_mail = " <span class='mail_unk'><img src='/images/unk.png' alt='unknown' class='mail_icon' /> Ce mail est valide mais n'est pas répertorié dans la base de données.</span>" ;
-    var mail_regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (mail_regex.test(this.value) == false)
-    {
-      // c'pas un vrai mail !
-      if ($(this).nextAll('span').length == 1)
-        $(this).nextAll('span').remove() ;
-
-      $(this).parent().append(not_mail) ;
-    }
-    else 
-    {
-      if ($(this).nextAll('span').length == 1)
-        $(this).nextAll('span').remove() ;
-
-      $(this).parent().append(known_mail) ; 
-    }
-  });
   
 //  $(window).bind("beforeunload", function(e){alert('on save tout !') ; });
 
