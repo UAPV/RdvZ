@@ -68,7 +68,7 @@ EOF;
       $meeting->setDateDel($meet['date_del']) ;
       $meeting->setDateEnd($meet['date_end']) ;
       $meeting->setNotif(($meet['notif'] == 'Y' ? 1 : 0)) ;
-      $meeting->save(null,true) ;
+      $meeting->save(null,false) ;
 
       $meeting_id = $meeting->getId() ;
       $meeting->free() ;
