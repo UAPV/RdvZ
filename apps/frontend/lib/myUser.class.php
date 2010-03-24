@@ -9,6 +9,7 @@ class myUser extends uapvBasicSecurityUser
       $user = $this->getUserFromDatabase();
       $user->save ();
       $this->getProfile()->set('rdvz_user_id',$user->getId()) ;
+      $this->setCulture($user->getLanguage()) ;
     }
 
     // définition des autorisation de l'utilisateur

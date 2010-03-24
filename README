@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0 beta 2009/03/16
+  RdvZ version 2.0 beta 2009/03/24
         -=================-
 
 
@@ -79,7 +79,23 @@ See the INSTALL file.
 
 
 
-5. Did you find a bug?
+5. I was using RdvZ 1.x and I want my datas in RdvZ 2.0 !
+
+You just have to run a command : 
+
+ $ php symfony rdvz:retrieve-old-datas "<rdvz1_database_dsn>" <db_user> <db_password>
+
+The DSN has the following syntax : [pdo]:host=[host_serv];dbname=[db_name]
+Where - pdo         : mysql, pgsql... 
+        (values accepted by PHP PDO : http://www.php.net/manual/en/pdo.drivers.php)
+      - host_serv   : the server where the database is hosted
+      - db_name     : the name of the database 
+      - db_user     : the user that has rights on the database (usually root)
+      - db_password : the db password of the user
+
+
+
+6. Did you find a bug?
 
 Or maybe you think the application or the installer can be improved? Visit our
 bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
@@ -88,7 +104,7 @@ french if you are comfortable with it) ; we will answer as soon as possible.
 
 
 
-6. For a better RdvZ experience...
+7. For a better RdvZ experience...
 
 RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
 is optimized for the following versions :

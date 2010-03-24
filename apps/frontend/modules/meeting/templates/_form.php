@@ -8,16 +8,16 @@
   <table id="new_meet">
     <tfoot>
       <tr>
-        <td><center><strong>Dates à retenir </strong><br />(<em>cliquez sur les dates voulues</em>) <strong>:</strong></center></td>
+        <td><center><strong><?php echo __('Dates à retenir') ?> </strong><br />(<em><?php echo __('cliquez sur les dates voulues') ?></em>) <strong>:</strong></center></td>
         <td><div id="datee"></div></td>
       </tr>
       <tr>
         <td colspan="1">
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Effacer', 'meeting/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Voulez-vous vraiment supprimer ce rendez-vous?')) ?>
+            &nbsp;<?php echo link_to(__('Effacer'), 'meeting/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => __('Voulez-vous vraiment supprimer ce rendez-vous?'))) ?>
           <?php endif; ?>
           
-          <input type="submit" class="awesome blue large" value="<?php echo $sf_user->getAttribute('new') ? 'Créer' : 'Modifier' ?> le rendez-vous" />
+          <input type="submit" class="awesome blue large" value="<?php echo $sf_user->getAttribute('new') ? __('Créer') : __('Modifier') ?> <?php echo __('le rendez-vous') ?>" />
         </td>
       </tr>
     </tfoot>

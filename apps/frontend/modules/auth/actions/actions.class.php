@@ -14,6 +14,8 @@ class authActions extends sfActions
   {
     //$this->meeting = $request->getParameter('m') ;
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('m')) ;
+    $this->forward404Unless($this->meeting);
+
     if($this->getUser()->isAuthenticated())
       $this->redirect($this->meeting->getHash().'/show') ;
   }

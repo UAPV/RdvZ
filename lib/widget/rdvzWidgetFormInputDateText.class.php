@@ -14,7 +14,7 @@ class rdvzWidgetFormInputDateText extends sfWidgetFormInputText
   public function render($name, $value = null, $attributes = array(), $errors = array())
   {
     $res = parent::render($name, $value, $attributes, $errors) ;
-    $res .= ' Commentaire (<em>facultatif</em>) : <input type="text" name="'.str_replace('date','comment',$name).'" value="'.$this->comment_value.'" />' ;
+    $res .= ' '.__('Commentaire').' (<em>'.__('facultatif').'</em>) : <input type="text" name="'.str_replace('date','comment',$name).'" value="'.$this->comment_value.'" />' ;
     
     return $res ;
   }

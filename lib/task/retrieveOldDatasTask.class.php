@@ -32,17 +32,16 @@ EOF;
   protected function execute($arguments = array(), $options = array())
   {
     // initialize the database connection for RdvZ 1.x database
-    //$opt = array_merge(isset($config[$options['env']][$options['name']]['param']) ? $config[$options['env']][$options['name']]['param'] : array(), array('dsn' => $arguments['dsn'], 'username' => $arguments['username'], 'password' => $arguments['password'])) ;
     $opt = array('dsn' => $arguments['dsn'], 'username' => $arguments['username'], 'password' => $arguments['password']) ;
     $d2 = new sfPDODatabase($opt) ;
     $rdvz1 = $d2->getConnection() ;
+    $this->logSection('rdvz', sprintf('Retrieving datas from RdvZ 1.x database "%s"', $opt['dsn'])) ;
 
     /**
       * This part is about fetching the datas from the old database
       * and formatting them before inserting into the new one.
       */
     
-
     // initialize the database connection for RdvZ 2.0 database
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
@@ -55,11 +54,6 @@ EOF;
       if(sfConfig::get('app_authentication_type') == 'ldap') 
         $user = $this->getUserFromDatabase($meet['uid']) ;
 
-//        $connection->exec("insert into user (ldap_id,name,surname,mail) values ('".$meet['uid']."','".$us[sfConfig::get('app_profile_var_translation_name')]."','".$us[sfConfig::get('app_profile_var_translation_surname')]."','".$us[sfConfig::get('app_profile_var_translation_mail')]."')") ;
-
-//      $user_id = $connection->query("select id from user where ldap_id = '".$meet['uid']."'")->fetchColumn() ;
-
-//      $connection->exec("insert into meeting (hash,title,description,uid,closed,date_del,date_end,notif) values ('".$meet['mid']."','".$meet['title']."','".$meet['description']."',$user_id,".$meet['closed'].",'".$meet['date_del']."','".$meet['date_end']."',".($meet['notif'] == 'Y' ? 1 : 0).")") ;
       $meeting = new meeting() ;
       $meeting->setHash($meet['mid']) ;
       $meeting->setTitle($meet['title']) ;
@@ -71,12 +65,9 @@ EOF;
       $meeting->setNotif(($meet['notif'] == 'Y' ? 1 : 0)) ;
       $meeting->save() ;
 
-//      $meeting_id = $connection->query("select id from meeting where hash = '".$meet['mid']."')")->fetchColumn() ;
-
       $res2 = $rdvz1->query("select * from meeting_date where mid = '".$meet['mid']."'")->fetchAll() ;
       foreach($res2 as $date)
       {
-        //$connection->exec("insert into meeting_date (mid,date,comment) values ($meeting_id,'".$date['date']."','".$date['comment']."')") ;
         $meeting_date = new meeting_date() ;
         $meeting_date->setMid($meeting->getId()) ;
         $meeting_date->setDate($date['date']) ;
@@ -107,7 +98,7 @@ EOF;
       }
     }
 
-    print "The RdvZ 2.0 database is now filled with your former datas. You can now delete the old database.\n" ;
+    $this->logSection('rdvz', "The RdvZ 2.0 database is now filled with your former datas. You can now delete the old database.") ;
   }
 
   private function getUserFromDatabase($ldap_id)

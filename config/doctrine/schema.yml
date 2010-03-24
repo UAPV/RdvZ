@@ -44,3 +44,4 @@ user:
     name: { type: string(255) }
     surname: { type: string(255) }
     mail: { type: string(255) }
+    language: { type : string(8), default: 'fr' }

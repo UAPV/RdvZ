@@ -1,0 +1,296 @@
+<?xml version="1.0" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd"><xliff version="1.0">
+  <file source-language="FR" target-language="en" datatype="plaintext" original="messages" date="2010-03-23T11:32:14Z" product-name="messages" xml:space="default">
+    <header></header>
+    <body>
+      <trans-unit id="1" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Déconnexion</source>
+        <target state=":final" xml:lang="en">Logout</target>
+      </trans-unit>
+      <trans-unit id="2" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Aucun sondage ne correspond à ce code.</source>
+        <target state=":final" xml:lang="en">There is no poll with this hash.</target>
+      </trans-unit>
+      <trans-unit id="3" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Vous devez entrer votre nom pour voter.</source>
+        <target state=":final" xml:lang="en">You have to give your name to vote.</target>
+      </trans-unit>
+      <trans-unit id="4" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Vous devez sélectionner au moins une date pour créer un sondage.</source>
+        <target state=":final" xml:lang="en">You have to select at least one date to create the meeting.</target>
+      </trans-unit>
+      <trans-unit id="5" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Proposition de rendez-vous</source>
+        <target state=":final" xml:lang="en">Meeting proposal</target>
+      </trans-unit>
+      <trans-unit id="6" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Nouveau vote pour votre rendez-vous</source>
+        <target state=":final" xml:lang="en">New vote in your meeting</target>
+      </trans-unit>
+      <trans-unit id="7" translate="yes" reformat="yes" xml:space="default" approved="yes">
+        <source>Masquer</source>
+        <target state="x-user:final" xml:lang="en">Hide</target>
+      </trans-unit>
+      <trans-unit id="8" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>A savoir</source>
+        <target state="x-user:translated" xml:lang="en">Tip</target>
+      </trans-unit>
+      <trans-unit id="9" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous pouvez entrer des adresses e-mail de vos collaborateurs dans ce formulaire, elles seront utilisées afin de leur envoyer un message automatique qui leur indiquera le lien de votre sondage</source>
+        <target state="x-user:new" xml:lang="en">You can enter the mail adresses of your colleagues in this form, they will receive an automatic message which summarizes the meeting details and gives the link of the poll</target>
+      </trans-unit>
+      <trans-unit id="10" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous pouvez ici modifier les informations relatives à votre rendez-vous ; vous pouvez également supprimer des votes déjà enregistrés en allant sur l'écran affichant le sondage</source>
+        <target state="x-user:new" xml:lang="en">You can edit your meeting's information here. You can also delete people's votes on the poll page</target>
+      </trans-unit>
+      <trans-unit id="11" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Entrez le code d'un sondage pour le visionner...</source>
+        <target state="x-user:new" xml:lang="en">Enter a meeting hash...</target>
+      </trans-unit>
+      <trans-unit id="12" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Votes clos</source>
+        <target state="x-user:new" xml:lang="en">Votes closed</target>
+      </trans-unit>
+      <trans-unit id="13" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Fermeture automatique des votes le</source>
+        <target state="x-user:new" xml:lang="en">Automatic closure of the votes on</target>
+      </trans-unit>
+      <trans-unit id="14" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Suppression automatique du sondage le</source>
+        <target state="x-user:new" xml:lang="en">Automatic loss of the meeting on</target>
+      </trans-unit>
+      <trans-unit id="15" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Code du sondage</source>
+        <target state="x-user:new" xml:lang="en">Meeting hash</target>
+      </trans-unit>
+      <trans-unit id="16" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Modifier</source>
+        <target state="x-user:new" xml:lang="en">Edit</target>
+      </trans-unit>
+      <trans-unit id="17" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Exporter au format csv</source>
+        <target state="x-user:new" xml:lang="en">Export to csv</target>
+      </trans-unit>
+      <trans-unit id="18" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Effacer</source>
+        <target state="x-user:new" xml:lang="en">Delete</target>
+      </trans-unit>
+      <trans-unit id="19" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Voulez-vous vraiment supprimer ce rendez-vous?</source>
+        <target state="x-user:new" xml:lang="en">Do you really want to delete this meeting?</target>
+      </trans-unit>
+      <trans-unit id="20" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Rouvrir les votes</source>
+        <target state="x-user:new" xml:lang="en">Re-open votes</target>
+      </trans-unit>
+      <trans-unit id="21" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Clore les votes</source>
+        <target state="x-user:new" xml:lang="en">Close votes</target>
+      </trans-unit>
+      <trans-unit id="22" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Nouveau rendez-vous</source>
+        <target state="x-user:new" xml:lang="en">New meeting</target>
+      </trans-unit>
+      <trans-unit id="23" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Dates à retenir</source>
+        <target state="x-user:new" xml:lang="en">Meeting dates</target>
+      </trans-unit>
+      <trans-unit id="24" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>cliquez sur les dates voulues</source>
+        <target state="x-user:new" xml:lang="en">click on the calendar dates</target>
+      </trans-unit>
+      <trans-unit id="25" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Créer</source>
+        <target state="x-user:new" xml:lang="en">Create</target>
+      </trans-unit>
+      <trans-unit id="26" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>le rendez-vous</source>
+        <target state="x-user:new" xml:lang="en">meeting</target>
+      </trans-unit>
+      <trans-unit id="27" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs</source>
+        <target state="x-user:new" xml:lang="en">Cut and paste this link to share the meeting with your colleagues</target>
+      </trans-unit>
+      <trans-unit id="28" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Quelles sont vos disponibilités</source>
+        <target state="x-user:new" xml:lang="en">When are you available</target>
+      </trans-unit>
+      <trans-unit id="29" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Titre</source>
+        <target state="x-user:new" xml:lang="en">Title</target>
+      </trans-unit>
+      <trans-unit id="30" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Description</source>
+        <target state="x-user:new" xml:lang="en">Description</target>
+      </trans-unit>
+      <trans-unit id="31" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Createur</source>
+        <target state="x-user:new" xml:lang="en">Owner</target>
+      </trans-unit>
+      <trans-unit id="32" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous pouvez ajouter un commentaire pour chacun des votes</source>
+        <target state="x-user:new" xml:lang="en">You can add a comment for each one of your votes</target>
+      </trans-unit>
+      <trans-unit id="33" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>après avoir voté</source>
+        <target state="x-user:new" xml:lang="en">after having validated them</target>
+      </trans-unit>
+      <trans-unit id="34" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>en effectuant un clic droit sur la case correspondante</source>
+        <target state="x-user:new" xml:lang="en">by right-clicking the corresponding cell</target>
+      </trans-unit>
+      <trans-unit id="35" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Indiquez votre sélection en cliquant sur les cases à cocher</source>
+        <target state="x-user:new" xml:lang="en">Click on the checkboxes</target>
+      </trans-unit>
+      <trans-unit id="36" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Utilisez ensuite le bouton "Voter" pour valider votre vote</source>
+        <target state="x-user:new" xml:lang="en">Then submit your votes by clicking on the "Vote" button</target>
+      </trans-unit>
+      <trans-unit id="37" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Commenter</source>
+        <target state="x-user:new" xml:lang="en">Comment</target>
+      </trans-unit>
+      <trans-unit id="38" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Nouveau commentaire</source>
+        <target state="x-user:new" xml:lang="en">New comment</target>
+      </trans-unit>
+      <trans-unit id="39" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Commentaire</source>
+        <target state="x-user:new" xml:lang="en">Comment</target>
+      </trans-unit>
+      <trans-unit id="40" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Envoyer</source>
+        <target state="x-user:new" xml:lang="en">Submit</target>
+      </trans-unit>
+      <trans-unit id="41" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Utilisateur authentifié</source>
+        <target state="x-user:new" xml:lang="en">Authenticated user</target>
+      </trans-unit>
+      <trans-unit id="42" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur</source>
+        <target state="x-user:new" xml:lang="en">The meeting's owner added a new date and you didn't vote, click now on</target>
+      </trans-unit>
+      <trans-unit id="43" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Modifier mes votes</source>
+        <target state="x-user:new" xml:lang="en">Edit my votes</target>
+      </trans-unit>
+      <trans-unit id="44" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>pour le faire</source>
+        <target state="x-user:new" xml:lang="en">to do it</target>
+      </trans-unit>
+      <trans-unit id="45" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Aucun commentaire n'a été entré pour ce vote.</source>
+        <target state="x-user:new" xml:lang="en">No comment available for this vote.</target>
+      </trans-unit>
+      <trans-unit id="46" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Validez mes nouveaux votes</source>
+        <target state="x-user:new" xml:lang="en">Submit my new votes</target>
+      </trans-unit>
+      <trans-unit id="47" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>ATTENTION</source>
+        <target state="x-user:new" xml:lang="en">WARNING</target>
+      </trans-unit>
+      <trans-unit id="48" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous allez supprimer tous les votes de cette personne</source>
+        <target state="x-user:new" xml:lang="en">You are about to remove all the votes of this person</target>
+      </trans-unit>
+      <trans-unit id="49" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Etes-vous bien sûr de vouloir réaliser cette action?</source>
+        <target state="x-user:new" xml:lang="en">Are you really sure you want to do this?</target>
+      </trans-unit>
+      <trans-unit id="50" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Remise à zéro des votes de cette personne</source>
+        <target state="x-user:new" xml:lang="en">Delete votes</target>
+      </trans-unit>
+      <trans-unit id="51" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Voter</source>
+        <target state="x-user:new" xml:lang="en">Vote</target>
+      </trans-unit>
+      <trans-unit id="52" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Meilleur choix</source>
+        <target state="x-user:new" xml:lang="en">Best option</target>
+      </trans-unit>
+      <trans-unit id="53" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Disponible</source>
+        <target state="x-user:new" xml:lang="en">Available</target>
+      </trans-unit>
+      <trans-unit id="54" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Non disponible</source>
+        <target state="x-user:new" xml:lang="en">Not available</target>
+      </trans-unit>
+      <trans-unit id="55" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Un rendez-vous vous est proposé par</source>
+        <target state="x-user:new" xml:lang="en">You have a meeting proposal from</target>
+      </trans-unit>
+      <trans-unit id="56" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous pouvez indiquer vos disponibilités en vous rendant à l'adresse suivante</source>
+        <target state="x-user:new" xml:lang="en">You can vote for your preferred schedule by following this link</target>
+      </trans-unit>
+      <trans-unit id="57" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Le code de ce rendez-vous est</source>
+        <target state="x-user:new" xml:lang="en">The hash (unique) of this meeting is</target>
+      </trans-unit>
+      <trans-unit id="58" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>notez le bien, il pourra vous servir à retrouver la page du sondage</source>
+        <target state="x-user:new" xml:lang="en">write it down, it may help you to find again the poll page</target>
+      </trans-unit>
+      <trans-unit id="59" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Les votes seront disponibles jusqu'au</source>
+        <target state="x-user:new" xml:lang="en">The votes will be opened until</target>
+      </trans-unit>
+      <trans-unit id="60" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Ceci est un message automatique, veuillez ne pas y répondre</source>
+        <target state="x-user:new" xml:lang="en">This is an automatic message, please do not reply</target>
+      </trans-unit>
+      <trans-unit id="61" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous recevez ce message car vous avez souhaité être informé par mail des évolutions des votes pour votre rendez-vous</source>
+        <target state="x-user:new" xml:lang="en">You receive this notification because you wanted to be warned when a person vote on your meeting</target>
+      </trans-unit>
+      <trans-unit id="62" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>a entré ses votes pour ce sondage</source>
+        <target state="x-user:new" xml:lang="en">voted for this meeting</target>
+      </trans-unit>
+      <trans-unit id="63" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Vous pouvez consulter les nouveaux votes en vous rendant à l'adresse suivante</source>
+        <target state="x-user:new" xml:lang="en">You can see the new votes by clicking the following link</target>
+      </trans-unit>
+      <trans-unit id="64" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Dates</source>
+        <target state="x-user:new" xml:lang="en">Dates</target>
+      </trans-unit>
+      <trans-unit id="65" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Commentaires</source>
+        <target state="x-user:new" xml:lang="en">Comments</target>
+      </trans-unit>
+      <trans-unit id="66" translate="yes" reformat="yes" xml:space="default" approved="no">
+        <source>Votes</source>
+        <target state="x-user:new" xml:lang="en">Votes</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Titre : </source>
+        <target>Title : </target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Adresses mail : </source>
+        <target>Mail adresses : </target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Recevoir une notification par mail lors d'un vote : </source>
+        <target>Get a notification mail when a user valids new votes : </target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>facultatif</source>
+        <target>optional</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Oui</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Non</source>
+        <target>No</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

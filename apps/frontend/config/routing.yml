@@ -10,6 +10,10 @@ old_meet:
   url: /participation.php/*
   param: { module: meeting, action: oldmeet }
 
+change_lang:
+  url: /lang/:lang
+  param: { module: language, action: change }
+
 auth_mh:
   url: /:m
   param: { module: auth, action: mh }
