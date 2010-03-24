@@ -59,6 +59,7 @@ class meetingActions extends sfActions
     // from the 'showua' action.
     $this->getUser()->setAuthenticated(true) ;
     $this->getUser()->addCredential('invite') ;
+    $this->getUser()->setCulture('fr') ;
 
     $this->executeShow($request) ;
   }
