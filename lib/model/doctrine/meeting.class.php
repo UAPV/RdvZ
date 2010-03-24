@@ -49,12 +49,12 @@ class meeting extends Basemeeting
     *
     * @return array Set of variables.
     */
-  public function processShow()
+  public function processShow($user_culture)
   {
     $meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->getId()) ;
     
-    // This application is currently french-only.
-    setlocale(LC_TIME,'fr_FR.utf8','fra') ;
+    $languages = sfConfig::get('app_languages') ;
+    setlocale(LC_TIME,$languages[$user_culture].'.utf8',$user_culture) ;
 
     $dates    = array() ;
     $months   = array() ;

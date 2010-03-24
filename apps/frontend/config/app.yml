@@ -40,5 +40,5 @@ all:
   
   .array:
     languages: 
-      fr: France
-      en: US
+      fr: fr_FR
+      en: en_US

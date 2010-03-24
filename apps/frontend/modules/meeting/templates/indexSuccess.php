@@ -4,9 +4,10 @@
 </form>
 </fieldset>
 
+<?php $languages = sfConfig::get('app_languages') ; ?>
 <?php if(count($meeting_list)): ?>
 <ul class="my_meetings">
-  <?php setlocale(LC_TIME,'fr_FR.utf8','fra') ; // internationalization... ?>
+  <?php setlocale(LC_TIME,$languages[$sf_user->getCulture()].'.utf8',$sf_user->getCulture()) ; // internationalization... ?>
   <?php $i = 0 ; ?>
   <?php foreach ($meeting_list as $meeting): ?>
   <li class="<?php echo $i++%2 ? 'even' : 'odd' ?>">

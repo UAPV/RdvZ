@@ -39,7 +39,7 @@ class meetingActions extends sfActions
       $this->setComment($request->getParameter('poll_id'),$comm) ;
 
     // Get all the variables used to display the recap table.
-    $vars = $this->meeting->processShow() ;
+    $vars = $this->meeting->processShow($this->getUser()->getCulture()) ;
 
     $this->dates    = $vars['dates'] ;
     $this->comments = $vars['comments'] ;
