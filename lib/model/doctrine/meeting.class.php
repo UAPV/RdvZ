@@ -18,7 +18,7 @@ class meeting extends Basemeeting
     *
     * @return The Meeting object inserted in the database.
     */
-  public function save(Doctrine_Connection $conn = null, $dont = false)
+  public function save(Doctrine_Connection $conn = null, $dont = true)
   {
     if($this->isNew() && $dont)
     {    
