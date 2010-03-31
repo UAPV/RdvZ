@@ -19,6 +19,9 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('mail', array()) ;
     $this->getUser()->setAttribute('new', false) ; // to remove?
 
+//    $cron_meetings = Doctrine::getTable('meeting')->getExpiredMeetingsNotClosed() ;
+//    echo count($cron_meetings) ;
+
     // Getting the meetings created by the logged in user.
     $this->meeting_list = Doctrine::getTable('meeting')->getMeetingsFromUser($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
   }

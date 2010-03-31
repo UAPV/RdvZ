@@ -101,6 +101,15 @@ border-left : 1px solid #d8d8d8 ;
 padding-left : 5px ;
 }
 
+/*
+#beta {
+position : relative ;
+float : left ;
+margin-top : 10px ;
+padding : 5px ;
+margin-left : 10px ;
+}
+*/
 
 #new_meet th {
 width : 250px ;

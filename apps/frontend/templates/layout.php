@@ -32,6 +32,7 @@
       <div id="user_infos">
         <?php $usr = Doctrine::getTable('user')->find($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ; ?>
         <?php echo $usr->getMail() ?>
+        <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="/images/71.png" alt="Bug" /> '.__('Signaler un bogue')) ?>
         <?php $languages = sfConfig::get('app_languages') ; ?>
         <?php foreach($languages as $lang => $country): ?>
           <?php echo link_to('<img src="/images/'.$lang.'_icon.png" alt="'.$country.'"/>','/lang/'.$lang) ?>

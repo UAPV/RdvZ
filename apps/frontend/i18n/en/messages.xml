@@ -295,6 +295,10 @@
         <source>Ce mail ne semble pas valide</source>
         <target>This mail doesn't seem to be valid</target>
       </trans-unit>
+      <trans-unit id="74">
+        <source>Signaler un bogue</source>
+        <target>Report a bug</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
