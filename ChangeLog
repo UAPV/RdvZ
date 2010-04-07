@@ -1,6 +1,7 @@
 RdvZ ChangeLog
 
 verion 2.0.1b
+  2010-04-07 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
   * apps/frontend/config/routing.yml : better routing configuration.
   * install : the install script now asks you for a SMTP server.

@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0 beta 2009/03/24
+  RdvZ version 2.0.1 beta 2009/04/07
         -=================-
 
 
@@ -95,7 +95,19 @@ Where - pdo         : mysql, pgsql...
 
 
 
-6. Did you find a bug?
+6. RdvZ 2.0 was already running on my web server, but I wan't to install
+   the latest version
+
+You don't have to run the install script again, you just need to check wether changes
+have been made in the database schema (config/doctrine/schema.yml).
+If so, run the following command :
+
+  $ php symfony doctrine:build --all-classes --and-migrate
+
+
+
+
+7. Did you find a bug?
 
 Or maybe you think the application or the installer can be improved? Visit our
 bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
@@ -104,7 +116,7 @@ french if you are comfortable with it) ; we will answer as soon as possible.
 
 
 
-7. For a better RdvZ experience...
+8. For a better RdvZ experience...
 
 RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
 is optimized for the following versions :
