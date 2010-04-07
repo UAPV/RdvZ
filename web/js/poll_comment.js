@@ -1,16 +1,19 @@
 
 $(document).ready(function()
 {
+  $('#comment_form').dialog({
+    autoOpen: false,
+    width : 650,
+    modal : true
+    }) ;
    $(/*'.ok, .not_ok'*/'.to_comment').contextMenu('poll_menu', {
       menuStyle: {
         width: '120px'
       },
       bindings: {
         'comm': function(t) {
-          $('#comment_form').dialog({
-            width : 650,
-            modal : true
-            }) ;
+          $('#comm_input').val(jQuery.trim($(t).children('.tooltip').children('.middle').html())) ;
+          $('#comment_form').dialog('open') ;
           $('#comm_input').focus() ;
           }
       },

@@ -1,8 +1,3 @@
-<?php //use_javascript('tools.tooltip-1.1.3.js') ?>
-<?php //use_javascript('jquery-ui-1.7.2.custom.min.js') ?>
-<?php //use_javascript('jquery.contextmenu.r2.js') ?>
-<?php //use_javascript('poll_comment.js') ?>
-<?php //use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
 <?php 
   $user_is_creator = false ;
   if($sf_user->isAuthenticated()) 
@@ -12,45 +7,45 @@
 
 <?php if($user_is_creator): ?>
 <div id="meet_disc_box">
-<div id="url_meet_disc">Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs !</div>
+<div id="url_meet_disc"><?php echo __('Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs') ?> !</div>
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
-<h2><img src="/images/book_bookmarks_32.png" alt="Disponibilités" class="icon_32" /> Quelles sont vos disponibilités?</h2>
+<h2><img src="/images/book_bookmarks_32.png" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?</h2>
 <table>
   <tbody>
     <tr>
-      <th>Titre : </th>
+      <th><?php echo __('Titre') ?> : </th>
       <td><?php echo $meeting->getTitle() ?></td>
     </tr>
     <tr>
-      <th>Description : </th>
+      <th><?php echo __('Description') ?> : </th>
       <td><?php echo $meeting->getDescription() ?></td>
     </tr>
     <tr>
-      <th>Createur : </th>
+      <th><?php echo __('Createur') ?> : </th>
       <td><?php $createur = Doctrine::getTable('user')->find($meeting->getUid()) ; echo $createur->getSurname().' '.$createur->getName() ?></td>
     </tr>
   </tbody>
 </table>
 <div id="tips">
-<a href="#">Masquer</a>
-<strong>A savoir</strong><br />
-Vous pouvez ajouter un commentaire pour chacun des votes <strong>après avoir voté</strong> en effectuant un clic droit sur la case correspondante.
+<a href="#"><?php echo __('Masquer') ?></a>
+<strong><?php echo __('A savoir') ?></strong><br />
+<?php echo __('Vous pouvez ajouter un commentaire pour chacun des votes') ?> <strong><?php echo __('après avoir voté') ?></strong> <?php echo __('en effectuant un clic droit sur la case correspondante') ?>.
 </div>
-Indiquez votre sélection en cliquant sur les cases à cocher. Utilisez ensuite le bouton "Voter" pour valider votre vote.
+<?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
 <div class="contextMenu" id="poll_menu">
   <ul>
-    <li id="comm"><img src="/images/pencil_16.png" /> Commenter</li>
+    <li id="comm"><img src="/images/pencil_16.png" /> <?php echo __('Commenter') ?></li>
   </ul>
 </div>
 <br />
 <br />
 <!--<div id="comment" style="display:none">&nbsp;</div>-->
-<div id="comment_form" style="display:none" title="Nouveau commentaire">
+<div id="comment_form" style="display:none" title="<?php echo __('Nouveau commentaire') ?>">
 <form>
-Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
+<?php echo __('Commentaire') ?> : <input type="text" id="comm_input" size="50" name="comm" />
 <input type="hidden" id="comm_poll_id" name="poll_id" />
-<input type="submit" class="awesome blue large" value="Envoyer" />
+<input type="submit" class="awesome blue large" value="<?php echo __('Envoyer') ?>" />
 </form>
 </div>
 <table id="poll">
@@ -72,6 +67,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
       <?php endforeach; ?>
     <?php endforeach; ?>
   </tr>
+
   <tr class="poll_comments">
   <!-- La ligne qui affiche les commentaires... -->
     <td class="poll_empty"></td>
@@ -98,7 +94,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
     <?php if(empty($usr)): ?>
       <td class="poll_td"><?php echo $user ?></td>
     <?php else: ?>
-      <td class="poll_td"><img class="user_icon" src="/images/user_20.png" alt="Utilisateur authentifié" title="Utilisateur authentifié" /><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
+      <td class="poll_td"><img class="user_icon" src="/images/user_20.png" alt="Utilisateur authentifié" title="<?php echo __('Utilisateur authentifié') ?>" /><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
     <?php endif; ?>
 
     <?php foreach($dts as $did => $poll): ?>
@@ -119,9 +115,9 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
 
       <span class="tooltip"><span class="top"></span><span class="middle">
       <?php if($poll->getPoll() == 1000): ?>
-        Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur <u><em>Modifier mes votes</em></u> pour le faire ! 
+        <?php echo __("Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur") ?> <u><em><?php echo __("Modifier mes votes") ?></em></u> <?php echo __('pour le faire') ?> ! 
       <?php else: ?>
-        <?php echo (is_null($poll->getComment()) ? 'Aucun commentaire n\'a été entré pour ce vote.' : $poll->getComment()) ?> 
+        <?php echo (is_null($poll->getComment()) ? __("Aucun commentaire n'a été entré pour ce vote.") : $poll->getComment()) ?> 
       <?php endif; ?>
       </span><span class="bottom"></span></span>
 
@@ -134,9 +130,9 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
 
     <?php if($sf_user->hasCredential('member') || $sf_user->hasCredential('invite')): ?>
       <?php if(is_null($sf_user->getAttribute('edit')) && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
-        <td><a href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>">Modifier mes votes</a></td>
+        <td><a href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>"><?php echo __('Modifier mes votes') ?></a></td>
       <?php elseif ($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id'))|| $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
-        <td><a href="#" onclick="document['edit_form'].submit()">Validez mes nouveaux votes</a></td>
+        <td><a href="#" onclick="document['edit_form'].submit()"><?php echo __('Validez mes nouveaux votes') ?></a></td>
       <?php endif; ?>
     <?php endif; ?>
 
@@ -145,7 +141,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
     <?php endif; ?>
 
     <?php if($user_is_creator): ?>
-      <td> <form action="<?php echo url_for('meeting/razvote?h='.$meeting->getHash().'&u='.$user) ?>" method="post" name="raz_form<?php echo $i ?>"><a href="#" onclick="if(confirm('ATTENTION ! Vous allez supprimer tous les votes de cette personne.\nEtes-vous bien sûr de vouloir réaliser cette action?')) document['raz_form<?php echo $i++ ?>'].submit();"><img src="/images/close_16.png" alt="Remise à zéro des votes de cette personne" title="Remise à zéro des votes de cette personne" /></a></form></td>
+      <td> <form action="<?php echo url_for('meeting/razvote?h='.$meeting->getHash().'&u='.$user) ?>" method="post" name="raz_form<?php echo $i ?>"><a href="#" onclick="if(confirm('<?php echo __('ATTENTION') ?> ! <?php echo __('Vous allez supprimer tous les votes de cette personne') ?>.\n <?php echo __('Etes-vous bien sûr de vouloir réaliser cette action?') ?>')) document['raz_form<?php echo $i++ ?>'].submit();"><img src="/images/close_16.png" alt="Remise à zéro des votes de cette personne" title="<?php echo __('Remise à zéro des votes de cette personne') ?>" /></a></form></td>
     <?php endif; ?>
   </tr>
   <?php endforeach; ?>
@@ -168,7 +164,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
         <td colspan="1" class="poll_td"><input type="checkbox" name="<?php echo $id ?>" size="10" /></td>
       <?php endforeach; ?>
     <?php endforeach; ?>
-    <td><input type="submit" class="awesome blue large" value="Voter" /></td>
+    <td><input type="submit" class="awesome blue large" value="<?php echo __('Voter') ?>" /></td>
 </form>    
   </tr>
 <?php endif; ?>
@@ -176,7 +172,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
 <td class="poll_empty"></td>
 <?php foreach($md as $d): ?>
   <?php if(in_array($d->getId(),$bests->getRawValue())): ?>
-    <td colspan="1"><img src="/images/star_16.png" alt="Starred meeting" title="Meilleur choix" /></td>  
+    <td colspan="1"><img src="/images/star_16.png" alt="Starred meeting" title="<?php echo __('Meilleur choix') ?>" /></td>  
   <?php else: ?>
     <td class="poll_empty"></td>
   <?php endif; ?>
@@ -195,7 +191,7 @@ Commentaire : <input type="text" id="comm_input" size="50" name="comm" />
 </table>
 
 <table id="legende">
-<tr><td class="ok legend" colspan="1"></td><td>Disponible</td></tr>
+<tr><td class="ok legend" colspan="1"></td><td><?php echo __('Disponible') ?></td></tr>
 <!--<tr><td class="if_needed" colspan="1"></td><td>Disponible en cas de besoin</td></tr>-->
-<tr><td class="not_ok legend" colspan="1"></td><td>Non disponible</td></tr>
+<tr><td class="not_ok legend" colspan="1"></td><td><?php echo __('Non disponible') ?></td></tr>
 </table>

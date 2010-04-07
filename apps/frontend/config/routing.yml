@@ -6,6 +6,14 @@ out:
   url: /authentication/logout
   param: { module: authentication, action: logout }
 
+old_meet:
+  url: /participation.php/*
+  param: { module: meeting, action: oldmeet }
+
+change_lang:
+  url: /lang/:lang
+  param: { module: language, action: change }
+
 auth_mh:
   url: /:m
   param: { module: auth, action: mh }

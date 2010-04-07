@@ -18,13 +18,10 @@ class meeting extends Basemeeting
     *
     * @return The Meeting object inserted in the database.
     */
-  public function save(Doctrine_Connection $conn = null)
+  public function save(Doctrine_Connection $conn = null, $dont = true)
   {
-    if($this->isNew())
+    if($this->isNew() && $dont)
     {    
-      // Retrieving meeting creator's id.
-      $this->setUid(sfContext::getInstance()->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
-
       $min = 0;
       $max = base_convert ('zzz', 36, 10); // hash is 3 chars max.
       $id = rand($min, $max) ;
@@ -52,12 +49,12 @@ class meeting extends Basemeeting
     *
     * @return array Set of variables.
     */
-  public function processShow()
+  public function processShow($user_culture)
   {
     $meeting_dates = Doctrine::getTable('meeting_date')->retrieveByMid($this->getId()) ;
     
-    // This application is currently french-only.
-    setlocale(LC_TIME,'fr_FR.utf8','fra') ;
+    $languages = sfConfig::get('app_languages') ;
+    setlocale(LC_TIME,$languages[$user_culture].'.utf8',$user_culture) ;
 
     $dates    = array() ;
     $months   = array() ;
@@ -174,7 +171,10 @@ class meeting extends Basemeeting
         // If not, let's create it !
         $d = new meeting_date() ;
         $d->setDate(date_format(date_create($val),'Y-m-d')) ;
-        $d->setComment($comments_to_add[$did]) ;
+
+        if($comments_to_add[$did] != '')
+          $d->setComment($comments_to_add[$did]) ;
+
         $d->setMid($this->getId()) ;
       }
       else

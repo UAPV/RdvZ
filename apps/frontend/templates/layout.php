@@ -8,7 +8,7 @@
         <?php include_title() ?>
       <?php endif; ?>
     </title>
-    <script type="text/javascript" src="/js/jquery-1.3.2.min.js"></script> 
+    <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script> 
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_stylesheets() ?>
@@ -32,7 +32,12 @@
       <div id="user_infos">
         <?php $usr = Doctrine::getTable('user')->find($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ; ?>
         <?php echo $usr->getMail() ?>
-        <?php echo link_to('<img src="/images/shutdown.png" alt="Déconnexion" />', 'out') ?>
+        <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="/images/71.png" alt="Bug" /> '.__('Signaler un bogue')) ?>
+        <?php $languages = sfConfig::get('app_languages') ; ?>
+        <?php foreach($languages as $lang => $country): ?>
+          <?php echo link_to('<img src="/images/'.$lang.'_icon.png" alt="'.$country.'"/>','/lang/'.$lang) ?>
+        <?php endforeach ; ?>
+        <?php echo link_to('<img src="/images/shutdown.png" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
       </div>
     <?php endif ; ?>
     <?php include_javascripts() ?>

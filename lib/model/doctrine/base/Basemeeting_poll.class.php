@@ -11,6 +11,7 @@
  * @property string $comment
  * @property string $participant_name
  * @property meeting_date $meeting_date
+ * @property user $user
  * 
  * @method integer      getDateId()           Returns the current record's "date_id" value
  * @method integer      getPoll()             Returns the current record's "poll" value
@@ -18,12 +19,14 @@
  * @method string       getComment()          Returns the current record's "comment" value
  * @method string       getParticipantName()  Returns the current record's "participant_name" value
  * @method meeting_date getMeetingDate()      Returns the current record's "meeting_date" value
+ * @method user         getUser()             Returns the current record's "user" value
  * @method meeting_poll setDateId()           Sets the current record's "date_id" value
  * @method meeting_poll setPoll()             Sets the current record's "poll" value
  * @method meeting_poll setUid()              Sets the current record's "uid" value
  * @method meeting_poll setComment()          Sets the current record's "comment" value
  * @method meeting_poll setParticipantName()  Sets the current record's "participant_name" value
  * @method meeting_poll setMeetingDate()      Sets the current record's "meeting_date" value
+ * @method meeting_poll setUser()             Sets the current record's "user" value
  * 
  * @package    rdvz
  * @subpackage model
@@ -61,6 +64,11 @@ abstract class Basemeeting_poll extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('meeting_date', array(
              'local' => 'date_id',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
+        $this->hasOne('user', array(
+             'local' => 'uid',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

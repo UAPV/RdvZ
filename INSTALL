@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0.1 beta 2009/03/18
+  RdvZ version 2.0.1 beta 2009/04/07
         -=================-
 
 Before running the install script please read carefully the README file,
@@ -74,3 +74,28 @@ the Apache server. You may need root privileges to do this :
 
  $ a2enmod rewrite
  $ /etc/init.d/apache2 restart (or start if it is not started)
+
+
+
+/!\ If you are using a LDAP server.
+The install script presumes that you LDAP server allows anonymous reading access,
+if it is not the fact, you have to provide the information necessary to a correct
+binding.
+
+Go to [apps/frontend/config/app.yml]
+
+all:
+...
+  ldap_server:
+    host: ldap.your.host
+    port: your_port
+    basedn: dc=your_branch
+    options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
+# # #
+# THE LINES YOU MUST ADD ARE BELOW
+# # #
+    dn: your_access_granted_user
+    password: the_password_of_your_user
+
+IF YOUR USER DOES NOT HAVE TO PROVIDE A PASSWORD TO BE AUTHENTICATED, DON'T WRITE
+THIS LINE. Otherwise RdvZ will try to authenticated your user with a blank password.

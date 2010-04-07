@@ -1,5 +1,0 @@
-mh:
-  is_secure: false
-
-resetauth:
-  is_secure: false

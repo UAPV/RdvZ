@@ -1,7 +1,0 @@
-wrongcredSuccess:
-  stylesheets: [-main.css,auth.css]
-  layout: auth_layout
-
-mhSuccess:  
-  stylesheets: [-main.css,auth.css]
-  layout: auth_layout

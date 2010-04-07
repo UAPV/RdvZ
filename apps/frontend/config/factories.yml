@@ -53,6 +53,11 @@ all:
           username:   ~
           password:   ~
 
+  user:
+    class: myUser
+    param:
+      timeout: 27000
+
   routing:
     class: sfPatternRouting
     param:

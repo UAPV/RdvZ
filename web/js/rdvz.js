@@ -7,20 +7,6 @@ $(document).ready(function()
     $('#tips').slideUp() ;
   }); 
 
-  $DEFAULT_SEARCH = "Entrez le code d'un sondage pour le visionner..." ;
-
-  $("#m_search").bind("blur", function(event){
-    if ($(event.target).val() == '') {
-      $(event.target).val($DEFAULT_SEARCH);
-    }
-      
-  });
-  
-  $("#m_search").bind("focus", function(event) {
-    if ($(event.target).val() === $DEFAULT_SEARCH) {
-      $(event.target).val('');
-    }
-  });
 
   $("#form").find('input:checkbox').change(function()
   {

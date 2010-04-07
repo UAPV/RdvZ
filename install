@@ -25,13 +25,16 @@ mal s'installer, veuillez donc revoir le fichier README.${txtrst}
 ${txtred}Cet installeur est encore en développement et n'est donc pas très convivial,
 il est fortement recommandé d'avoir plusieurs autres terminaux ouverts afin de
 récupérer les informations demandées : en effet si vous vous trompez il faudra 
-tout resaisir.${txtrst}
+tout resaisir.
 
+
+ATTENTION : si vous avez déjà une version de RdvZ 2 qui tourne sur votre serveur web,
+pas besoin de repasser par ce script. Référez vous au point 6. du fichier README.${txtrst}          
 
 ${txtcyn} ** Configuration base de données...${txtrst}"
 read -er -p "Adresse du serveur (localhost si elle est sur cette machine) : " bd_serv
 read -er -p "Type [mysql, pgsql, dblib, firebird, ibm, informix, oci, odbc, sqlite] : " bd_pdo
-read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé) : " bd_name
+read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé !) : " bd_name
 read -er -p "Nom d'utilisateur (doit absolument avoir les droits sur la base !) : " bd_uname
 read -ers -p "Mot de passe utilisateur : " bd_upass
 echo -n "

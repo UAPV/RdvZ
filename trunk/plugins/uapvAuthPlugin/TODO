@@ -1,6 +1,0 @@
-
-* Modifier la stratégie de stockage du profil (tout mettre dans la session ou simplement l'uid)
-* Gestion des erreurs :
-    * Lever des exceptions
-    * Ajouter des logs
-* Créer des les routes @logout et @login pour faciliter la déconnection par le développeur

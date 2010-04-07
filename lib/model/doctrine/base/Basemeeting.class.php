@@ -8,23 +8,23 @@
  * @property string $hash
  * @property string $title
  * @property string $description
- * @property string $uid
- * @property integer $closed
+ * @property integer $uid
+ * @property boolean $closed
  * @property timestamp $date_del
  * @property timestamp $date_end
- * @property integer $aifna
- * @property integer $notif
+ * @property boolean $notif
+ * @property user $user
  * @property Doctrine_Collection $meeting_dates
  * 
  * @method string              getHash()          Returns the current record's "hash" value
  * @method string              getTitle()         Returns the current record's "title" value
  * @method string              getDescription()   Returns the current record's "description" value
- * @method string              getUid()           Returns the current record's "uid" value
- * @method integer             getClosed()        Returns the current record's "closed" value
+ * @method integer             getUid()           Returns the current record's "uid" value
+ * @method boolean             getClosed()        Returns the current record's "closed" value
  * @method timestamp           getDateDel()       Returns the current record's "date_del" value
  * @method timestamp           getDateEnd()       Returns the current record's "date_end" value
- * @method integer             getAifna()         Returns the current record's "aifna" value
- * @method integer             getNotif()         Returns the current record's "notif" value
+ * @method boolean             getNotif()         Returns the current record's "notif" value
+ * @method user                getUser()          Returns the current record's "user" value
  * @method Doctrine_Collection getMeetingDates()  Returns the current record's "meeting_dates" collection
  * @method meeting             setHash()          Sets the current record's "hash" value
  * @method meeting             setTitle()         Sets the current record's "title" value
@@ -33,8 +33,8 @@
  * @method meeting             setClosed()        Sets the current record's "closed" value
  * @method meeting             setDateDel()       Sets the current record's "date_del" value
  * @method meeting             setDateEnd()       Sets the current record's "date_end" value
- * @method meeting             setAifna()         Sets the current record's "aifna" value
  * @method meeting             setNotif()         Sets the current record's "notif" value
+ * @method meeting             setUser()          Sets the current record's "user" value
  * @method meeting             setMeetingDates()  Sets the current record's "meeting_dates" collection
  * 
  * @package    rdvz
@@ -47,10 +47,10 @@ abstract class Basemeeting extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('meeting');
-        $this->hasColumn('hash', 'string', 6, array(
+        $this->hasColumn('hash', 'string', 8, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '6',
+             'length' => '8',
              ));
         $this->hasColumn('title', 'string', 255, array(
              'type' => 'string',
@@ -62,12 +62,11 @@ abstract class Basemeeting extends sfDoctrineRecord
              'notnull' => true,
              'length' => '4000',
              ));
-        $this->hasColumn('uid', 'string', 255, array(
-             'type' => 'string',
-             'length' => '255',
-             ));
-        $this->hasColumn('closed', 'integer', null, array(
+        $this->hasColumn('uid', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('closed', 'boolean', null, array(
+             'type' => 'boolean',
              'default' => 0,
              ));
         $this->hasColumn('date_del', 'timestamp', null, array(
@@ -76,12 +75,8 @@ abstract class Basemeeting extends sfDoctrineRecord
         $this->hasColumn('date_end', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
-        $this->hasColumn('aifna', 'integer', null, array(
-             'type' => 'integer',
-             'default' => 0,
-             ));
-        $this->hasColumn('notif', 'integer', null, array(
-             'type' => 'integer',
+        $this->hasColumn('notif', 'boolean', null, array(
+             'type' => 'boolean',
              'default' => 0,
              ));
     }
@@ -89,6 +84,11 @@ abstract class Basemeeting extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('user', array(
+             'local' => 'uid',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
+
         $this->hasMany('meeting_date as meeting_dates', array(
              'local' => 'id',
              'foreign' => 'mid'));

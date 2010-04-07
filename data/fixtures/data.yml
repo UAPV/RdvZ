@@ -1,95 +1,118 @@
-<?php
-$configuration = ProjectConfiguration::getApplicationConfiguration
-('frontend', 'prod', false);
-
-sfContext::createInstance($configuration);
-?>
 meeting:
   meeting_1:
-    hash: 9h9
+    hash: dq4
     title: yep
     description: dazd
-    uid: '1'
-    closed: '0'
-    date_del: '2010-06-23 00:00:00'
-    date_end: '2010-05-23 00:00:00'
-    aifna: '0'
-    notif: '0'
+    user: user_1
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-02-23 09:21:30'
     updated_at: '2010-03-17 17:54:37'
   meeting_2:
-    hash: w7h
+    hash: j0v
     title: bla
     description: 'Un rendez-vous de test'
-    uid: '1'
-    closed: '0'
-    date_del: '2010-07-15 00:00:00'
-    date_end: '2010-06-15 00:00:00'
-    aifna: '0'
-    notif: '0'
+    user: user_1
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-15 14:40:21'
     updated_at: '2010-03-17 14:25:58'
   meeting_3:
-    hash: ekr
+    hash: 68u
     title: 'Mon nouveau rendez-vous'
     description: 'Un bon rendez-vous'
-    uid: '1'
-    closed: '1'
-    date_del: '2010-07-15 00:00:00'
-    date_end: '2010-06-15 00:00:00'
-    aifna: '0'
-    notif: '0'
+    user: user_1
+    closed: true
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-15 16:50:48'
     updated_at: '2010-03-16 11:41:12'
   meeting_4:
-    hash: 6ri
+    hash: di1
     title: 'Mon super rendez-vous qui tue les patates'
     description: 'Yes !'
-    uid: '1'
-    closed: '0'
-    date_del: '2010-07-16 00:00:00'
-    date_end: '2010-06-16 00:00:00'
-    aifna: '0'
-    notif: '0'
+    user: user_1
+    closed: false
+    date_del: '2010-07-19 00:00:00'
+    date_end: '2010-06-19 00:00:00'
+    notif: false
     created_at: '2010-03-16 15:51:37'
     updated_at: '2010-03-18 10:04:47'
+  meeting_9:
+    hash: r5i
+    title: prout
+    description: dazd
+    user: user_1
+    closed: true
+    date_del: '2010-07-22 00:00:00'
+    date_end: '2010-06-22 00:00:00'
+    notif: false
+    created_at: '2010-03-22 18:00:14'
+    updated_at: '2010-03-22 18:08:14'
+  meeting_10:
+    hash: 25h
+    title: fzefzef
+    description: ezfze
+    user: user_1
+    closed: true
+    date_del: '2010-07-22 00:00:00'
+    date_end: '2010-06-22 00:00:00'
+    notif: false
+    created_at: '2010-03-22 18:01:33'
+    updated_at: '2010-03-22 18:08:13'
+  meeting_11:
+    hash: h8u
+    title: zadazd
+    description: azda
+    user: user_1
+    closed: true
+    date_del: '2010-07-22 00:00:00'
+    date_end: '2010-06-22 00:00:00'
+    notif: false
+    created_at: '2010-03-22 18:02:56'
+    updated_at: '2010-03-22 18:28:36'
 meeting_poll:
   meeting_poll_1:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-02-23 09:21:40'
     updated_at: '2010-02-23 09:21:40'
   meeting_poll_2:
     meeting_date: meeting_date_2
-    poll: '1'
-    uid: '1'
+    poll: '0'
+    user: user_1
     comment: pro
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 14:36:20'
+    updated_at: '2010-03-18 18:05:43'
   meeting_poll_3:
     meeting_date: meeting_date_3
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: pozfzfaz
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 15:21:50'
+    updated_at: '2010-03-18 12:03:13'
   meeting_poll_4:
     meeting_date: meeting_date_4
-    poll: '1'
-    uid: '1'
+    poll: '0'
+    user: user_1
     comment: blablabla
     participant_name: null
     created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-17 14:36:30'
+    updated_at: '2010-03-18 11:50:43'
   meeting_poll_5:
     meeting_date: meeting_date_5
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-02-23 18:52:34'
@@ -97,7 +120,7 @@ meeting_poll:
   meeting_poll_6:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: '2'
+    user: user_2
     comment: null
     participant_name: null
     created_at: '2010-03-15 12:00:03'
@@ -105,7 +128,7 @@ meeting_poll:
   meeting_poll_7:
     meeting_date: meeting_date_5
     poll: '0'
-    uid: '2'
+    user: user_2
     comment: null
     participant_name: null
     created_at: '2010-03-15 12:00:03'
@@ -113,7 +136,7 @@ meeting_poll:
   meeting_poll_8:
     meeting_date: meeting_date_2
     poll: '1'
-    uid: '2'
+    user: user_2
     comment: null
     participant_name: null
     created_at: '2010-03-15 12:00:03'
@@ -121,7 +144,7 @@ meeting_poll:
   meeting_poll_9:
     meeting_date: meeting_date_3
     poll: '1'
-    uid: '2'
+    user: user_2
     comment: pouet
     participant_name: null
     created_at: '2010-03-15 12:00:03'
@@ -129,7 +152,7 @@ meeting_poll:
   meeting_poll_10:
     meeting_date: meeting_date_4
     poll: '1'
-    uid: '2'
+    user: user_2
     comment: null
     participant_name: null
     created_at: '2010-03-15 12:00:03'
@@ -137,7 +160,7 @@ meeting_poll:
   meeting_poll_11:
     meeting_date: meeting_date_8
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 14:40:26'
@@ -145,7 +168,7 @@ meeting_poll:
   meeting_poll_12:
     meeting_date: meeting_date_6
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 14:40:26'
@@ -153,7 +176,7 @@ meeting_poll:
   meeting_poll_13:
     meeting_date: meeting_date_7
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 14:40:26'
@@ -161,7 +184,7 @@ meeting_poll:
   meeting_poll_14:
     meeting_date: meeting_date_9
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 14:40:39'
@@ -169,7 +192,7 @@ meeting_poll:
   meeting_poll_15:
     meeting_date: meeting_date_10
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -177,7 +200,7 @@ meeting_poll:
   meeting_poll_16:
     meeting_date: meeting_date_11
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -185,7 +208,7 @@ meeting_poll:
   meeting_poll_17:
     meeting_date: meeting_date_12
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -193,7 +216,7 @@ meeting_poll:
   meeting_poll_18:
     meeting_date: meeting_date_13
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -201,7 +224,7 @@ meeting_poll:
   meeting_poll_19:
     meeting_date: meeting_date_14
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -209,7 +232,7 @@ meeting_poll:
   meeting_poll_20:
     meeting_date: meeting_date_15
     poll: '0'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -217,7 +240,7 @@ meeting_poll:
   meeting_poll_21:
     meeting_date: meeting_date_16
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-15 17:10:34'
@@ -225,7 +248,7 @@ meeting_poll:
   meeting_poll_22:
     meeting_date: meeting_date_17
     poll: '1'
-    uid: '1'
+    user: user_1
     comment: null
     participant_name: null
     created_at: '2010-03-16 10:34:36'
@@ -233,7 +256,6 @@ meeting_poll:
   meeting_poll_23:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: 'pouet !'
     created_at: '2010-03-17 15:13:15'
@@ -241,7 +263,6 @@ meeting_poll:
   meeting_poll_24:
     meeting_date: meeting_date_5
     poll: '1'
-    uid: null
     comment: null
     participant_name: 'pouet !'
     created_at: '2010-03-17 15:13:15'
@@ -249,7 +270,6 @@ meeting_poll:
   meeting_poll_25:
     meeting_date: meeting_date_2
     poll: '1'
-    uid: null
     comment: null
     participant_name: 'pouet !'
     created_at: '2010-03-17 15:13:15'
@@ -257,7 +277,6 @@ meeting_poll:
   meeting_poll_26:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: null
     participant_name: 'pouet !'
     created_at: '2010-03-17 15:13:15'
@@ -265,7 +284,6 @@ meeting_poll:
   meeting_poll_27:
     meeting_date: meeting_date_4
     poll: '0'
-    uid: null
     comment: null
     participant_name: 'pouet !'
     created_at: '2010-03-17 15:13:15'
@@ -273,7 +291,6 @@ meeting_poll:
   meeting_poll_28:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-17 15:17:53'
@@ -281,7 +298,6 @@ meeting_poll:
   meeting_poll_29:
     meeting_date: meeting_date_5
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-17 15:17:53'
@@ -289,7 +305,6 @@ meeting_poll:
   meeting_poll_30:
     meeting_date: meeting_date_2
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-17 15:17:53'
@@ -297,7 +312,6 @@ meeting_poll:
   meeting_poll_31:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-17 15:17:53'
@@ -305,7 +319,6 @@ meeting_poll:
   meeting_poll_32:
     meeting_date: meeting_date_4
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-17 15:17:53'
@@ -313,7 +326,6 @@ meeting_poll:
   meeting_poll_33:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: prout
     created_at: '2010-03-17 15:35:42'
@@ -321,7 +333,6 @@ meeting_poll:
   meeting_poll_34:
     meeting_date: meeting_date_5
     poll: '0'
-    uid: null
     comment: null
     participant_name: prout
     created_at: '2010-03-17 15:35:42'
@@ -329,7 +340,6 @@ meeting_poll:
   meeting_poll_35:
     meeting_date: meeting_date_2
     poll: '0'
-    uid: null
     comment: null
     participant_name: prout
     created_at: '2010-03-17 15:35:42'
@@ -337,7 +347,6 @@ meeting_poll:
   meeting_poll_36:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: bla
     participant_name: prout
     created_at: '2010-03-17 15:35:42'
@@ -345,7 +354,6 @@ meeting_poll:
   meeting_poll_37:
     meeting_date: meeting_date_4
     poll: '1'
-    uid: null
     comment: pouet
     participant_name: prout
     created_at: '2010-03-17 15:35:42'
@@ -353,7 +361,6 @@ meeting_poll:
   meeting_poll_38:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-18 09:38:28'
@@ -361,7 +368,6 @@ meeting_poll:
   meeting_poll_39:
     meeting_date: meeting_date_5
     poll: '1'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-18 09:38:28'
@@ -369,7 +375,6 @@ meeting_poll:
   meeting_poll_40:
     meeting_date: meeting_date_2
     poll: '1'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-18 09:38:28'
@@ -377,7 +382,6 @@ meeting_poll:
   meeting_poll_41:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: null
     participant_name: bla
     created_at: '2010-03-18 09:38:28'
@@ -385,7 +389,6 @@ meeting_poll:
   meeting_poll_42:
     meeting_date: meeting_date_4
     poll: '0'
-    uid: null
     comment: bla
     participant_name: bla
     created_at: '2010-03-18 09:38:28'
@@ -393,7 +396,6 @@ meeting_poll:
   meeting_poll_43:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:39:40'
@@ -401,7 +403,6 @@ meeting_poll:
   meeting_poll_44:
     meeting_date: meeting_date_5
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:39:40'
@@ -409,7 +410,6 @@ meeting_poll:
   meeting_poll_45:
     meeting_date: meeting_date_2
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:39:40'
@@ -417,7 +417,6 @@ meeting_poll:
   meeting_poll_46:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:39:40'
@@ -425,7 +424,6 @@ meeting_poll:
   meeting_poll_47:
     meeting_date: meeting_date_4
     poll: '0'
-    uid: null
     comment: 'ça marche @@'
     participant_name: coucou
     created_at: '2010-03-18 09:39:40'
@@ -433,7 +431,6 @@ meeting_poll:
   meeting_poll_48:
     meeting_date: meeting_date_1
     poll: '1'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:40:41'
@@ -441,7 +438,6 @@ meeting_poll:
   meeting_poll_49:
     meeting_date: meeting_date_5
     poll: '1'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:40:41'
@@ -449,7 +445,6 @@ meeting_poll:
   meeting_poll_50:
     meeting_date: meeting_date_2
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:40:41'
@@ -457,7 +452,6 @@ meeting_poll:
   meeting_poll_51:
     meeting_date: meeting_date_3
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:40:41'
@@ -465,7 +459,6 @@ meeting_poll:
   meeting_poll_52:
     meeting_date: meeting_date_4
     poll: '0'
-    uid: null
     comment: null
     participant_name: coucou
     created_at: '2010-03-18 09:40:41'
@@ -473,7 +466,6 @@ meeting_poll:
   meeting_poll_53:
     meeting_date: meeting_date_1
     poll: '0'
-    uid: null
     comment: null
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
@@ -481,7 +473,6 @@ meeting_poll:
   meeting_poll_54:
     meeting_date: meeting_date_5
     poll: '1'
-    uid: null
     comment: null
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
@@ -489,7 +480,6 @@ meeting_poll:
   meeting_poll_55:
     meeting_date: meeting_date_2
     poll: '1'
-    uid: null
     comment: null
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
@@ -497,7 +487,6 @@ meeting_poll:
   meeting_poll_56:
     meeting_date: meeting_date_3
     poll: '1'
-    uid: null
     comment: null
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
@@ -505,7 +494,6 @@ meeting_poll:
   meeting_poll_57:
     meeting_date: meeting_date_4
     poll: '1'
-    uid: null
     comment: null
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
@@ -587,16 +575,28 @@ meeting_date:
     meeting: meeting_4
     date: '2010-03-18 00:00:00'
     comment: ''
+  meeting_date_28:
+    meeting: meeting_9
+    date: '2010-03-24 00:00:00'
+    comment: ''
+  meeting_date_29:
+    meeting: meeting_10
+    date: '2010-03-24 00:00:00'
+    comment: ''
+  meeting_date_30:
+    meeting: meeting_11
+    date: '2010-03-25 00:00:00'
+    comment: ''
 user:
   user_1:
-    ldap_id: 'uapv8802366'
+    ldap_id: uapv8802366
     login: null
     pass: null
     name: Deveaud
     surname: Romain
     mail: romain.deveaud@etd.univ-avignon.fr
   user_2:
-    ldap_id: 'deveaudr'
+    ldap_id: deveaudr
     login: null
     pass: null
     name: Deveaud

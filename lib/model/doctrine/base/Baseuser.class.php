@@ -11,19 +11,28 @@
  * @property string $name
  * @property string $surname
  * @property string $mail
+ * @property string $language
+ * @property Doctrine_Collection $meeting_owners
+ * @property Doctrine_Collection $poll_user
  * 
- * @method string getLdapId()  Returns the current record's "ldap_id" value
- * @method string getLogin()   Returns the current record's "login" value
- * @method string getPass()    Returns the current record's "pass" value
- * @method string getName()    Returns the current record's "name" value
- * @method string getSurname() Returns the current record's "surname" value
- * @method string getMail()    Returns the current record's "mail" value
- * @method user   setLdapId()  Sets the current record's "ldap_id" value
- * @method user   setLogin()   Sets the current record's "login" value
- * @method user   setPass()    Sets the current record's "pass" value
- * @method user   setName()    Sets the current record's "name" value
- * @method user   setSurname() Sets the current record's "surname" value
- * @method user   setMail()    Sets the current record's "mail" value
+ * @method string              getLdapId()         Returns the current record's "ldap_id" value
+ * @method string              getLogin()          Returns the current record's "login" value
+ * @method string              getPass()           Returns the current record's "pass" value
+ * @method string              getName()           Returns the current record's "name" value
+ * @method string              getSurname()        Returns the current record's "surname" value
+ * @method string              getMail()           Returns the current record's "mail" value
+ * @method string              getLanguage()       Returns the current record's "language" value
+ * @method Doctrine_Collection getMeetingOwners()  Returns the current record's "meeting_owners" collection
+ * @method Doctrine_Collection getPollUser()       Returns the current record's "poll_user" collection
+ * @method user                setLdapId()         Sets the current record's "ldap_id" value
+ * @method user                setLogin()          Sets the current record's "login" value
+ * @method user                setPass()           Sets the current record's "pass" value
+ * @method user                setName()           Sets the current record's "name" value
+ * @method user                setSurname()        Sets the current record's "surname" value
+ * @method user                setMail()           Sets the current record's "mail" value
+ * @method user                setLanguage()       Sets the current record's "language" value
+ * @method user                setMeetingOwners()  Sets the current record's "meeting_owners" collection
+ * @method user                setPollUser()       Sets the current record's "poll_user" collection
  * 
  * @package    rdvz
  * @subpackage model
@@ -61,11 +70,22 @@ abstract class Baseuser extends sfDoctrineRecord
              'type' => 'string',
              'length' => '255',
              ));
+        $this->hasColumn('language', 'string', 8, array(
+             'type' => 'string',
+             'default' => 'fr',
+             'length' => '8',
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('meeting as meeting_owners', array(
+             'local' => 'id',
+             'foreign' => 'uid'));
+
+        $this->hasMany('meeting_poll as poll_user', array(
+             'local' => 'id',
+             'foreign' => 'uid'));
     }
 }

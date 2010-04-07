@@ -19,6 +19,9 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('mail', array()) ;
     $this->getUser()->setAttribute('new', false) ; // to remove?
 
+//    $cron_meetings = Doctrine::getTable('meeting')->getExpiredMeetingsNotClosed() ;
+//    echo count($cron_meetings) ;
+
     // Getting the meetings created by the logged in user.
     $this->meeting_list = Doctrine::getTable('meeting')->getMeetingsFromUser($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
   }
@@ -39,7 +42,7 @@ class meetingActions extends sfActions
       $this->setComment($request->getParameter('poll_id'),$comm) ;
 
     // Get all the variables used to display the recap table.
-    $vars = $this->meeting->processShow() ;
+    $vars = $this->meeting->processShow($this->getUser()->getCulture()) ;
 
     $this->dates    = $vars['dates'] ;
     $this->comments = $vars['comments'] ;
@@ -59,7 +62,14 @@ class meetingActions extends sfActions
     // from the 'showua' action.
     $this->getUser()->setAuthenticated(true) ;
     $this->getUser()->addCredential('invite') ;
+    $this->getUser()->setCulture('fr') ;
 
+    $this->executeShow($request) ;
+  }
+
+  public function executeOldmeet(sfWebRequest $request)
+  {
+    $request->setParameter('h',$request->getParameter('mid')) ;
     $this->executeShow($request) ;
   }
 
@@ -72,7 +82,8 @@ class meetingActions extends sfActions
     $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h'));
     if(!$this->meeting)
     {
-      $this->getUser()->setFlash('error', 'Aucun sondage ne correspond à ce code.') ;
+      sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+      $this->getUser()->setFlash('error', __('Aucun sondage ne correspond à ce code.')) ;
       $this->redirect('homepage') ;
     }
     else
@@ -142,7 +153,8 @@ class meetingActions extends sfActions
 
     if($this->getUser()->hasCredential('invite') && $votes['name'] == "")
     {
-      $this->getUser()->setFlash('error', 'Vous devez entrer votre nom pour voter.') ;
+      sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+      $this->getUser()->setFlash('error', __('Vous devez entrer votre nom pour voter.')) ;
       $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
     }
 
@@ -257,7 +269,7 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('comment', array()) ;
     $this->getUser()->setAttribute('new', true) ; // to remove?
 
-    $this->form = new meetingForm();
+    $this->form = new meetingForm(array(), array('current_user' => $this->getUser())) ;
   }
 
   /**
@@ -274,11 +286,14 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('date',$dates) ;
     $this->getUser()->setAttribute('comment', $this->fetchComments($data)) ;
       
-    $this->form = new meetingForm();
+    $this->form = new meetingForm(array(), array('current_user' => $this->getUser())) ;
 
     // If the user didn't select any date...
     if(empty($dates))
-      $this->getUser()->setFlash('error', 'Vous devez sélectionner au moins une date pour créer un sondage.') ;
+    {
+      sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+      $this->getUser()->setFlash('error', __('Vous devez sélectionner au moins une date pour créer un sondage.')) ;
+    }
     else
       $this->processForm($data, $this->form);
 
@@ -312,7 +327,7 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('comment_prime',$comments) ;
 
     // ... and creating the form.
-    $this->form = new meetingForm($meeting);
+    $this->form = new meetingForm($meeting, array('current_user' => $this->getUser())) ;
   }
 
   /**
@@ -327,7 +342,7 @@ class meetingActions extends sfActions
     $data['id'] = $request->getParameter('id') ; // little hack to avoid a huge bug
                                                  // which I don't know how to fix
 
-    $this->form = new meetingForm($meeting);
+    $this->form = new meetingForm($meeting, array('current_user' => $this->getUser())) ;
     $this->form->bind($data) ;
 
     $before_dates    = $this->getUser()->getAttribute('date_prime') ;
@@ -381,7 +396,7 @@ class meetingActions extends sfActions
     $this->getResponse()->setContentType('text/html; charset=utf-8');
     $current_id = $request->getParameter('current_id');
 
-    $form = new meetingForm() ;
+    $form = new meetingForm(array(), array('current_user' => $this->getUser())) ;
 
     $widget = $form->createMailInput() ;
     $html = $widget->render("meeting[input_mail_$current_id]") ;
@@ -394,11 +409,12 @@ class meetingActions extends sfActions
     */
   public function executeRenderDateInput(sfWebRequest $request)
   {
+    sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
     $this->getResponse()->setContentType('text/html; charset=utf-8');
     $current_id = $request->getParameter('current_id');
     $date = $request->getParameter('value') ;
 
-    $form = new meetingForm() ;
+    $form = new meetingForm(array(), array('current_user' => $this->getUser())) ;
 
     $widget_date = $form->createDateInput() ;
     $html = $widget_date->render("meeting[input_date_$current_id]",$date) ;
@@ -484,6 +500,13 @@ class meetingActions extends sfActions
     {
       $meeting = $form->save();
 
+      // Retrieving meeting creator's id.
+      // This line was originally in the model, but it triggered bugs
+      // with the fixtures.
+      // Note : NEVER USE sfContext IN MODELS. Yes, it's tough...
+      $meeting->setUid(sfContext::getInstance()->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      $meeting->save() ;
+
       // Fetching the dynamic information...
       $mails =    $this->fetchMails($data,true) ;
       $dates =    $this->fetchDates($data) ; 
@@ -508,7 +531,8 @@ class meetingActions extends sfActions
     */
   protected function sendMails($mails,$meeting)
   {
-    $subject = "[RdvZ] Proposition de rendez-vous" ;
+    sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+    $subject = "[RdvZ] ".__('Proposition de rendez-vous') ;
 
     $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
     try {     
@@ -530,7 +554,8 @@ class meetingActions extends sfActions
     */
   protected function sendNotifMail($meeting,$uname)
   {
-    $subject = "[RdvZ] Nouveau vote pour votre rendez-vous" ;
+    sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+    $subject = "[RdvZ]".__('Nouveau vote pour votre rendez-vous') ;
 
     $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
     try {
