@@ -1,0 +1,12 @@
+rendering: ~
+security: ~
+#security:
+#  class: uapvSecurityFilterCas # Uniquement pour login
+#  param:                       # cas + ldap.
+#    type: security             #
+
+
+# insert your own filters here
+
+cache:     ~
+execution: ~

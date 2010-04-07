@@ -1,0 +1,434 @@
+#!/bin/bash
+
+txtund=$(tput sgr 0 1)    # Underline
+txtbld=$(tput bold)       # Bold
+txtred=$(tput setaf 1)    # Red
+txtgrn=$(tput setaf 2)    # Green
+txtylw=$(tput setaf 3)    # Yellow
+txtblu=$(tput setaf 4)    # Blue
+txtpur=$(tput setaf 5)    # Purple
+txtcyn=$(tput setaf 6)    # Cyan
+txtwht=$(tput setaf 7)    # White
+txtrst=$(tput sgr0)       # Text reset
+
+echo -e "${txtbld}
+* * * * * * * * * * * * * * *
+*                           *
+*   Installeur RdvZ v2.0    *
+*                           *
+* * * * * * * * * * * * * * *
+
+Cet installeur part du principe que votre machine est configurée et peut faire 
+fonctionner symfony (versions 1.3 et 1.4). Si ce n'est pas le cas RvdZ pourrait
+mal s'installer, veuillez donc revoir le fichier README.${txtrst}
+
+${txtred}Cet installeur est encore en développement et n'est donc pas très convivial,
+il est fortement recommandé d'avoir plusieurs autres terminaux ouverts afin de
+récupérer les informations demandées : en effet si vous vous trompez il faudra 
+tout resaisir.
+
+
+ATTENTION : si vous avez déjà une version de RdvZ 2 qui tourne sur votre serveur web,
+pas besoin de repasser par ce script. Référez vous au point 6. du fichier README.${txtrst}          
+
+${txtcyn} ** Configuration base de données...${txtrst}"
+read -er -p "Adresse du serveur (localhost si elle est sur cette machine) : " bd_serv
+read -er -p "Type [mysql, pgsql, dblib, firebird, ibm, informix, oci, odbc, sqlite] : " bd_pdo
+read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé !) : " bd_name
+read -er -p "Nom d'utilisateur (doit absolument avoir les droits sur la base !) : " bd_uname
+read -ers -p "Mot de passe utilisateur : " bd_upass
+echo -n "
+Configuration... " 
+php symfony configure:database "${bd_pdo}:host=${bd_serv};dbname=${bd_name}" $bd_uname $bd_upass
+php symfony doctrine:build-db
+echo -e "${txtgrn}[OK]${txtrst}
+
+${txtcyn} ** Configuration authentification...${txtrst}"
+PS3="Choisissez (1-3) : "
+echo "Quel type d'authentification souhaitez-vous mettre en place?"
+select type in "Base de données" "LDAP seul" "CAS + LDAP"
+do
+  break
+done
+echo -e "Vous avez choisi ${txtbld}$type${txtrst}.
+"
+
+echo "all:" > apps/frontend/config/app.yml
+
+if [ "$type" = "Base de données" ]; then
+read -er -p "Type de cryptage du mot de passe [sha1, md5, none] : " bdd_crypt
+  echo "
+  bdd_server:
+    host: ${bd_serv}
+    pdo: ${bd_pdo}
+    dbname: ${bd_name}
+    username: ${bd_uname}
+    password: ${bd_upass}
+
+  bdd_infos:
+    user_pass_encrypt: ${bdd_crypt}
+    user_table_name: user
+    user_login_field: login
+    user_pass_field: pass
+    user_name_field: name
+    user_surname_field: surname
+    user_mail_field: mail
+    
+  profile_builder_class: uapvProfileBuilderDatabase
+  authentication_type: bdd
+  user_id: id
+  " >> apps/frontend/config/app.yml
+
+  echo "
+prod:
+  .settings:
+    no_script_name:         true
+    logging_enabled:        false
+
+dev:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT).\"\n\" ?>
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE).\"\n\" ?>
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
+
+all:
+  .settings:
+    # Form security secret (CSRF protection)
+    csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
+    enabled_modules: [default, authentication, error]
+
+    # Output escaping settings
+    escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
+    escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
+
+    # Cache settings
+    lazy_cache_key:         true        # Delays creation of a cache key until after checking whether an action or partial is cacheable
+
+  .actions:                         
+    secure_module: auth
+    secure_action: wrongcred
+    error_404_module: error
+    error_404_action: error404
+
+                                    # Uniquement pour login par
+    login_module: authentication    # base de données ou ldap seul.
+    login_action: login             #
+  " > apps/frontend/config/settings.yml
+
+  echo "
+rendering: ~
+security: ~
+
+cache: ~
+execution: ~
+  " > apps/frontend/config/filters.yml
+
+  echo "
+authentication:
+  is_secure: false
+meeting:
+  is_secure: false
+
+auth:
+  is_secure: false
+
+all:
+  is_secure: true
+  credentials: [[member]]
+  " > apps/frontend/config/security.yml
+elif [ "$type" = "LDAP seul" ]; then
+  echo -e "${txtcyn} ** Configuration serveur LDAP...${txtrst}"
+  read -er -p "Adresse du serveur LDAP : " ldap_serv
+  read -er -p "Port du serveur LDAP : " ldap_port
+  read -er -p "Branche utilisée (basedn) : " ldap_basedn
+  read -er -p "Champ identifiant utilisateur (ex : uidnumber) : " ldap_user_id
+  read -er -p "Champ nom utilisateur : " ldap_user_name
+  read -er -p "Champ prénom utilisateur : " ldap_user_surname
+  read -er -p "Champ mail utilisateur : " ldap_user_mail
+  echo "
+  ldap_server:
+    host: ${ldap_serv}
+    port: ${ldap_port}
+    basedn: ${ldap_basedn}
+    options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
+  
+  profile_var_translation:
+    uid: ${ldap_user_id}
+    name: ${ldap_user_name}
+    surname: ${ldap_user_surname}
+    mail: ${ldap_user_mail}
+
+  profile_builder_class: uapvProfileBuilderLdap
+  authentication_type: ldap
+  user_id: rdvz_user_id
+  " >> apps/frontend/config/app.yml
+
+  echo "
+prod:
+  .settings:
+    no_script_name:         true
+    logging_enabled:        false
+
+dev:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT).\"\n\" ?>
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE).\"\n\" ?>
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
+
+all:
+  .settings:
+    # Form security secret (CSRF protection)
+    csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
+    enabled_modules: [default, authentication, error]
+
+    # Output escaping settings
+    escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
+    escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
+
+    # Cache settings
+    lazy_cache_key:         true        # Delays creation of a cache key until after checking whether an action or partial is cacheable
+
+  .actions:                         
+    secure_module: auth
+    secure_action: wrongcred
+    error_404_module: error
+    error_404_action: error404
+
+                                    # Uniquement pour login par
+    login_module: authentication    # base de données ou ldap seul.
+    login_action: login             #
+  " > apps/frontend/config/settings.yml
+
+  echo "
+rendering: ~
+security: ~
+
+cache: ~
+execution: ~
+  " > apps/frontend/config/filters.yml
+
+  echo "
+authentication:
+  is_secure: false
+meeting:
+  is_secure: false
+
+auth:
+  is_secure: false
+
+all:
+  is_secure: true
+  credentials: [[member]]
+  " > apps/frontend/config/security.yml
+
+elif [ "$type" = "CAS + LDAP" ]; then
+  echo -e "${txtcyn} ** Configuration serveur CAS...${txtrst}"
+  read -er -p "Adresse du serveur CAS : " cas_serv
+  read -er -p "Port du serveur CAS : " cas_port
+  echo -e "
+${txtcyn} ** Configuration serveur LDAP...${txtrst}"
+  read -er -p "Adresse du serveur LDAP : " ldap_serv
+  read -er -p "Port du serveur LDAP : " ldap_port
+  read -er -p "Branche utilisée (basedn) : " ldap_basedn
+  read -er -p "Champ identifiant utilisateur (ex : uid) : " ldap_user_id
+  read -er -p "Champ nom utilisateur : " ldap_user_name
+  read -er -p "Champ prénom utilisateur : " ldap_user_surname
+  read -er -p "Champ mail utilisateur : " ldap_user_mail
+  echo "
+  cas_server:
+    host: ${cas_serv}
+    port: ${cas_port}
+    path:
+
+  ldap_server:
+    host: ${ldap_serv}
+    port: ${ldap_port}
+    basedn: ${ldap_basedn}
+    options: {<?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
+  
+  profile_var_translation:
+    uid: ${ldap_user_id}
+    name: ${ldap_user_name}
+    surname: ${ldap_user_surname}
+    mail: ${ldap_user_mail}
+
+  profile_builder_class: uapvProfileBuilderLdap
+  authentication_type: ldap
+  user_id: rdvz_user_id
+  " >> apps/frontend/config/app.yml
+
+  echo "
+prod:
+  .settings:
+    no_script_name:         true
+    logging_enabled:        false
+
+dev:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT).\"\n\" ?>
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE).\"\n\" ?>
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
+
+all:
+  .settings:
+    # Form security secret (CSRF protection)
+    csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
+    enabled_modules: [default, authentication, error]
+
+    # Output escaping settings
+    escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
+    escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
+
+    # Cache settings
+    lazy_cache_key:         true        # Delays creation of a cache key until after checking whether an action or partial is cacheable
+
+  .actions:                         
+    secure_module: auth
+    secure_action: wrongcred
+    error_404_module: error
+    error_404_action: error404
+  " > apps/frontend/config/settings.yml
+
+  echo "
+rendering: ~
+security:
+  class: uapvSecurityFilterCas
+  param:
+    type: security
+
+cache: ~
+execution: ~
+  " > apps/frontend/config/filters.yml
+
+  echo "
+meeting:
+  is_secure: false
+
+auth:
+  is_secure: false
+
+all:
+  is_secure: true
+  credentials: [[member]]
+  " > apps/frontend/config/security.yml
+
+fi
+
+echo -e "
+${txtcyn} ** Configuration SMTP...${txtrst}"
+read -er -p "Adresse du serveur SMTP (ex : smtp.univ-avignon.fr) : " smtp_url
+read -er -p "Port du SMTP : " smtp_port                                                                     
+
+echo -e "
+${txtcyn} ** Informations complémentaires...${txtrst}"
+read -er -p "Url de la page RdvZ (ex : rdvz.univ-avignon.fr) : " url
+read -er -p "Nom de votre organisation (ex : Université d'Avignon) : " org
+
+echo "
+prod:
+  logger:
+    class:   sfFileLogger
+    param:
+      level:   err
+      loggers: ~
+      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log 
+
+cli:
+  controller:
+    class: sfConsoleController
+  request:
+    class: sfConsoleRequest
+  response:
+    class: sfConsoleResponse
+
+test:
+  storage:
+    class: sfSessionTestStorage
+    param:
+      session_path: %SF_TEST_CACHE_DIR%/sessions
+
+  response:
+    class: sfWebResponse
+    param:
+      send_http_headers: false
+
+#prod:           
+#  mailer:
+#    param:
+#      delivery_strategy: realtime
+
+dev:
+  mailer:
+    param:
+      delivery_strategy: none
+#      delivery_strategy: single_address
+#      delivery_address:  romain.deveaud@univ-avignon.fr
+
+all:
+  mailer:
+    class: sfMailer
+    param:
+      logging:           %SF_LOGGING_ENABLED%
+      charset:           %SF_CHARSET%
+      delivery_strategy: realtime
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host:       ${smtp_url}
+          port:       ${smtp_port}
+          encryption: ~
+          username:   ~
+          password:   ~
+
+  routing:
+    class: sfPatternRouting
+    param:
+      generate_shortest_url:            true
+      extra_parameters_as_query_string: true
+
+  view_cache_manager:
+    class: sfViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    true" > apps/frontend/config/factories.yml
+                                                                       
+echo "
+  url: ${url}
+  org_name: \"${org}\"" >> apps/frontend/config/app.yml
+
+echo -n "Ecriture dans les fichiers de configuration... " 
+echo -e "${txtgrn}[OK]${txtrst}"
+echo -n "Création des tables de la base de données (entrez 'y' quand demandé)..."
+php symfony doctrine:build-all
+echo -e "${txtgrn}[OK]${txtrst}"
+php symfony cc

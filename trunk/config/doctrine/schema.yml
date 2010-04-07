@@ -1,0 +1,47 @@
+meeting:
+#  connection: master
+  actAs: { Timestampable: ~ }
+  columns: 
+    hash: { type: string(8), notnull: true }
+    title: { type: string(255), notnull: true }
+    description: { type: string(4000), notnull: true }
+    uid: { type: integer }
+    closed: { type: boolean, default: 0 }
+    date_del: { type: timestamp }
+    date_end: { type: timestamp }
+    notif: { type: boolean, default: 0 } # recevoir une notification par mail à chaque vote
+  relations:
+    user: { onDelete: CASCADE, local: uid, foreign: id, foreignAlias: meeting_owners } 
+
+meeting_date:
+#  connection: master
+  columns:
+    mid: { type: integer, notnull: true }
+    date: { type: timestamp, notnull: true }
+    comment: { type: string(255) }
+  relations:
+    meeting: { onDelete: CASCADE, local: mid, foreign: id, foreignAlias: meeting_dates }
+
+meeting_poll:
+#  connection: master
+  actAs: { Timestampable: ~ }
+  columns:
+    date_id: { type: integer, notnull: true }
+    poll: { type: integer, notnull: true }
+    uid: { type: integer }
+    comment: { type: string(255) }
+    participant_name: { type: string(255) }
+  relations:
+    meeting_date: { onDelete: CASCADE, local: date_id, foreign: id, foreignAlias: meeting_polls }
+    user: { onDelete: CASCADE, local: uid, foreign: id, foreignAlias: poll_user } 
+
+user:
+#  connection: user
+  columns:
+    ldap_id : { type: string(50), unique: true }
+    login: { type: string(50), unique: true }
+    pass: { type: string(40) }
+    name: { type: string(255) }
+    surname: { type: string(255) }
+    mail: { type: string(255) }
+    language: { type : string(8), default: 'fr' }

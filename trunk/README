@@ -1,0 +1,125 @@
+        -=================-
+  RdvZ version 2.0.1 beta 2009/04/07
+        -=================-
+
+
+Bug tracker : https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
+Developper contact : romain.deveaud@univ-avignon.fr
+
+
+
+1. Introduction
+
+RdvZ is a web application developed by the Université d’Avignon et des Pays 
+de Vaucluse which allows to create and manage meetings and to poll potential 
+attendee avalibility. The application allows both anonymous and authenticated 
+access (it can be either with Database or with a CAS server + LDAP or with a 
+LDAP server alone), but whatever the access mode, everybody is able to vote 
+without being authenticated.
+
+
+
+2. Licence
+
+See the LICENSE file.
+
+
+
+3. Requirements
+
+3.1. Web Server requirements
+RdvZ is developped with the web framework symfony and is based on a LAMP
+architecture (Linux, Apache, MySQL, PHP), so you need to setup a web server 
+in order to run RdvZ. 
+
+Websites to check :
+ - https://help.ubuntu.com/community/ApacheMySQLPHP if you are running Ubuntu, 
+ - http://wiki.debian.org/LaMp if you are running Debian,
+ - http://www.lamphowto.com/ if you need further help.
+
+Of course MySQL is not required, you can use for example PostgreSQL, Oracle...
+
+In addition, the install bash script requires php-cli to run (PHP Command Line),
+if you are running a Debian based distribution, just do :
+ $ apt-get install php5-cli
+ 
+
+3.2. Symfony requirements
+The symfony version used for RdvZ is symfony1.3. It requires :
+ - PHP >= 5.2.4, and ideally not 5.2.9
+
+It also requires some optional things, if you want to perform a clean install
+you may want to check it, do :
+ $ wget http://sf-to.org/1.4/check.php
+ $ php check_configuration.php
+
+You should also execute the checker from a browser and fix the issues it might 
+discover. That's because PHP can have a distinct php.ini configuration file for 
+these two environments, with different settings.
+
+Don't forget to remove the index.html file in your root web browser directory.
+
+
+3.3 CAS requirements
+If you plan to run RdvZ with a CAS authentication, note that the php-cas library
+is already include in the RdvZ sources, but it requires the curl library :
+ $ apt-get install php5-curl
+
+
+3.4 LDAP requirements
+If you plan to run RdvZ with a LDAP (with or without CAS), note that the php-ldap
+library is required :
+ $ apt-get install php5-ldap
+
+
+
+4. Install
+
+See the INSTALL file.
+
+
+
+5. I was using RdvZ 1.x and I want my datas in RdvZ 2.0 !
+
+You just have to run a command : 
+
+ $ php symfony rdvz:retrieve-old-datas "<rdvz1_database_dsn>" <db_user> <db_password>
+
+The DSN has the following syntax : [pdo]:host=[host_serv];dbname=[db_name]
+Where - pdo         : mysql, pgsql... 
+        (values accepted by PHP PDO : http://www.php.net/manual/en/pdo.drivers.php)
+      - host_serv   : the server where the database is hosted
+      - db_name     : the name of the database 
+      - db_user     : the user that has rights on the database (usually root)
+      - db_password : the db password of the user
+
+
+
+6. RdvZ 2.0 was already running on my web server, but I wan't to install
+   the latest version
+
+You don't have to run the install script again, you just need to check wether changes
+have been made in the database schema (config/doctrine/schema.yml).
+If so, run the following command :
+
+  $ php symfony doctrine:build --all-classes --and-migrate
+
+
+
+
+7. Did you find a bug?
+
+Or maybe you think the application or the installer can be improved? Visit our
+bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
+and create a ticket to describe your problem (you can leave your messages in 
+french if you are comfortable with it) ; we will answer as soon as possible.
+
+
+
+8. For a better RdvZ experience...
+
+RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
+is optimized for the following versions :
+ - Firefox >= 3.6 (which is a major update, if you are not currently using you
+   should seriously consider upgrading your version),
+ - All Google Chrome versions

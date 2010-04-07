@@ -1,0 +1,71 @@
+prod:
+  logger:
+    class:   sfFileLogger
+    param:
+      level:   err
+      loggers: ~
+      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log 
+
+cli:
+  controller:
+    class: sfConsoleController
+  request:
+    class: sfConsoleRequest
+  response:
+    class: sfConsoleResponse
+
+test:
+  storage:
+    class: sfSessionTestStorage
+    param:
+      session_path: %SF_TEST_CACHE_DIR%/sessions
+
+  response:
+    class: sfWebResponse
+    param:
+      send_http_headers: false
+
+#prod:           
+#  mailer:
+#    param:
+#      delivery_strategy: realtime
+
+dev:
+  mailer:
+    param:
+      delivery_strategy: none
+#      delivery_strategy: single_address
+#      delivery_address:  romain.deveaud@univ-avignon.fr
+
+all:
+  mailer:
+    class: sfMailer
+    param:
+      logging:           %SF_LOGGING_ENABLED%
+      charset:           %SF_CHARSET%
+      delivery_strategy: realtime
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host:       smtp.univ-avignon.fr
+          port:       587
+          encryption: ~
+          username:   ~
+          password:   ~
+
+  user:
+    class: myUser
+    param:
+      timeout: 27000
+
+  routing:
+    class: sfPatternRouting
+    param:
+      generate_shortest_url:            true
+      extra_parameters_as_query_string: true
+
+  view_cache_manager:
+    class: sfViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    true
