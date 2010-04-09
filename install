@@ -25,16 +25,13 @@ mal s'installer, veuillez donc revoir le fichier README.${txtrst}
 ${txtred}Cet installeur est encore en développement et n'est donc pas très convivial,
 il est fortement recommandé d'avoir plusieurs autres terminaux ouverts afin de
 récupérer les informations demandées : en effet si vous vous trompez il faudra 
-tout resaisir.
+tout resaisir.${txtrst}          
 
-
-ATTENTION : si vous avez déjà une version de RdvZ 2 qui tourne sur votre serveur web,
-pas besoin de repasser par ce script. Référez vous au point 6. du fichier README.${txtrst}          
 
 ${txtcyn} ** Configuration base de données...${txtrst}"
 read -er -p "Adresse du serveur (localhost si elle est sur cette machine) : " bd_serv
 read -er -p "Type [mysql, pgsql, dblib, firebird, ibm, informix, oci, odbc, sqlite] : " bd_pdo
-read -er -p "Nom de la base (ATTENTION, si vous entrez le nom d'une base qui existe déjà, tout son contenu sera supprimé !) : " bd_name
+read -er -p "Nom de la base : " bd_name
 read -er -p "Nom d'utilisateur (doit absolument avoir les droits sur la base !) : " bd_uname
 read -ers -p "Mot de passe utilisateur : " bd_upass
 echo -n "
@@ -103,9 +100,12 @@ test:
 
 all:
   .settings:
+    i18n: true
+    default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
     enabled_modules: [default, authentication, error]
+    standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
     escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
@@ -151,7 +151,7 @@ elif [ "$type" = "LDAP seul" ]; then
   read -er -p "Adresse du serveur LDAP : " ldap_serv
   read -er -p "Port du serveur LDAP : " ldap_port
   read -er -p "Branche utilisée (basedn) : " ldap_basedn
-  read -er -p "Champ identifiant utilisateur (ex : uidnumber) : " ldap_user_id
+  read -er -p "Champ identifiant utilisateur (ex : uid) : " ldap_user_id
   read -er -p "Champ nom utilisateur : " ldap_user_name
   read -er -p "Champ prénom utilisateur : " ldap_user_surname
   read -er -p "Champ mail utilisateur : " ldap_user_mail
@@ -197,9 +197,12 @@ test:
 
 all:
   .settings:
+    i18n: true
+    default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
     enabled_modules: [default, authentication, error]
+    standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
     escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
@@ -301,9 +304,12 @@ test:
 
 all:
   .settings:
+    i18n: true
+    default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
     enabled_modules: [default, authentication, error]
+    standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
     escaping_strategy:      true            # Determines how variables are made available to templates. Accepted values: true, false.
@@ -424,11 +430,19 @@ all:
                                                                        
 echo "
   url: ${url}
-  org_name: \"${org}\"" >> apps/frontend/config/app.yml
+  org_name: \"${org}\"
+  
+  .array:
+    languages:
+      fr: fr_FR
+      en: en_US" >> apps/frontend/config/app.yml
 
 echo -n "Ecriture dans les fichiers de configuration... " 
 echo -e "${txtgrn}[OK]${txtrst}"
 echo -n "Création des tables de la base de données (entrez 'y' quand demandé)..."
-php symfony doctrine:build-all
+php symfony doctrine:build --all-classes 
+php symfony doctrine:generate-migrations-models
+php symfony doctrine:migrate
+rm -rf lib/migration/doctrine/*
 echo -e "${txtgrn}[OK]${txtrst}"
 php symfony cc

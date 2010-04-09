@@ -1,7 +1,7 @@
 <?php echo __('Un rendez-vous vous est proposé par') ?> <?php echo $user->getName().' '.$user->getSurname().' ('.$user->getMail().')' ; ?> : 
 <?php echo $meeting->getTitle() ?>
 
-<?php echo __("Vous pouvez indiquer vos disponibilités en vous rendant à l'adresse suivante") ?> : http://<?php echo sfConfig::get('app_url').'/'.$meeting->getHash() ?> .
+<?php echo __("Vous pouvez indiquer vos disponibilités en vous rendant à l'adresse suivante") ?> : http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?> .
 
 <?php echo __('Le code de ce rendez-vous est') ?> : <?php echo $meeting->getHash() ?> ; <?php echo __('notez le bien, il pourra vous servir à retrouver la page du sondage') ?>.
 
