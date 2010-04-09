@@ -38,27 +38,9 @@
 <!--  <div id="dates_container"></div> -->
 </form>
 <script type="text/javascript">
-  $('.dynamic_mail').live('blur',function()
-  {
-//    var loader = " <img src='/images/ajax-loader.gif' alt='loader' />" ;
-    var not_mail = " <span class='mail_error'><img src='/images/invalid.png' alt='invalid' class='mail_icon' /> <?php echo __('Ce mail ne semble pas valide') ?>.</span>" ;
-    var known_mail = " <span class='mail_ok'><img src='/images/valid.png' alt='valid' class='mail_icon' /></span>" ;
-//    var unknown_mail = " <span class='mail_unk'><img src='/images/unk.png' alt='unknown' class='mail_icon' /> Ce mail est valide mais n'est pas répertorié dans la base de données.</span>" ;
-    var mail_regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (mail_regex.test(this.value) == false)
-    {
-      // c'pas un vrai mail !
-      if ($(this).nextAll('span').length == 1)
-        $(this).nextAll('span').remove() ;
-
-      $(this).parent().append(not_mail) ;
-    }
-    else 
-    {
-      if ($(this).nextAll('span').length == 1)
-        $(this).nextAll('span').remove() ;
-
-      $(this).parent().append(known_mail) ; 
-    }
-  });
+    var not_mail = " <span class='mail_error'><img src='<?php echo image_path('/images/invalid.png') ?>' alt='invalid' class='mail_icon' /> <?php echo __('Ce mail ne semble pas valide') ?>.</span>" ;
+    var known_mail = " <span class='mail_ok'><img src='<?php echo image_path('/images/valid.png') ?>' alt='valid' class='mail_icon' /></span>" ;
+    var date_ajax_url = '<?php echo url_for('meeting/renderDateInput') ?>' ;
+    var mail_ajax_url = '<?php echo url_for('meeting/renderMailInput') ?>' ;
+    var delete_widget = '<img src="<?php echo image_path('/images/close_16.png') ?>" class="mail_icon" alt="Supprimer" />' ;
 </script>

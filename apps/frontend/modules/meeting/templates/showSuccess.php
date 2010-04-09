@@ -10,7 +10,7 @@
 <div id="url_meet_disc"><?php echo __('Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs') ?> !</div>
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
-<h2><img src="/images/book_bookmarks_32.png" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?</h2>
+<h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?</h2>
 <table>
   <tbody>
     <tr>
@@ -35,7 +35,7 @@
 <?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
 <div class="contextMenu" id="poll_menu">
   <ul>
-    <li id="comm"><img src="/images/pencil_16.png" /> <?php echo __('Commenter') ?></li>
+    <li id="comm"><img src="<?php echo image_path('/images/pencil_16.png') ?>" /> <?php echo __('Commenter') ?></li>
   </ul>
 </div>
 <br />
@@ -94,7 +94,7 @@
     <?php if(empty($usr)): ?>
       <td class="poll_td"><?php echo $user ?></td>
     <?php else: ?>
-      <td class="poll_td"><img class="user_icon" src="/images/user_20.png" alt="Utilisateur authentifié" title="<?php echo __('Utilisateur authentifié') ?>" /><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
+      <td class="poll_td"><img class="user_icon" src="<?php echo image_path('/images/user_20.png') ?>" alt="Utilisateur authentifié" title="<?php echo __('Utilisateur authentifié') ?>" /><?php echo $usr->getSurname().' '.$usr->getName() ?></td>
     <?php endif; ?>
 
     <?php foreach($dts as $did => $poll): ?>
@@ -141,7 +141,7 @@
     <?php endif; ?>
 
     <?php if($user_is_creator): ?>
-      <td> <form action="<?php echo url_for('meeting/razvote?h='.$meeting->getHash().'&u='.$user) ?>" method="post" name="raz_form<?php echo $i ?>"><a href="#" onclick="if(confirm('<?php echo __('ATTENTION') ?> ! <?php echo __('Vous allez supprimer tous les votes de cette personne') ?>.\n <?php echo __('Etes-vous bien sûr de vouloir réaliser cette action?') ?>')) document['raz_form<?php echo $i++ ?>'].submit();"><img src="/images/close_16.png" alt="Remise à zéro des votes de cette personne" title="<?php echo __('Remise à zéro des votes de cette personne') ?>" /></a></form></td>
+      <td> <form action="<?php echo url_for('meeting/razvote?h='.$meeting->getHash().'&u='.$user) ?>" method="post" name="raz_form<?php echo $i ?>"><a href="#" onclick="if(confirm('<?php echo __('ATTENTION') ?> ! <?php echo __('Vous allez supprimer tous les votes de cette personne') ?>.\n <?php echo __('Etes-vous bien sûr de vouloir réaliser cette action?') ?>')) document['raz_form<?php echo $i++ ?>'].submit();"><img src="<?php echo image_path('/images/close_16.png') ?>" alt="Remise à zéro des votes de cette personne" title="<?php echo __('Remise à zéro des votes de cette personne') ?>" /></a></form></td>
     <?php endif; ?>
   </tr>
   <?php endforeach; ?>
@@ -172,7 +172,7 @@
 <td class="poll_empty"></td>
 <?php foreach($md as $d): ?>
   <?php if(in_array($d->getId(),$bests->getRawValue())): ?>
-    <td colspan="1"><img src="/images/star_16.png" alt="Starred meeting" title="<?php echo __('Meilleur choix') ?>" /></td>  
+    <td colspan="1"><img src="<?php echo image_path('/images/star_16.png') ?>" alt="Starred meeting" title="<?php echo __('Meilleur choix') ?>" /></td>  
   <?php else: ?>
     <td class="poll_empty"></td>
   <?php endif; ?>

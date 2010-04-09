@@ -324,7 +324,7 @@ font-size : 1.4em ;
 }
 
 #m_search {
-background: transparent url('/images/search.png') no-repeat 0px 0px;  
+background: transparent url('../images/search.png') no-repeat 0px 0px;  
 color: #777;
 width: 525px;
 margin-bottom : 20px ;
@@ -348,7 +348,7 @@ padding : 7px 30px 0px ;
 }
 
 .comment_present {
-background : url('/images/19.png') no-repeat ;
+background : url('../images/19.png') no-repeat ;
 }
 
 .contextMenu {
@@ -484,16 +484,16 @@ margin-top : 12px ;
 td.tt:hover span.top{
   display: block;
   padding: 30px 8px 0;
-    background: url(/images/bubble.gif) no-repeat top;
+    background: url(../images/bubble.gif) no-repeat top;
 }
 td.tt:hover span.middle{ /* different middle bg for stretch */
   display: block;
   padding: 0 8px; 
-  background: url(/images/bubble_filler.gif) repeat bottom; 
+  background: url(../images/bubble_filler.gif) repeat bottom; 
 }
 td.tt:hover span.bottom{
   display: block;
   padding:3px 8px 10px;
   color: #548912;
-    background: url(/images/bubble.gif) no-repeat bottom;
+    background: url(../images/bubble.gif) no-repeat bottom;
 }

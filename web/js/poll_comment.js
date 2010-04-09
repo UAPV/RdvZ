@@ -15,6 +15,7 @@ $(document).ready(function()
           $('#comm_input').val(jQuery.trim($(t).children('.tooltip').children('.middle').html())) ;
           $('#comment_form').dialog('open') ;
           $('#comm_input').focus() ;
+          $('#comm_input').select() ;
           }
       },
       onShowMenu: function(el,menu) {

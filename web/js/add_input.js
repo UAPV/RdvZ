@@ -2,6 +2,7 @@
   * Fonction énormissime qui permet de bind l'évènement 'blur'
   * à la fonction jQuery 'live' (pas supporté dans jQuery 1.3).
   */
+
 (function(){
     var special = jQuery.event.special,
         uid1 = 'D' + (+new Date()),
@@ -110,14 +111,18 @@ var getInputWidget = function(elem,count,w,val)  {
   if(elementState == 'ready'){
     elementState = 'building';
 
+    ajaxUrl = '' ;
+    if (w == 'Mail') ajaxUrl = mail_ajax_url ;
+    else if (w == 'Date') ajaxUrl = date_ajax_url ;
+
     jQuery.ajax({
       type: "GET",
-      url: '/meeting/render'+w+'Input',
+      url: ajaxUrl,
       data: { current_id: count, value: val },
       dataType: 'html',
       success: function(result){
 
-       var html = '<tr><th><a href="#" onclick="deleteWidget(\''+w+'\','+count+')"><img src="/images/close_16.png" class="mail_icon" alt="Supprimer" /></a></th><td>';
+       var html = '<tr><th><a href="#" onclick="deleteWidget(\''+w+'\','+count+')">'+delete_widget+'</a></th><td>';
            html += result;
       
       html += ' </td>' ;
@@ -214,3 +219,26 @@ $(document).ready(function()
   });
 
 }) ;
+
+$(document).ready(function()
+{
+  $('.dynamic_mail').live('blur',function()
+  {
+    var mail_regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (mail_regex.test(this.value) == false)
+    {
+      // c'pas un vrai mail !
+      if ($(this).nextAll('span').length == 1)
+        $(this).nextAll('span').remove() ;
+
+      $(this).parent().append(not_mail) ;
+    }
+    else 
+    {
+      if ($(this).nextAll('span').length == 1)
+        $(this).nextAll('span').remove() ;
+
+      $(this).parent().append(known_mail) ; 
+    }
+  });
+});

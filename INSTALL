@@ -1,5 +1,5 @@
         -=================-
-  RdvZ version 2.0.1 beta 2009/04/07
+    RdvZ version 2.0.2 2010/04/09
         -=================-
 
 Before running the install script please read carefully the README file,
@@ -71,7 +71,7 @@ To do this you need to add these lines in your VirtualHost :
 <VirtualHost 127.0.0.1:80>
 # ....
 # ....
-  Alias /rdvz/ /home/symfony/rdvz/web/
+  Alias /rdvz /home/symfony/rdvz/web/
   <Directory "/home/symfony/rdvz/web">
      AllowOverride All
      Allow from All

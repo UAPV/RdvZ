@@ -31,11 +31,11 @@
 
     <div class="meeting_code_div"><a href="<?php echo url_for('meeting/show?h='.$meeting->getHash()) ?>"><?php echo __('Code du sondage') ?> : <span class="meeting_code"><?php echo $meeting->getHash() ?></span></a></div>
     <ul class="actions">
-      <li><a class="no_border" href="<?php echo url_for('meeting/edit?id='.$meeting->getId()) ?>"><img class="icon_16" src="/images/book_16.png" alt="<?php echo __('Modifier') ?>" /> <?php echo __('Modifier') ?></a></li>
-      <li><a href="<?php echo url_for('meeting/csv?h='.$meeting->getHash()) ?>"><img class="icon_16" src="/images/page_table_chart_16.png" alt="Exporter csv" /> <?php echo __('Exporter au format csv') ?></a></li>
-      <li><?php echo link_to('<img class="icon_16" src="/images/book_close_16.png" alt="Effacer" /> '.__('Effacer'), 'meeting_delete', $meeting, array('method' => 'delete', 'confirm' => __('Voulez-vous vraiment supprimer ce rendez-vous?'))) ?></li>
+      <li><a class="no_border" href="<?php echo url_for('meeting/edit?id='.$meeting->getId()) ?>"><img class="icon_16" src="<?php echo image_path('/images/book_16.png') ?>" alt="<?php echo __('Modifier') ?>" /> <?php echo __('Modifier') ?></a></li>
+      <li><a href="<?php echo url_for('meeting/csv?h='.$meeting->getHash()) ?>"><img class="icon_16" src="<?php echo image_path('/images/page_table_chart_16.png') ?>" alt="Exporter csv" /> <?php echo __('Exporter au format csv') ?></a></li>
+      <li><?php echo link_to('<img class="icon_16" src="'.image_path('/images/book_close_16.png').'" alt="Effacer" /> '.__('Effacer'), 'meeting_delete', $meeting, array('method' => 'delete', 'confirm' => __('Voulez-vous vraiment supprimer ce rendez-vous?'))) ?></li>
       <?php if(time() < strtotime($meeting->getDateEnd())): ?>
-      <li><a href="<?php echo url_for('meeting/voteclose?h='.$meeting->getHash()) ?>"><?php echo $meeting->getClosed() ? '<img class="icon_16" src="/images/lock_16.png" alt="Rouvrir les votes" /> '.__('Rouvrir les votes') : '<img class="icon_16" src="/images/lock_open_16.png" alt="Clore les votes" /> '.__('Clore les votes') ?></a></li>
+      <li><a href="<?php echo url_for('meeting/voteclose?h='.$meeting->getHash()) ?>"><?php echo $meeting->getClosed() ? '<img class="icon_16" src="'.image_path('/images/lock_16.png').'" alt="Rouvrir les votes" /> '.__('Rouvrir les votes') : '<img class="icon_16" src="'.image_path('/images/lock_open_16.png').'" alt="Clore les votes" /> '.__('Clore les votes') ?></a></li>
       <?php endif; ?>
       </ul>
   </li>
@@ -44,7 +44,7 @@
 <?php endif; ?>
 <div style="clear : both; height : 30px ;"></div>
 
-  <a href="<?php echo url_for('meeting/new') ?>"><img class="icon_32" src="/images/book_add_32.png" alt="<?php echo __('Nouveau rendez-vous') ?>"  /> <?php echo __('Nouveau rendez-vous') ?></a>
+  <a href="<?php echo url_for('meeting/new') ?>"><img class="icon_32" src="<?php echo image_path('/images/book_add_32.png') ?>" alt="<?php echo __('Nouveau rendez-vous') ?>"  /> <?php echo __('Nouveau rendez-vous') ?></a>
 <script type="text/javascript">
   $DEFAULT_SEARCH = "<?php echo __("Entrez le code d'un sondage pour le visionner...") ?>" ;
 
