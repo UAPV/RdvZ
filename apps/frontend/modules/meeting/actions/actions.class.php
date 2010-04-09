@@ -19,8 +19,7 @@ class meetingActions extends sfActions
     $this->getUser()->setAttribute('mail', array()) ;
     $this->getUser()->setAttribute('new', false) ; // to remove?
 
-//    $cron_meetings = Doctrine::getTable('meeting')->getExpiredMeetingsNotClosed() ;
-//    echo count($cron_meetings) ;
+    $this->cronTasks() ;
 
     // Getting the meetings created by the logged in user.
     $this->meeting_list = Doctrine::getTable('meeting')->getMeetingsFromUser($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
@@ -184,7 +183,7 @@ class meetingActions extends sfActions
 
     // If the creator wants to know when there is a new vote, send him a 
     // mail right now !
-    if ($this->meeting->getNotif())
+    if ($this->meeting->getNotif() && $this->getUser()->getProfileVar(sfConfig::get('app_user_id')) != $this->meeting->getUid())
     {
       if($this->getUser()->hasCredential('member'))
       {
@@ -586,5 +585,22 @@ class meetingActions extends sfActions
     $poll = Doctrine::getTable('meeting_poll')->find($poll_id) ;
     $poll->setComment($comment) ;
     $poll->save() ;
+  }
+
+  /**
+    * Closes the meetings that hadn't been closed and deletes the expired ones.
+    */
+  private function cronTasks()
+  {
+    $cron_meetings = Doctrine::getTable('meeting')->getExpiredMeetingsNotClosed() ;
+    foreach($cron_meetings as $m)
+    {
+      $m->setClosed(1) ;
+      $m->save() ;
+    }
+
+    $cron_meetings = Doctrine::getTable('meeting')->getMeetingsToDelete() ;
+    foreach($cron_meetings as $m)
+      $m->delete() ;
   }
 }

@@ -76,11 +76,21 @@ class meetingTable extends Doctrine_Table
     return isset($meets[0]) ? $meets[0] : null;
   }
 
-  public function getExpiredMeetingsNotClosed()
+  public function getExpiredMeetingsNotClosed($limit = 10)
   {
     $q = $this->createQuery('m')
-      ->where('m.date_end < ?', time())
-      ->andWhere('m.closed = ? ', 0) ;
+      ->where('m.date_end < ?', strftime("%F",time()))
+      ->andWhere('m.closed = ? ', 0)
+      ->limit($limit) ;
+
+    return $q->execute() ;
+  }
+
+  public function getMeetingsToDelete($limit = 10)
+  {
+    $q = $this->createQuery('m')
+      ->where('m.date_del < ?', strftime("%F",time()))
+      ->limit($limit) ;
 
     return $q->execute() ;
   }
