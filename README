@@ -95,15 +95,11 @@ Where - pdo         : mysql, pgsql...
 
 
 
-6. RdvZ 2.0 was already running on my web server, but I wan't to install
+6. RdvZ 2.0 was already running on my web server, but I want to install
    the latest version
 
-You don't have to run the install script again, you just need to check wether changes
-have been made in the database schema (config/doctrine/schema.yml).
-If so, run the following command :
-
-  $ php symfony doctrine:build --all-classes --and-migrate
-
+Just run the install script as you did the first time, the database structure
+will be automatically updated.
 
 
 
