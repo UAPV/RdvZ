@@ -440,9 +440,7 @@ echo "
 echo -n "Ecriture dans les fichiers de configuration... " 
 echo -e "${txtgrn}[OK]${txtrst}"
 echo -n "Création des tables de la base de données (entrez 'y' quand demandé)..."
-php symfony doctrine:build --all-classes 
-php symfony doctrine:generate-migrations-models
-php symfony doctrine:migrate
+php symfony doctrine:build --all-classes --and-migrate
 rm -rf lib/migration/doctrine/*
 echo -e "${txtgrn}[OK]${txtrst}"
 php symfony cc
