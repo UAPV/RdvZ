@@ -14,6 +14,10 @@ change_lang:
   url: /lang/:lang
   param: { module: language, action: change }
 
+help:
+  url: /help
+  param: { module: doc, action: index }
+
 auth_mh:
   url: /:m
   param: { module: auth, action: mh }
