@@ -299,6 +299,10 @@
         <source>Signaler un bogue</source>
         <target>Report a bug</target>
       </trans-unit>
+      <trans-unit id="75">
+        <source>Aide</source>
+        <target>Help</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

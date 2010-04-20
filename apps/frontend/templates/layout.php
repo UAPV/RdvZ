@@ -14,7 +14,7 @@
     <?php include_stylesheets() ?>
   </head>
   <body>
-    <?php echo link_to('<img src="'.image_path('/images/rdvz_logo3.png').'" id="logo" />','homepage') ?>
+    <?php echo link_to('<img src="'.image_path('/images/rdvz_logo3_final.png').'" id="logo" />','homepage') ?>
 <!--    <div id="menu">
     </div> -->
     <div id="page">
@@ -32,11 +32,12 @@
       <div id="user_infos">
         <?php $usr = Doctrine::getTable('user')->find($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ; ?>
         <?php echo $usr->getMail() ?>
-        <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="'.image_path('/images/71.png').'" alt="Bug" /> '.__('Signaler un bogue')) ?>
         <?php $languages = sfConfig::get('app_languages') ; ?>
         <?php foreach($languages as $lang => $country): ?>
           <?php echo link_to('<img src="'.image_path('/images/'.$lang.'_icon.png').'" alt="'.$country.'"/>', url_for('lang/'.$lang)) ?>
         <?php endforeach ; ?>
+        <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="'.image_path('/images/71.png').'" alt="Bug" /> '.__('Signaler un bogue')) ?>
+        <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), url_for('doc/index')) ?>
         <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
       </div>
     <?php endif ; ?>

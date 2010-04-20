@@ -7,6 +7,10 @@ meeting:
 auth:
   is_secure: false
 
+doc:
+  is_secure: true
+  credentials: [[member, invite]]
+
 all:
   is_secure: true
   credentials: [[member]]

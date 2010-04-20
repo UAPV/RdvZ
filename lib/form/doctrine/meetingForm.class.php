@@ -80,7 +80,7 @@ class meetingForm extends BasemeetingForm
     return $w ;
   }
 
-  public function createDateInput($val)
+  public function createDateInput()
   {
     $w = new rdvzWidgetFormInputDateText(array(), array('class' => 'dynamic_date', 'size' => '10')) ;
     return $w ;

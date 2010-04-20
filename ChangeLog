@@ -3,7 +3,7 @@ RdvZ ChangeLog
 version 2.0.2
   2010-04-09 Romain Deveaud <romain.deveaud@univ-avignon.fr>
   
-  * fixed hard coded pathes.
+  * fixed hard coded paths.
   * stable release.
 
 verion 2.0.1b

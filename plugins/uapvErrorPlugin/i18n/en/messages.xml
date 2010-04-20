@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2009-09-17T10:53:32Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Page introuvable</source>
+        <target>Page not found</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>L'adresse que vous avez tapé n'est pas valide, peut-être que la page que vous cherchez n'existe plus ; vérifiez que vous n'avez pas fait de faute de frappe</source>
+        <target>The address you entered doesn't seem to be valid, maybe the page you are searching for doesn't exists anymore ; please check you didn't make any typo mistake</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

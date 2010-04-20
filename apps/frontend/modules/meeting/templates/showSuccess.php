@@ -27,11 +27,6 @@
     </tr>
   </tbody>
 </table>
-<div id="tips">
-<a href="#"><?php echo __('Masquer') ?></a>
-<strong><?php echo __('A savoir') ?></strong><br />
-<?php echo __('Vous pouvez ajouter un commentaire pour chacun des votes') ?> <strong><?php echo __('après avoir voté') ?></strong> <?php echo __('en effectuant un clic droit sur la case correspondante') ?>.
-</div>
 <?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
 <div class="contextMenu" id="poll_menu">
   <ul>
