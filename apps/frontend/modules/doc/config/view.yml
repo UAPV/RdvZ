@@ -1,2 +1,4 @@
 indexSuccess:
   stylesheets: [doc.css]
+  has_layout: true
+  layout: docLayout

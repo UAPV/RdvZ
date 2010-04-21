@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $sf_user->getCulture() ?>" lang="<?php echo $sf_user->getCulture() ?>">
   <head>
     <title>
       <?php if (!include_slot('title')): ?>
@@ -37,7 +37,7 @@
           <?php echo link_to('<img src="'.image_path('/images/'.$lang.'_icon.png').'" alt="'.$country.'"/>', url_for('lang/'.$lang)) ?>
         <?php endforeach ; ?>
         <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="'.image_path('/images/71.png').'" alt="Bug" /> '.__('Signaler un bogue')) ?>
-        <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), 'help') ?>
+        <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), url_for('help'), array('popup' => array('RdvZ '.__('Aide'),'left=320,top=200,width=1000,height=700'))) ?>
         <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
       </div>
     <?php endif ; ?>
