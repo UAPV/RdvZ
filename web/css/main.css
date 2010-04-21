@@ -76,6 +76,23 @@ left: 0px;
 margin-right : 20px ;
 }
 
+#footer {
+padding-top : 50px ;
+position : relative ;
+clear : both ;
+text-align : center ;        
+font-size : 0.9em ;
+text-shadow: 1px 1px 1px #ddd ;
+}
+
+#footer a {
+font-weight: normal ;
+}
+
+#footer a:hover {
+color : #a2a2a2 ;
+}
+
 #user_infos {
 position : relative ;  
 border : 1px solid #B9B9B9 ;

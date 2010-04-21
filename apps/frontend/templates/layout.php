@@ -41,6 +41,9 @@
         <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
       </div>
     <?php endif ; ?>
+    <div id="footer">
+      <?php echo link_to("Un logiciel libre de l'Université d'Avignon et des Pays de Vaucluse", 'http://gpl.univ-avignon.fr', array('target' => '_blank')) ?>
+    </div>
     <?php include_javascripts() ?>
   </body>
 </html>

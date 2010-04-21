@@ -27,6 +27,7 @@
     </tr>
   </tbody>
 </table>
+<br />
 <?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
 <div class="contextMenu" id="poll_menu">
   <ul>
