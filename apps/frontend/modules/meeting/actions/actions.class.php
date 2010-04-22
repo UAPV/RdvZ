@@ -287,6 +287,8 @@ class meetingActions extends sfActions
     //$this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
     if(!$request->isXmlHttpRequest())
       $this->redirect($request->getReferer()) ;
+
+    return sfView::NONE ;
   }
 
   /**
