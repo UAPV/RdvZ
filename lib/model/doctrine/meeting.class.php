@@ -230,4 +230,9 @@ class meeting extends Basemeeting
 
     return $res ; 
   }
+
+  public function isFollowedBy($user_id)
+  {
+    return Doctrine::getTable('is_following')->findOneByMidAndUid($this->getId(), $user_id) ? true : false ;
+  }
 }

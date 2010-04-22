@@ -23,6 +23,8 @@ class meetingActions extends sfActions
 
     // Getting the meetings created by the logged in user.
     $this->meeting_list = Doctrine::getTable('meeting')->getMeetingsFromUser($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+
+    $this->followed_meeting_list = Doctrine::getTable('meeting')->getMeetingsFollowedByUser($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
   }
 
   /**
@@ -256,6 +258,35 @@ class meetingActions extends sfActions
     $this->getResponse()->setContentType('text/comma-separated-values'); 
     $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename='.$this->meeting->getHash().'.csv');
 
+  }
+
+  public function executeFollow(sfWebRequest $request)
+  {
+    $this->meeting = Doctrine::getTable('meeting')->getByHash($request->getParameter('h')) ;
+    $this->forward404Unless($this->meeting);
+
+    $user = Doctrine::getTable('user')->find($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+    
+    if(!$user)
+    {
+      $this->getContext()->getConfiguration()->loadHelpers(array('I18N'));
+      $this->getUser()->setFlash('error', __('Vous ne semblez pas être authentifié. Veuillez vous authentifier pour suivre ce rendez-vous.')) ;
+      $this->redirect($request->getReferer()) ;
+    }
+
+    if ($follow = Doctrine::getTable('is_following')->findOneByMidAndUid($this->meeting->getId(), $user->getId()))
+      $follow->delete() ;
+    else
+    {
+      $follow = new is_following() ;
+      $follow->setMid($this->meeting->getId()) ;
+      $follow->setUid($user->getId()) ;
+      $follow->save() ;
+    }
+
+    //$this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    if(!$request->isXmlHttpRequest())
+      $this->redirect($request->getReferer()) ;
   }
 
   /**

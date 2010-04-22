@@ -45,3 +45,11 @@ user:
     surname: { type: string(255) }
     mail: { type: string(255) }
     language: { type : string(8), default: 'fr' }
+
+is_following:
+  columns:
+    mid: { type: integer }
+    uid: { type: integer }
+  relations:
+    meeting: { onDelete: CASCADE, local: mid, foreign: id, foreignAlias: meeting_followers }
+    user: { onDelete: CASCADE, local: uid, foreign: id, foreignAlias: user_follows }

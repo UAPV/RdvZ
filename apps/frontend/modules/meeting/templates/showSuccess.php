@@ -10,7 +10,9 @@
 <div id="url_meet_disc"><?php echo __('Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs') ?> !</div>
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
-<h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?</h2>
+<h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?
+<?php echo link_to ($meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ? image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi de ce rendez-vous'), 'class' => 'icon_32')) : image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32')), url_for('meeting/follow?h='.$meeting->getHash()), array('class' => 'follow')) ?>
+</h2>
 <table>
   <tbody>
     <tr>
@@ -29,6 +31,7 @@
 </table>
 <br />
 <?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
+<br />
 <div class="contextMenu" id="poll_menu">
   <ul>
     <li id="comm"><img src="<?php echo image_path('/images/pencil_16.png') ?>" /> <?php echo __('Commenter') ?></li>
@@ -185,6 +188,7 @@
   </tr> -->
   <?php //echo $form ?>
 </table>
+
 
 <table id="legende">
 <tr><td class="ok legend" colspan="1"></td><td><?php echo __('Disponible') ?></td></tr>

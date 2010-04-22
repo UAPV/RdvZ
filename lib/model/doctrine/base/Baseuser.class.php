@@ -14,6 +14,7 @@
  * @property string $language
  * @property Doctrine_Collection $meeting_owners
  * @property Doctrine_Collection $poll_user
+ * @property Doctrine_Collection $user_follows
  * 
  * @method string              getLdapId()         Returns the current record's "ldap_id" value
  * @method string              getLogin()          Returns the current record's "login" value
@@ -24,6 +25,7 @@
  * @method string              getLanguage()       Returns the current record's "language" value
  * @method Doctrine_Collection getMeetingOwners()  Returns the current record's "meeting_owners" collection
  * @method Doctrine_Collection getPollUser()       Returns the current record's "poll_user" collection
+ * @method Doctrine_Collection getUserFollows()    Returns the current record's "user_follows" collection
  * @method user                setLdapId()         Sets the current record's "ldap_id" value
  * @method user                setLogin()          Sets the current record's "login" value
  * @method user                setPass()           Sets the current record's "pass" value
@@ -33,10 +35,11 @@
  * @method user                setLanguage()       Sets the current record's "language" value
  * @method user                setMeetingOwners()  Sets the current record's "meeting_owners" collection
  * @method user                setPollUser()       Sets the current record's "poll_user" collection
+ * @method user                setUserFollows()    Sets the current record's "user_follows" collection
  * 
  * @package    rdvz
  * @subpackage model
- * @author     Your name here
+ * @author     Romain Deveaud <romain.deveaud@gmail.com>
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
  */
 abstract class Baseuser extends sfDoctrineRecord
@@ -85,6 +88,10 @@ abstract class Baseuser extends sfDoctrineRecord
              'foreign' => 'uid'));
 
         $this->hasMany('meeting_poll as poll_user', array(
+             'local' => 'id',
+             'foreign' => 'uid'));
+
+        $this->hasMany('is_following as user_follows', array(
              'local' => 'id',
              'foreign' => 'uid'));
     }

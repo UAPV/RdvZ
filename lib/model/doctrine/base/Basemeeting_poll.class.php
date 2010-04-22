@@ -30,7 +30,7 @@
  * 
  * @package    rdvz
  * @subpackage model
- * @author     Your name here
+ * @author     Romain Deveaud <romain.deveaud@gmail.com>
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
  */
 abstract class Basemeeting_poll extends sfDoctrineRecord

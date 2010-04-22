@@ -1,122 +1,93 @@
 meeting:
   meeting_1:
-    hash: dq4
+    hash: 9mm
     title: yep
     description: dazd
     user: user_1
     closed: false
-    date_del: '2010-07-19 00:00:00'
-    date_end: '2010-06-19 00:00:00'
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
     notif: false
     created_at: '2010-02-23 09:21:30'
     updated_at: '2010-03-17 17:54:37'
   meeting_2:
-    hash: j0v
+    hash: 7ib
     title: bla
     description: 'Un rendez-vous de test'
     user: user_1
-    closed: false
-    date_del: '2010-07-19 00:00:00'
-    date_end: '2010-06-19 00:00:00'
+    closed: true
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2009-06-23 00:00:00'
     notif: false
     created_at: '2010-03-15 14:40:21'
-    updated_at: '2010-03-17 14:25:58'
+    updated_at: '2010-04-09 15:43:33'
   meeting_3:
-    hash: 68u
+    hash: kcd
     title: 'Mon nouveau rendez-vous'
     description: 'Un bon rendez-vous'
     user: user_1
-    closed: true
-    date_del: '2010-07-19 00:00:00'
-    date_end: '2010-06-19 00:00:00'
+    closed: false
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
     notif: false
     created_at: '2010-03-15 16:50:48'
-    updated_at: '2010-03-16 11:41:12'
+    updated_at: '2010-04-09 15:34:24'
   meeting_4:
-    hash: di1
+    hash: a62
     title: 'Mon super rendez-vous qui tue les patates'
     description: 'Yes !'
     user: user_1
     closed: false
-    date_del: '2010-07-19 00:00:00'
-    date_end: '2010-06-19 00:00:00'
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
     notif: false
     created_at: '2010-03-16 15:51:37'
     updated_at: '2010-03-18 10:04:47'
-  meeting_9:
-    hash: r5i
-    title: prout
-    description: dazd
-    user: user_1
-    closed: true
-    date_del: '2010-07-22 00:00:00'
-    date_end: '2010-06-22 00:00:00'
-    notif: false
-    created_at: '2010-03-22 18:00:14'
-    updated_at: '2010-03-22 18:08:14'
-  meeting_10:
-    hash: 25h
+  meeting_6:
+    hash: xjr
     title: fzefzef
     description: ezfze
     user: user_1
     closed: true
-    date_del: '2010-07-22 00:00:00'
-    date_end: '2010-06-22 00:00:00'
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
     notif: false
     created_at: '2010-03-22 18:01:33'
     updated_at: '2010-03-22 18:08:13'
-  meeting_11:
-    hash: h8u
+  meeting_7:
+    hash: bxz
     title: zadazd
     description: azda
     user: user_1
     closed: true
-    date_del: '2010-07-22 00:00:00'
-    date_end: '2010-06-22 00:00:00'
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
     notif: false
     created_at: '2010-03-22 18:02:56'
-    updated_at: '2010-03-22 18:28:36'
+    updated_at: '2010-03-24 10:54:03'
+  meeting_8:
+    hash: whs
+    title: dazd
+    description: sqda
+    user: user_1
+    closed: false
+    date_del: '2010-07-23 00:00:00'
+    date_end: '2010-06-23 00:00:00'
+    notif: false
+    created_at: '2010-03-23 15:50:04'
+    updated_at: '2010-03-23 16:06:34'
+  meeting_11:
+    hash: i0u
+    title: blabla
+    description: dfzefze
+    user: user_1
+    closed: false
+    date_del: '2010-08-09 00:00:00'
+    date_end: '2010-07-09 00:00:00'
+    notif: false
+    created_at: '2010-04-09 11:43:03'
+    updated_at: '2010-04-09 11:43:03'
 meeting_poll:
-  meeting_poll_1:
-    meeting_date: meeting_date_1
-    poll: '0'
-    user: user_1
-    comment: null
-    participant_name: null
-    created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-02-23 09:21:40'
-  meeting_poll_2:
-    meeting_date: meeting_date_2
-    poll: '0'
-    user: user_1
-    comment: pro
-    participant_name: null
-    created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-18 18:05:43'
-  meeting_poll_3:
-    meeting_date: meeting_date_3
-    poll: '1'
-    user: user_1
-    comment: pozfzfaz
-    participant_name: null
-    created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-18 12:03:13'
-  meeting_poll_4:
-    meeting_date: meeting_date_4
-    poll: '0'
-    user: user_1
-    comment: blablabla
-    participant_name: null
-    created_at: '2010-02-23 09:21:40'
-    updated_at: '2010-03-18 11:50:43'
-  meeting_poll_5:
-    meeting_date: meeting_date_5
-    poll: '0'
-    user: user_1
-    comment: null
-    participant_name: null
-    created_at: '2010-02-23 18:52:34'
-    updated_at: '2010-03-18 09:53:46'
   meeting_poll_6:
     meeting_date: meeting_date_1
     poll: '0'
@@ -498,6 +469,113 @@ meeting_poll:
     participant_name: pouet
     created_at: '2010-03-18 10:03:52'
     updated_at: '2010-03-18 10:03:55'
+  meeting_poll_59:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    user: user_2
+    comment: null
+    participant_name: null
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_60:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    comment: null
+    participant_name: 'pouet !'
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_61:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    comment: null
+    participant_name: bla
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_62:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    comment: null
+    participant_name: prout
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_63:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    comment: null
+    participant_name: coucou
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_64:
+    meeting_date: meeting_date_26
+    poll: '1000'
+    comment: null
+    participant_name: pouet
+    created_at: '2010-03-24 09:41:11'
+    updated_at: '2010-03-24 09:41:11'
+  meeting_poll_67:
+    meeting_date: meeting_date_29
+    poll: '1'
+    user: user_1
+    comment: Youhou
+    participant_name: null
+    created_at: '2010-04-09 11:43:57'
+    updated_at: '2010-04-09 11:44:04'
+  meeting_poll_68:
+    meeting_date: meeting_date_30
+    poll: '0'
+    user: user_1
+    comment: Plop
+    participant_name: null
+    created_at: '2010-04-09 11:43:57'
+    updated_at: '2010-04-09 11:44:09'
+  meeting_poll_69:
+    meeting_date: meeting_date_1
+    poll: '0'
+    user: user_1
+    comment: null
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-09 16:11:17'
+  meeting_poll_70:
+    meeting_date: meeting_date_5
+    poll: '0'
+    user: user_1
+    comment: null
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-09 16:11:17'
+  meeting_poll_71:
+    meeting_date: meeting_date_2
+    poll: '0'
+    user: user_1
+    comment: null
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-09 16:11:17'
+  meeting_poll_72:
+    meeting_date: meeting_date_3
+    poll: '0'
+    user: user_1
+    comment: null
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-09 16:11:17'
+  meeting_poll_73:
+    meeting_date: meeting_date_4
+    poll: '0'
+    user: user_1
+    comment: pouet
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-20 09:16:34'
+  meeting_poll_74:
+    meeting_date: meeting_date_26
+    poll: '1'
+    user: user_1
+    comment: bla
+    participant_name: null
+    created_at: '2010-04-09 16:11:17'
+    updated_at: '2010-04-09 16:11:24'
 meeting_date:
   meeting_date_1:
     meeting: meeting_1
@@ -575,17 +653,37 @@ meeting_date:
     meeting: meeting_4
     date: '2010-03-18 00:00:00'
     comment: ''
-  meeting_date_28:
-    meeting: meeting_9
+  meeting_date_21:
+    meeting: meeting_6
     date: '2010-03-24 00:00:00'
     comment: ''
+  meeting_date_22:
+    meeting: meeting_7
+    date: '2010-03-25 00:00:00'
+    comment: ''
+  meeting_date_23:
+    meeting: meeting_8
+    date: '2010-03-26 00:00:00'
+    comment: ''
+  meeting_date_24:
+    meeting: meeting_8
+    date: '2010-03-27 00:00:00'
+    comment: ''
+  meeting_date_25:
+    meeting: meeting_8
+    date: '2010-03-24 00:00:00'
+    comment: ''
+  meeting_date_26:
+    meeting: meeting_1
+    date: '2010-03-31 00:00:00'
+    comment: 'youhou !'
   meeting_date_29:
-    meeting: meeting_10
-    date: '2010-03-24 00:00:00'
-    comment: ''
+    meeting: meeting_11
+    date: '2010-04-22 00:00:00'
+    comment: youhouh
   meeting_date_30:
     meeting: meeting_11
-    date: '2010-03-25 00:00:00'
+    date: '2010-04-24 00:00:00'
     comment: ''
 user:
   user_1:
@@ -595,6 +693,7 @@ user:
     name: Deveaud
     surname: Romain
     mail: romain.deveaud@etd.univ-avignon.fr
+    language: fr
   user_2:
     ldap_id: deveaudr
     login: null
@@ -602,3 +701,4 @@ user:
     name: Deveaud
     surname: Romain
     mail: romain.deveaud@univ-avignon.fr
+    language: fr

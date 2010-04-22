@@ -40,7 +40,24 @@ class meetingTable extends Doctrine_Table
   public function getMeetingsFromUser($uid)
   {
     $q = $this->createQuery('m')
-      ->where('m.uid = ?',$uid) ;
+      ->where('m.uid = ?',$uid)
+      ->orderBy('m.created_at');
+
+    return $q->execute() ;
+  }
+
+  /**
+    * Get the meetings the user is currently following.
+    *
+    * @param $uid integer The user id
+    * @return array The meetings.
+    */
+  public function getMeetingsFollowedByUser($uid)
+  {
+    $q = $this->createQuery('m')
+      ->leftJoin('m.meeting_followers f')
+      ->where('f.uid = ?', $uid) 
+      ->orderBy('m.created_at') ;
 
     return $q->execute() ;
   }

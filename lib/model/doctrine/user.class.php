@@ -12,4 +12,12 @@
  */
 class user extends Baseuser
 {
+  public function isFollowing($mid)
+  {
+    $followings = Doctrine::getTable('is_following')->findByUid($this->getId()) ;
+    foreach($followings as $f)
+      if($f->getMid() == $mid) return true ;
+
+    return false ;
+  }
 }

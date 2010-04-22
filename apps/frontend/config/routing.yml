@@ -34,6 +34,10 @@ meeting_voteclose:
   url: /:h/voteclose
   param: { module: meeting, action: voteclose }
 
+meeting_follow:
+  url: /:h/follow
+  param: { module: meeting, action: follow }
+
 meeting_search:
   url: /meeting/search
   param: { module: meeting, action: search }
