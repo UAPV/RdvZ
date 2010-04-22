@@ -1,14 +1,15 @@
-<?xml version="1.0" ?>
-<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd"><xliff version="1.0">
-  <file source-language="FR" target-language="en" datatype="plaintext" original="messages" date="2010-03-23T11:32:14Z" product-name="messages" xml:space="default">
-    <header></header>
+<?xml version="1.0"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="FR" target-language="en" datatype="plaintext" original="messages" date="2010-04-22T15:28:47Z" product-name="messages" xml:space="default">
+    <header/>
     <body>
       <trans-unit id="1" translate="yes" reformat="yes" xml:space="default" approved="yes">
-        <source>Déconnexion</source>
+        <source>D&#xE9;connexion</source>
         <target state=":final" xml:lang="en">Logout</target>
       </trans-unit>
       <trans-unit id="2" translate="yes" reformat="yes" xml:space="default" approved="yes">
-        <source>Aucun sondage ne correspond à ce code.</source>
+        <source>Aucun sondage ne correspond &#xE0; ce code.</source>
         <target state=":final" xml:lang="en">There is no poll with this hash.</target>
       </trans-unit>
       <trans-unit id="3" translate="yes" reformat="yes" xml:space="default" approved="yes">
@@ -16,7 +17,7 @@
         <target state=":final" xml:lang="en">You have to give your name to vote.</target>
       </trans-unit>
       <trans-unit id="4" translate="yes" reformat="yes" xml:space="default" approved="yes">
-        <source>Vous devez sélectionner au moins une date pour créer un sondage.</source>
+        <source>Vous devez s&#xE9;lectionner au moins une date pour cr&#xE9;er un sondage.</source>
         <target state=":final" xml:lang="en">You have to select at least one date to create the meeting.</target>
       </trans-unit>
       <trans-unit id="5" translate="yes" reformat="yes" xml:space="default" approved="yes">
@@ -36,11 +37,11 @@
         <target state="x-user:translated" xml:lang="en">Tip</target>
       </trans-unit>
       <trans-unit id="9" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Vous pouvez entrer des adresses e-mail de vos collaborateurs dans ce formulaire, elles seront utilisées afin de leur envoyer un message automatique qui leur indiquera le lien de votre sondage</source>
+        <source>Vous pouvez entrer des adresses e-mail de vos collaborateurs dans ce formulaire, elles seront utilis&#xE9;es afin de leur envoyer un message automatique qui leur indiquera le lien de votre sondage</source>
         <target state="x-user:new" xml:lang="en">You can enter the mail adresses of your colleagues in this form, they will receive an automatic message which summarizes the meeting details and gives the link of the poll</target>
       </trans-unit>
       <trans-unit id="10" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Vous pouvez ici modifier les informations relatives à votre rendez-vous ; vous pouvez également supprimer des votes déjà enregistrés en allant sur l'écran affichant le sondage</source>
+        <source>Vous pouvez ici modifier les informations relatives &#xE0; votre rendez-vous ; vous pouvez &#xE9;galement supprimer des votes d&#xE9;j&#xE0; enregistr&#xE9;s en allant sur l'&#xE9;cran affichant le sondage</source>
         <target state="x-user:new" xml:lang="en">You can edit your meeting's information here. You can also delete people's votes on the poll page</target>
       </trans-unit>
       <trans-unit id="11" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -92,7 +93,7 @@
         <target state="x-user:new" xml:lang="en">New meeting</target>
       </trans-unit>
       <trans-unit id="23" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Dates à retenir</source>
+        <source>Dates &#xE0; retenir</source>
         <target state="x-user:new" xml:lang="en">Meeting dates</target>
       </trans-unit>
       <trans-unit id="24" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -100,7 +101,7 @@
         <target state="x-user:new" xml:lang="en">click on the calendar dates</target>
       </trans-unit>
       <trans-unit id="25" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Créer</source>
+        <source>Cr&#xE9;er</source>
         <target state="x-user:new" xml:lang="en">Create</target>
       </trans-unit>
       <trans-unit id="26" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -112,7 +113,7 @@
         <target state="x-user:new" xml:lang="en">Cut and paste this link to share the meeting with your colleagues</target>
       </trans-unit>
       <trans-unit id="28" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Quelles sont vos disponibilités</source>
+        <source>Quelles sont vos disponibilit&#xE9;s</source>
         <target state="x-user:new" xml:lang="en">When are you available</target>
       </trans-unit>
       <trans-unit id="29" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -132,7 +133,7 @@
         <target state="x-user:new" xml:lang="en">You can add a comment for each one of your votes</target>
       </trans-unit>
       <trans-unit id="33" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>après avoir voté</source>
+        <source>apr&#xE8;s avoir vot&#xE9;</source>
         <target state="x-user:new" xml:lang="en">after having validated them</target>
       </trans-unit>
       <trans-unit id="34" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -140,7 +141,7 @@
         <target state="x-user:new" xml:lang="en">by right-clicking the corresponding cell</target>
       </trans-unit>
       <trans-unit id="35" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Indiquez votre sélection en cliquant sur les cases à cocher</source>
+        <source>Indiquez votre s&#xE9;lection en cliquant sur les cases &#xE0; cocher</source>
         <target state="x-user:new" xml:lang="en">Click on the checkboxes</target>
       </trans-unit>
       <trans-unit id="36" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -164,11 +165,11 @@
         <target state="x-user:new" xml:lang="en">Submit</target>
       </trans-unit>
       <trans-unit id="41" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Utilisateur authentifié</source>
+        <source>Utilisateur authentifi&#xE9;</source>
         <target state="x-user:new" xml:lang="en">Authenticated user</target>
       </trans-unit>
       <trans-unit id="42" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Le créateur du sondage a ajouté une nouvelle date et vous n'avez pas encore voté, cliquez maintenant sur</source>
+        <source>Le cr&#xE9;ateur du sondage a ajout&#xE9; une nouvelle date et vous n'avez pas encore vot&#xE9;, cliquez maintenant sur</source>
         <target state="x-user:new" xml:lang="en">The meeting's owner added a new date and you didn't vote, click now on</target>
       </trans-unit>
       <trans-unit id="43" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -180,7 +181,7 @@
         <target state="x-user:new" xml:lang="en">to do it</target>
       </trans-unit>
       <trans-unit id="45" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Aucun commentaire n'a été entré pour ce vote.</source>
+        <source>Aucun commentaire n'a &#xE9;t&#xE9; entr&#xE9; pour ce vote.</source>
         <target state="x-user:new" xml:lang="en">No comment available for this vote.</target>
       </trans-unit>
       <trans-unit id="46" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -196,11 +197,11 @@
         <target state="x-user:new" xml:lang="en">You are about to remove all the votes of this person</target>
       </trans-unit>
       <trans-unit id="49" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Etes-vous bien sûr de vouloir réaliser cette action?</source>
+        <source>Etes-vous bien s&#xFB;r de vouloir r&#xE9;aliser cette action?</source>
         <target state="x-user:new" xml:lang="en">Are you really sure you want to do this?</target>
       </trans-unit>
       <trans-unit id="50" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Remise à zéro des votes de cette personne</source>
+        <source>Remise &#xE0; z&#xE9;ro des votes de cette personne</source>
         <target state="x-user:new" xml:lang="en">Delete votes</target>
       </trans-unit>
       <trans-unit id="51" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -220,11 +221,11 @@
         <target state="x-user:new" xml:lang="en">Not available</target>
       </trans-unit>
       <trans-unit id="55" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Un rendez-vous vous est proposé par</source>
+        <source>Un rendez-vous vous est propos&#xE9; par</source>
         <target state="x-user:new" xml:lang="en">You have a meeting proposal from</target>
       </trans-unit>
       <trans-unit id="56" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Vous pouvez indiquer vos disponibilités en vous rendant à l'adresse suivante</source>
+        <source>Vous pouvez indiquer vos disponibilit&#xE9;s en vous rendant &#xE0; l'adresse suivante</source>
         <target state="x-user:new" xml:lang="en">You can vote for your preferred schedule by following this link</target>
       </trans-unit>
       <trans-unit id="57" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -232,7 +233,7 @@
         <target state="x-user:new" xml:lang="en">The hash (unique) of this meeting is</target>
       </trans-unit>
       <trans-unit id="58" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>notez le bien, il pourra vous servir à retrouver la page du sondage</source>
+        <source>notez le bien, il pourra vous servir &#xE0; retrouver la page du sondage</source>
         <target state="x-user:new" xml:lang="en">write it down, it may help you to find again the poll page</target>
       </trans-unit>
       <trans-unit id="59" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -240,19 +241,19 @@
         <target state="x-user:new" xml:lang="en">The votes will be opened until</target>
       </trans-unit>
       <trans-unit id="60" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Ceci est un message automatique, veuillez ne pas y répondre</source>
+        <source>Ceci est un message automatique, veuillez ne pas y r&#xE9;pondre</source>
         <target state="x-user:new" xml:lang="en">This is an automatic message, please do not reply</target>
       </trans-unit>
       <trans-unit id="61" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Vous recevez ce message car vous avez souhaité être informé par mail des évolutions des votes pour votre rendez-vous</source>
+        <source>Vous recevez ce message car vous avez souhait&#xE9; &#xEA;tre inform&#xE9; par mail des &#xE9;volutions des votes pour votre rendez-vous</source>
         <target state="x-user:new" xml:lang="en">You receive this notification because you wanted to be warned when a person vote on your meeting</target>
       </trans-unit>
       <trans-unit id="62" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>a entré ses votes pour ce sondage</source>
+        <source>a entr&#xE9; ses votes pour ce sondage</source>
         <target state="x-user:new" xml:lang="en">voted for this meeting</target>
       </trans-unit>
       <trans-unit id="63" translate="yes" reformat="yes" xml:space="default" approved="no">
-        <source>Vous pouvez consulter les nouveaux votes en vous rendant à l'adresse suivante</source>
+        <source>Vous pouvez consulter les nouveaux votes en vous rendant &#xE0; l'adresse suivante</source>
         <target state="x-user:new" xml:lang="en">You can see the new votes by clicking the following link</target>
       </trans-unit>
       <trans-unit id="64" translate="yes" reformat="yes" xml:space="default" approved="no">
@@ -302,6 +303,26 @@
       <trans-unit id="75">
         <source>Aide</source>
         <target>Help</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Vous ne semblez pas &#xEA;tre authentifi&#xE9;. Veuillez vous authentifier pour suivre ce rendez-vous.</source>
+        <target>You must be authenticated to follow this meeting.</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Mes rendez-vous</source>
+        <target>My meetings</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Mes rendez-vous suivis</source>
+        <target>My bookmarked meetings</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Stopper le suivi</source>
+        <target>Remove bookmark</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Suivre ce rendez-vous</source>
+        <target>Bookmark this meeting</target>
       </trans-unit>
     </body>
   </file>

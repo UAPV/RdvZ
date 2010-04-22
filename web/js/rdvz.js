@@ -30,4 +30,13 @@ $(document).ready(function()
 
 // A modifier, ça rame pour le moment.
 //  $('form').nextAll('td').click(function () { $('input:checkbox', this).click(); });
+
+  $("#follow_link").click(function()
+  {
+    img = $(this).children('img') ;
+    if(img.hasClass('followed'))
+      $(this).html(not_followed_image) ;
+    else if(img.hasClass('not_followed'))
+      $(this).html(followed_image) ;
+  });
 }) ;

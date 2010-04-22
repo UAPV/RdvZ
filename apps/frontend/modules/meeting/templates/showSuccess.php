@@ -1,3 +1,4 @@
+<?php use_helper('jQuery') ?>
 <?php 
   $user_is_creator = false ;
   if($sf_user->isAuthenticated()) 
@@ -11,7 +12,13 @@
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
 <h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?
-<?php echo link_to ($meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) ? image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi de ce rendez-vous'), 'class' => 'icon_32')) : image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32')), url_for('meeting/follow?h='.$meeting->getHash()), array('class' => 'follow')) ?>
+<?php echo jq_link_to_remote (
+      $meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) 
+      ? image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi'), 'class' => 'icon_32 followed')) 
+      : image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32 not_followed')), 
+      array( 'url' => url_for('meeting/follow?h='.$meeting->getHash())), 
+      array('id' => 'follow_link')) 
+?>
 </h2>
 <table>
   <tbody>
@@ -195,3 +202,8 @@
 <!--<tr><td class="if_needed" colspan="1"></td><td>Disponible en cas de besoin</td></tr>-->
 <tr><td class="not_ok legend" colspan="1"></td><td><?php echo __('Non disponible') ?></td></tr>
 </table>
+
+<script type="text/javascript">
+var followed_image = '<?php echo image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi'), 'class' => 'icon_32 followed')) ?>' ;
+var not_followed_image = '<?php echo image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32 not_followed')) ?>' ;
+</script>
