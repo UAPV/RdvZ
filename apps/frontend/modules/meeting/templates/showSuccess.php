@@ -12,13 +12,15 @@
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
 <h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?
-<?php echo jq_link_to_remote (
-      $meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) 
-      ? image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi'), 'class' => 'icon_32 followed')) 
-      : image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32 not_followed')), 
-      array( 'url' => url_for('meeting/follow?h='.$meeting->getHash())), 
-      array('id' => 'follow_link')) 
-?>
+<?php if($sf_user->hasCredential('member')): ?>
+  <?php echo jq_link_to_remote (
+        $meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) 
+        ? image_tag('/images/rss_32.png', array('title' => __('Stopper le suivi'), 'class' => 'icon_32 followed')) 
+        : image_tag('/images/rss_32_bw.png', array('title' => __('Suivre ce rendez-vous'), 'class' => 'icon_32 not_followed')), 
+        array( 'url' => url_for('meeting/follow?h='.$meeting->getHash())), 
+        array('id' => 'follow_link')) 
+  ?>
+<?php endif; ?>
 </h2>
 <table>
   <tbody>
@@ -136,9 +138,9 @@
 
     <?php if($sf_user->hasCredential('member') || $sf_user->hasCredential('invite')): ?>
       <?php if(is_null($sf_user->getAttribute('edit')) && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
-        <td><a href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>"><?php echo __('Modifier mes votes') ?></a></td>
+        <td><a class="awesome blue large" href="<?php echo url_for('meeting/editvote?h='.$meeting->getHash()) ?>"><?php echo __('Modifier mes votes') ?></a></td>
       <?php elseif ($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id'))|| $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
-        <td><a href="#" onclick="document['edit_form'].submit()"><?php echo __('Validez mes nouveaux votes') ?></a></td>
+        <td><a class="awesome blue large" href="#" onclick="document['edit_form'].submit()"><?php echo __('Validez mes nouveaux votes') ?></a></td>
       <?php endif; ?>
     <?php endif; ?>
 

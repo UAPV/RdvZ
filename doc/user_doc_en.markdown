@@ -54,6 +54,12 @@ You can add a comment for each vote _already validated_, you can't enter a comme
 
 Right click on the cell corresponding to your vote and a tiny contextual menu opens itself : click on __Comment__ and enter your comment.
 
+## What are meeting bookmarks?
+
+You can bookmark a meeting by clicking the grey squared icon. This option allows to access the meeting on the RdvZ home page, you don't need to remember the hash or the URL anymore.
+
+You can remove the bookmark by clicking again on the same icon (which had turn orange).
+
 ## How do I add dates to my meeting?
 
 Many actions for each meeting are available from the home page. Click the __Edit__ link, you can here edit the information related to your meeting and also add or remove dates.

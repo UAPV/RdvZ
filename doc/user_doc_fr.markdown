@@ -55,6 +55,12 @@ Vous pouvez entrer un commentaire pour chaque vote que _vous avez validé_, vous
 
 Pour entrer votre commentaire, effectuez un clic droit sur la case de votre vote et un petit menu va s'ouvrir : cliquer sur le lien __Commenter__ et entrez votre commentaire.
 
+## Qu'est-ce que le suivi de rendez-vous?
+
+En cliquant sur l'icône carrée grise, vous pouvez _suivre un rendez-vous_. Cette option vous permet d'avoir accès à ce rendez-vous sur votre page d'accueil pour pouvoir le retrouver plus facilement sans avoir à se rappeler du code ni de l'adresse web.
+
+Pour stopper le suivi d'un rendez-vous, cliquez à nouveau sur l'icône carrée à présent orange.
+
 ## Comment rajouter des dates à mon rendez-vous?
 
 Sur la page d'accueil de RdvZ, vous pouvez accéder aux différentes actions disponibles pour chacun de vos rendez-vous. Cliquez sur __Modifier__, vous pourrez ici modifier toutes les informations relatives à votre rendez-vous, y compris ajouter ou supprimer des dates (les votes associés seront également supprimés).

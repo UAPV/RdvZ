@@ -37,7 +37,7 @@
           <?php echo link_to('<img src="'.image_path('/images/'.$lang.'_icon.png').'" alt="'.$country.'"/>', url_for('lang/'.$lang)) ?>
         <?php endforeach ; ?>
         <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="'.image_path('/images/71.png').'" alt="Bug" /> '.__('Signaler un bogue')) ?>
-        <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), url_for('help'), array('popup' => array('RdvZ '.__('Aide'),'left=320,top=200,width=1000,height=700'))) ?>
+        <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), url_for('help'), array('popup' => array('RdvZ '.__('Aide'),'left=320,top=200,width=1000,height=700,scrollbars=yes'))) ?>
         <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
       </div>
     <?php endif ; ?>

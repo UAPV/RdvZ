@@ -1,5 +1,10 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
+<?php if($sf_user->getCulture() == 'fr') use_javascript('ui.datepicker-fr.js') ; ?>
+<?php use_javascript('add_input.js') ?>
+<?php use_javascript('jquery.i18n.js') ?>
+<?php use_javascript('jquery-ui-1.7.2.custom.min.js') ?>
+<?php use_stylesheet('jquery-ui-1.7.2.custom2.css') ?>
 
 <form action="<?php echo url_for('meeting/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>> 
 <?php if (!$form->getObject()->isNew()): ?>

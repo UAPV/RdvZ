@@ -19,8 +19,14 @@ $(document).ready(function()
           }
       },
       onShowMenu: function(el,menu) {
-      $('#comm_poll_id').val($(el.target).attr('id')) ;
-      return menu ;
+        var td ; 
+        if (el.target.tagName == 'td')
+          td = $(el.target) ;
+        else  
+          td = $(el.target).closest('td') ;
+
+        $('#comm_poll_id').val(td.attr('id')) ;
+        return menu ;
       }
     });
 
