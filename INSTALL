@@ -135,4 +135,4 @@ all:
     password: the_password_of_your_user
 
 IF YOUR USER DOES NOT HAVE TO PROVIDE A PASSWORD TO BE AUTHENTICATED, DON'T WRITE
-THIS LINE. Otherwise RdvZ will try to authenticated your user with a blank password.
+THIS LINE. Otherwise RdvZ will try to authenticate your user with a blank password.
