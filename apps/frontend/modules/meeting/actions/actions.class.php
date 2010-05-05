@@ -200,7 +200,16 @@ class meetingActions extends sfActions
 
     // Different redirection depending on the credentials of the user.
     if($this->getUser()->hasCredential('invite')) $this->redirect('meeting/showua?h='.$this->meeting->getHash()) ;
-    elseif($this->getUser()->hasCredential('member')) $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    elseif($this->getUser()->hasCredential('member')) 
+    {
+      // Auto bookmarking for authenticated users.
+      $follow = new is_following() ;
+      $follow->setMid($this->meeting->getId()) ;
+      $follow->setUid($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+      $follow->save() ;
+
+      $this->redirect('meeting/show?h='.$this->meeting->getHash()) ;
+    }
     else $this->forward404() ;
   }
 
