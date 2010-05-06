@@ -1,11 +1,7 @@
         -=================-
-    RdvZ version 2.0.2 2010/04/09
+    RdvZ version 2.0.2 2010/05/06
         -=================-
 
-** The current version is still an alpha : there is no user documentation nor
-built-in installer, although it will come rather quickly I hope. Developper
-documentation will arrive soon too, and you can already read code comments. **
- 
 
 None of the following items are in any order of importance or difficulty.
 Where possible, related items have been grouped together.
@@ -18,6 +14,8 @@ RdvZ development.
   - web installer.
   - when creating a new meeting, adding a new date moves the calendar but it
     shouldn't.
+  - configuration of closing and deleting dates.
+  - configuration of mail sender.
 
 -------------------------------------------------------------------------------
 Features that would be nice.

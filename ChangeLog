@@ -1,11 +1,12 @@
 RdvZ ChangeLog
 
 version 2.0.3
-  2010-04-22 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+  2010-05-06 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
   * new meeting bookmarking feature.
   * user help is now available.
   * svn externals pointing to private repositories fixed.
+  * logout bugfix if not using a CAS server.
 
 version 2.0.2
   2010-04-09 Romain Deveaud <romain.deveaud@univ-avignon.fr>
