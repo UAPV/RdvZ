@@ -59,19 +59,23 @@ class authenticationActions extends sfActions
     $this->getContext()->getUser()->signOut ();
     error_reporting (ini_get ('error_reporting') & ~E_STRICT & ~E_NOTICE);
 
-    // Le filtre uapvSecurityFilterCas n'ayant pas forcément été déclanché
-    // on force l'appel phpCas::client()
-    phpCAS::client (sfConfig::get ('app_cas_server_version', CAS_VERSION_2_0),
-                    sfConfig::get ('app_cas_server_host', 'localhost'),
-                    sfConfig::get ('app_cas_server_port', 443),
-                    sfConfig::get ('app_cas_server_path', ''),
-                    false); // Don't call session_start again,
-                            // symfony already did it
+    if(sfConfig::get ('app_cas_server_host'))
+    {
+      // Le filtre uapvSecurityFilterCas n'ayant pas forcément été déclanché
+      // on force l'appel phpCas::client()
+      phpCAS::client (sfConfig::get ('app_cas_server_version', CAS_VERSION_2_0),
+                      sfConfig::get ('app_cas_server_host', 'localhost'),
+                      sfConfig::get ('app_cas_server_port', 443),
+                      sfConfig::get ('app_cas_server_path', ''),
+                      false); // Don't call session_start again,
+                              // symfony already did it
 
-    // Redirection vers le CAS
-    phpCAS::logoutWithRedirectService ($request->getParameter ('redirect',
-                                         $this->getContext ()
-                                              ->getController ()
-                                              ->genUrl ('@homepage', true)));
+      // Redirection vers le CAS
+      phpCAS::logoutWithRedirectService ($request->getParameter ('redirect',
+                                           $this->getContext ()
+                                                ->getController ()
+                                                ->genUrl ('@homepage', true)));
+    }
+    else $this->redirect('@homepage', true) ;
   }
 }
