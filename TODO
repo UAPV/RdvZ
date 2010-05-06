@@ -15,7 +15,6 @@ RdvZ development.
   - when creating a new meeting, adding a new date moves the calendar but it
     shouldn't.
   - configuration of closing and deleting dates.
-  - configuration of mail sender.
 
 -------------------------------------------------------------------------------
 Features that would be nice.

@@ -601,7 +601,7 @@ class meetingActions extends sfActions
     $user = Doctrine::getTable('user')->find($meeting->getUid()) ;
     try {
       $mailBody = $this->getPartial('meeting/notif_new_vote', array('meeting' => $meeting, 'uname' => $uname)) ;
-      $this->getMailer()->composeAndSend('rdvz-admin@univ-avignon.fr', $user->getMail(), $subject, $mailBody);
+      $this->getMailer()->composeAndSend(sfConfig::get('app_mail_sender', 'rdvz-admin@univ-avignon.fr'), $user->getMail(), $subject, $mailBody);
     }
     catch(Exception $e)
     {

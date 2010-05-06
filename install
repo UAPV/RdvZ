@@ -149,12 +149,12 @@ all:
 elif [ "$type" = "LDAP seul" ]; then
   echo -e "${txtcyn} ** Configuration serveur LDAP...${txtrst}"
   read -er -p "Adresse du serveur LDAP : " ldap_serv
-  read -er -p "Port du serveur LDAP : " ldap_port
-  read -er -p "Branche utilisée (basedn) : " ldap_basedn
+  read -er -p "Port du serveur LDAP (ex : 389 ) : " ldap_port
+  read -er -p "Branche utilisée pour la recherche d'utilisateurs (basedn) : " ldap_basedn
   read -er -p "Champ identifiant utilisateur (ex : uid) : " ldap_user_id
-  read -er -p "Champ nom utilisateur : " ldap_user_name
-  read -er -p "Champ prénom utilisateur : " ldap_user_surname
-  read -er -p "Champ mail utilisateur : " ldap_user_mail
+  read -er -p "Champ nom utilisateur (ex : sn) : " ldap_user_name
+  read -er -p "Champ prénom utilisateur (ex : givenname) : " ldap_user_surname
+  read -er -p "Champ mail utilisateur (ex : mail) : " ldap_user_mail
   echo "
   ldap_server:
     host: ${ldap_serv}
@@ -247,16 +247,16 @@ all:
 elif [ "$type" = "CAS + LDAP" ]; then
   echo -e "${txtcyn} ** Configuration serveur CAS...${txtrst}"
   read -er -p "Adresse du serveur CAS : " cas_serv
-  read -er -p "Port du serveur CAS : " cas_port
+  read -er -p "Port du serveur CAS (ex : 443) : " cas_port
   echo -e "
 ${txtcyn} ** Configuration serveur LDAP...${txtrst}"
   read -er -p "Adresse du serveur LDAP : " ldap_serv
-  read -er -p "Port du serveur LDAP : " ldap_port
-  read -er -p "Branche utilisée (basedn) : " ldap_basedn
+  read -er -p "Port du serveur LDAP (ex : 389) : " ldap_port
+  read -er -p "Branche utilisée pour la recherche d'utilisateurs (basedn) : " ldap_basedn
   read -er -p "Champ identifiant utilisateur (ex : uid) : " ldap_user_id
-  read -er -p "Champ nom utilisateur : " ldap_user_name
-  read -er -p "Champ prénom utilisateur : " ldap_user_surname
-  read -er -p "Champ mail utilisateur : " ldap_user_mail
+  read -er -p "Champ nom utilisateur (ex : sn) : " ldap_user_name
+  read -er -p "Champ prénom utilisateur (ex : givenname) : " ldap_user_surname
+  read -er -p "Champ mail utilisateur (ex : mail) : " ldap_user_mail
   echo "
   cas_server:
     host: ${cas_serv}
@@ -359,6 +359,7 @@ echo -e "
 ${txtcyn} ** Informations complémentaires...${txtrst}"
 read -er -p "Url de la page RdvZ (ex : rdvz.univ-avignon.fr) : " url
 read -er -p "Nom de votre organisation (ex : Université d'Avignon) : " org
+read -er -p "Adresse mail de l'application (ex : rdvz-admin@univ-avignon.fr) : " mail_sender
 
 echo "
 prod:
@@ -431,6 +432,7 @@ all:
 echo "
   url: ${url}
   org_name: \"${org}\"
+  mail_sender: \"${mail_sender}\"
   
   .array:
     languages:
@@ -439,7 +441,7 @@ echo "
 
 echo -n "Ecriture dans les fichiers de configuration... " 
 echo -e "${txtgrn}[OK]${txtrst}"
-echo -n "Création des tables de la base de données (entrez 'y' quand demandé)..."
+echo -n "Création des tables de la base de données..."
 php symfony doctrine:build --all-classes --and-migrate
 echo -e "${txtgrn}[OK]${txtrst}"
 php symfony cc

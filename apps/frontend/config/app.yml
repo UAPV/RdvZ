@@ -36,6 +36,7 @@ all:
 #  user_id: id
 
   org_name: "Université d'Avignon et des Pays de Vaucluse"
+  mail_sender: "rdvz-admin@univ-avignon.fr"
 #  org_name: "Mon RdvZ"
   
   .array:

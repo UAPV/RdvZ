@@ -95,7 +95,7 @@ Where - pdo         : mysql, pgsql...
 
 
 
-6. RdvZ 2.0 was already running on my web server, but I want to install
+6. RdvZ 2.0.x was already running on my web server, but I want to install
    the latest version
 
 Just run the install script as you did the first time, the database structure
