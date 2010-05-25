@@ -1,5 +1,5 @@
         -=================-
-    RdvZ version 2.0.2 2010/05/06
+    RdvZ version 2.0.3 2010/05/25
         -=================-
 
 
@@ -16,7 +16,6 @@ RdvZ development.
     shouldn't.
   - configuration of closing and deleting dates.
   - mail notification when a meeting has been edited.
-  - configuration of hash character number.
 
 -------------------------------------------------------------------------------
 Features that would be nice.

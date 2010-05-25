@@ -1,0 +1,3 @@
+all:
+  uapv_form_extra_autocomplete:
+    query_length: 5

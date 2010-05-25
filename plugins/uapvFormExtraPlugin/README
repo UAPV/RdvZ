@@ -1,0 +1,88 @@
+
+uapvFormExtraPlugin
+===================
+
+Ce plugin permet de regrouper tous les outils et développements récurrents dans les formulaires ; il est fortement lié au plugin uapvAuthPlugin qui doit être installé.
+
+Ce plugin possède plusieurs modules :
+  
+  * autocomplete : ce module est associé au widget uapvWidgetFormJQueryAutocompleter 
+                   qui permet de faire de l'autocompletion sur l'entrée clavier, en
+                   allant chercher dans le Ldap, une base de données, etc... L'action
+                   appelée en AJAX doit juste être écrite (elle existe déjà pour le
+                   Ldap).
+
+
+Installation :
+--------------
+
+A la racine du projet :
+
+  [shell]
+  php symfony plugin:publish-assets
+
+Et voilà !
+
+
+Par défaut l'autocomplétion s'effectue à partir de 5 caractères tapés mais vous
+pouvez le configurer en ajoutant ces lignes dans `apps/frontend/config/app.yml` :
+
+  [yml]
+  all:
+    uapv_form_extra_autocomplete:
+      query_length: 3
+
+
+On doit également autoriser les modules qui seront utilisés :
+
+  [yml]
+  all:
+    .settings:
+      enabled_modules: [..., autocomplete]
+
+
+Pour l'autocompletion Ldap il est indispensable d'avoir défini les correspondances
+des attributs dans `apps/frontend/config/app.yml` :
+
+  [yml]
+  all:
+    profile_var_translation:
+      uid: uid
+      name: sn
+      surname: givenname
+      mail: mail
+
+
+
+Utilisation :
+-------------
+
+* Module autocomplete
+---------------------
+
+Dans le formulaire, ajouter le widget uapvWidgetFormJQueryAutocompleter et 
+préciser l'url qui sera appelée pour faire la recherche :
+
+  [php]
+  // C'est nul !
+  // TODO: trouver un moyen de virer cette ligne...
+  sfContext::getInstance()->getConfiguration()->loadHelpers('Url') ;
+
+  // ...
+
+  $this->widgetSchema['auto'] = $w =  new uapvWidgetFormJQueryAutocompleter (
+                                          array('url' => url_for('autocomplete/ldap'), 'search_attr' => 'mail'), 
+                                          array('size' => 40, 'class' => 'uapv_form_extra_input')
+                                          ) ;
+
+Dans ce cas précis, on va aller chercher dans le ldap en filtrant par 
+l'attribut `mail`.
+
+Utilisation avancée :
+---------------------
+
+* Les fonctions utiles qui font la recherche et formattent les résultats sont
+  à écrire dans lib/uapvFormExtraUtils.class.php.
+
+* Les actions appelées en AJAX par le widget sont à développer selon les besoins
+  du développeur.

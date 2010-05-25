@@ -1,10 +1,11 @@
         -=================-
-    RdvZ version 2.0.2 2010/04/07
+    RdvZ version 2.0.3 2010/05/25
         -=================-
 
 
 Bug tracker : https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
-Developper contact : romain.deveaud@univ-avignon.fr
+Developper contact : - https://listes.univ-avignon.fr/wws/info/gpl 
+                     - romain.deveaud@univ-avignon.fr
 
 
 
@@ -103,7 +104,14 @@ will be automatically updated.
 
 
 
-7. Did you find a bug?
+7. I want LDAP autocompletion on mail adresses
+
+See the README of `plugins/uapvFormExtraPlugin`. Currently a very experimental feature, 
+feel free to contribute !    
+
+
+
+8. Did you find a bug?
 
 Or maybe you think the application or the installer can be improved? Visit our
 bugtracker at https://sourcesup.cru.fr/tracker/?atid=2113&group_id=586&func=browse
@@ -112,7 +120,7 @@ french if you are comfortable with it) ; we will answer as soon as possible.
 
 
 
-8. For a better RdvZ experience...
+9. For a better RdvZ experience...
 
 RdvZ works on Firefox, Google Chrome, Opera and Safari browsers, but its design
 is optimized for the following versions :

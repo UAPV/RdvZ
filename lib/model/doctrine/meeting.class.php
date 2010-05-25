@@ -22,12 +22,17 @@ class meeting extends Basemeeting
   {
     if($this->isNew() && $dont)
     {    
+      $base_string = '' ;
+
+      for($i = 0 ; $i < sfConfig::get('app_hash_nb_chars') ; ++$i)
+        $base_string .= 'z' ;
+
       $min = 0;
-      $max = base_convert ('zzz', 36, 10); // hash is 3 chars max.
+      $max = base_convert ($base_string, 36, 10);
       $id = rand($min, $max) ;
       $hash = base_convert($id, 10, 36) ;
 
-      while(Doctrine::getTable('meeting')->hashExists($hash) || strlen($hash) != 3)
+      while(Doctrine::getTable('meeting')->hashExists($hash) || strlen($hash) != sfConfig::get('app_hash_nb_chars'))
         $hash = base_convert($id, 10, 36) ;
 
       $this->setHash($hash) ;

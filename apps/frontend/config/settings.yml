@@ -27,7 +27,7 @@ all:
     default_culture:        fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
-    enabled_modules: [default, authentication, error]
+    enabled_modules: [default, authentication, error, autocomplete]
     standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings

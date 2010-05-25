@@ -104,7 +104,7 @@ all:
     default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
-    enabled_modules: [default, authentication, error]
+    enabled_modules: [default, authentication, error, autocomplete]
     standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
@@ -201,7 +201,7 @@ all:
     default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
-    enabled_modules: [default, authentication, error]
+    enabled_modules: [default, authentication, error, autocomplete]
     standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
@@ -308,7 +308,7 @@ all:
     default_culture: fr_FR
     # Form security secret (CSRF protection)
     csrf_secret:       dfac37facb8499c931c70a84c303594a8f9b55e0     # Unique secret to enable CSRF protection or false to disable
-    enabled_modules: [default, authentication, error]
+    enabled_modules: [default, authentication, error, autocomplete]
     standard_helpers: [Partial, Cache, Form, I18N]
 
     # Output escaping settings
@@ -352,11 +352,30 @@ fi
 
 echo -e "
 ${txtcyn} ** Configuration SMTP...${txtrst}"
+PS3="Choisissez (1-2) : "
+echo "Voulez-vous utiliser le SMTP en mode SSL?"
+select type_a in "Oui" "Non"
+do
+  break
+done
+
+if [ "$type_a" = "Non" ]; then
 read -er -p "Adresse du serveur SMTP (ex : smtp.univ-avignon.fr) : " smtp_url
 read -er -p "Port du SMTP : " smtp_port                                                                     
+smtp_user="~"
+smtp_pass="~"             
+smtp_encrypt="~"
+elif [ "$type_a" = "Oui" ]; then
+read -er -p "Adresse du serveur SMTP (ex : smtp.univ-avignon.fr) : " smtp_url
+read -er -p "Port du SMTP : " smtp_port                                                                     
+read -er -p "Nom d'utilisateur ayant les droits SMTP : " smtp_user
+read -ers -p "Mot de passe utilisateur : " smtp_pass                                                       
+smtp_encrypt="ssl"
+fi
 
 echo -e "
 ${txtcyn} ** Informations complémentaires...${txtrst}"
+read -er -p "Nombre de charactères utilisés pour coder les sondages (3 est très correct) : " hash_nb_chars
 read -er -p "Url de la page RdvZ (ex : rdvz.univ-avignon.fr) : " url
 read -er -p "Nom de votre organisation (ex : Université d'Avignon) : " org
 read -er -p "Adresse mail de l'application (ex : rdvz-admin@univ-avignon.fr) : " mail_sender
@@ -413,9 +432,9 @@ all:
         param:
           host:       ${smtp_url}
           port:       ${smtp_port}
-          encryption: ~
-          username:   ~
-          password:   ~
+          encryption: ${smtp_encrypt}
+          username:   ${smtp_user}
+          password:   ${smtp_pass}
 
   routing:
     class: sfPatternRouting
@@ -433,6 +452,8 @@ echo "
   url: ${url}
   org_name: \"${org}\"
   mail_sender: \"${mail_sender}\"
+
+  hash_nb_chars: ${hash_nb_chars}
   
   .array:
     languages:
@@ -444,4 +465,5 @@ echo -e "${txtgrn}[OK]${txtrst}"
 echo -n "Création des tables de la base de données..."
 php symfony doctrine:build --all-classes --and-migrate
 echo -e "${txtgrn}[OK]${txtrst}"
+php symfony plugin:publish-assets
 php symfony cc

@@ -1,12 +1,16 @@
 RdvZ ChangeLog
 
 version 2.0.3
-  2010-05-06 Romain Deveaud <romain.deveaud@univ-avignon.fr>
+  2010-05-25 Romain Deveaud <romain.deveaud@univ-avignon.fr>
 
   * new meeting bookmarking feature.
   * user help is now available.
   * svn externals pointing to private repositories fixed.
   * logout bugfix if not using a CAS server.
+  * configuration of secure SMTP connection in install script.
+  * configuration of notification mails sender in the install script.
+  * configuration of the number of hash characters in install script.
+  * LDAP mail autocomplete is available but needs a little hack, see README.
 
 version 2.0.2
   2010-04-09 Romain Deveaud <romain.deveaud@univ-avignon.fr>
