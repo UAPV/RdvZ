@@ -161,7 +161,7 @@ $(document).ready(function()
   {
     if(jQuery(this).parent().parent().nextAll().length == countDate)
     {
-      currentMaxId['Mail'] = $('.dynamic_mail:last').attr('id').split('_')[3]*1+1 ;
+      currentMaxId['Mail'] = $('.dynamic_mail:last').attr('id').split('_').pop()*1+1 ;
       getInputWidget(this,currentMaxId['Mail'],'Mail','') ;
       ++countMail ;
     }
