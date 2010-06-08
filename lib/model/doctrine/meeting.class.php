@@ -135,11 +135,19 @@ class meeting extends Basemeeting
 
     $bests = array() ;
     $md = $meeting_dates ;
+
+    $counts = array() ;
     
     foreach($t as $res)
+    {
       if($res->getCnt()%1000 == $max) $bests[] = $res->getDateId() ;
+      $counts[$res->getDateId()] = $res->getCnt()%1000 ;
+//      $total += $res->getCnt()%1000 ;
+    }
 
-    return array('dates' => $dates, 'comments' => $comments, 'bests' => $bests, 'md' => $md, 'months' => $months, 'votes' => $votes) ;
+    $counts['max'] = $max ;
+
+    return array('dates' => $dates, 'comments' => $comments, 'bests' => $bests, 'md' => $md, 'months' => $months, 'votes' => $votes, 'counts' => $counts) ;
   }
 
   /**

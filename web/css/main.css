@@ -159,6 +159,30 @@ background-color : #e5e5e5 ;
 border : 1px solid grey ;
 }
 
+table#poll td.poll_count {
+font-weight : bold ;
+text-shadow: 1px 1px 1px #ddd ;
+letter-spacing : -1px ;
+}
+
+table#poll td.poll_count.low {
+color : #B40404 ;
+}
+table#poll td.poll_count.mid_low {
+color : #B45F04 ;
+}
+table#poll td.poll_count.mid_high {
+color : #AEB404 ;
+}
+table#poll td.poll_count.high {
+color : #5FB404 ;
+}
+
+table#poll td img.best {
+margin-bottom : -3px ;
+margin-left : 5px ;
+}
+
 ul.my_meetings { 
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;

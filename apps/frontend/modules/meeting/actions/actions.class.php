@@ -51,6 +51,7 @@ class meetingActions extends sfActions
     $this->md       = $vars['md'] ;
     $this->months   = $vars['months'] ;
     $this->votes    = $vars['votes'] ;
+    $this->counts   = $vars['counts'] ;
   }
 
   /**
