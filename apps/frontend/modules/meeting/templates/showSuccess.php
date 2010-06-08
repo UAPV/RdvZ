@@ -179,21 +179,23 @@
 <tr>
 <td class="poll_empty"></td>
 <?php foreach($md as $d): ?>
-  <td class="poll_count 
-  <?php $prct = $counts[$d->getId()]*100/$counts['max'] ?>
-  <?php if($prct <= 25): ?>
-    low
-  <?php elseif($prct <= 50): ?>
-    mid_low
-  <?php elseif($prct <= 75): ?>
-    mid_high
-  <?php else: ?>
-    high
-  <?php endif ?>"><?php echo $counts[$d->getId()] ?>
-  <?php if($counts[$d->getId()] == $counts['max']): ?>
-<img class="best" src="<?php echo image_path('/images/star_16.png') ?>" alt="Starred meeting" title="<?php echo __('Meilleur choix') ?>" />
+  <?php if(isset($counts[$d->getId()])): ?>     
+    <td class="poll_count 
+    <?php $prct = $counts[$d->getId()]*100/$counts['max'] ?>
+    <?php if($prct <= 25): ?>
+      low
+    <?php elseif($prct <= 50): ?>
+      mid_low
+    <?php elseif($prct <= 75): ?>
+      mid_high
+    <?php else: ?>
+      high
+    <?php endif ?>"><?php echo $counts[$d->getId()] ?>
+    <?php if($counts[$d->getId()] == $counts['max']): ?>
+  <img class="best" src="<?php echo image_path('/images/star_16.png') ?>" alt="Starred meeting" title="<?php echo __('Meilleur choix') ?>" />
+    <?php endif ?>
+    </td>
   <?php endif ?>
-  </td>
 <?php endforeach; ?>
 </tr>
 <!--
