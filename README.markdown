@@ -1,8 +1,9 @@
-# RdvZ 2.0.3 README
+# RdvZ 2.0.3
 
 
 Bug tracker : http://github.com/UAPV/RdvZ/issues
 Developper contact :  
+
 * https://listes.univ-avignon.fr/wws/info/gpl 
 * romain.deveaud@univ-avignon.fr
 

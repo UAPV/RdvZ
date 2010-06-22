@@ -1,4 +1,4 @@
-# RdvZ 2.0.3 TODO List
+# RdvZ 2.0.3
 
 
 None of the following items are in any order of importance or difficulty.
