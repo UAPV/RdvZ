@@ -11,7 +11,10 @@
 <div id="url_meet_disc"><?php echo __('Copiez/collez ce lien pour partager ce sondage avec vos collaborateurs') ?> !</div>
 <input type="text" class="search url_meet" readonly="readonly" value="http://<?php echo sfConfig::get('app_url').url_for('auth/mh?m='.$meeting->getHash()) ?>" /></div>
 <?php endif; ?>
-<h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?
+<!--<h2><img src="<?php echo image_path('/images/book_bookmarks_32.png') ?>" alt="Disponibilités" class="icon_32" /> <?php echo __('Quelles sont vos disponibilités') ?>?
+</h2>-->
+<div id="meeting_infos">
+  <span id="meeting_title"><?php echo $meeting->getTitle() ?></span> <span id="meeting_author">(<?php $createur = Doctrine::getTable('user')->find($meeting->getUid()) ; echo $createur->getSurname().' '.$createur->getName() ?>)</span>
 <?php if($sf_user->hasCredential('member')): ?>
   <?php echo jq_link_to_remote (
         $meeting->isFollowedBy($sf_user->getProfileVar(sfConfig::get('app_user_id'))) 
@@ -21,24 +24,10 @@
         array('id' => 'follow_link')) 
   ?>
 <?php endif; ?>
-</h2>
-<table>
-  <tbody>
-    <tr>
-      <th><?php echo __('Titre') ?> : </th>
-      <td><?php echo $meeting->getTitle() ?></td>
-    </tr>
-    <tr>
-      <th><?php echo __('Description') ?> : </th>
-      <td><?php echo $meeting->getDescription() ?></td>
-    </tr>
-    <tr>
-      <th><?php echo __('Createur') ?> : </th>
-      <td><?php $createur = Doctrine::getTable('user')->find($meeting->getUid()) ; echo $createur->getSurname().' '.$createur->getName() ?></td>
-    </tr>
-  </tbody>
-</table>
-<br />
+  <div id="meeting_desc">
+    <?php echo nl2br($meeting->getDescription()) ?>
+  </div>
+</div>      
 <?php echo __('Indiquez votre sélection en cliquant sur les cases à cocher').'. '.__('Utilisez ensuite le bouton "Voter" pour valider votre vote') ?>.
 <br />
 <div class="contextMenu" id="poll_menu">

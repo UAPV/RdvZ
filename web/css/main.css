@@ -138,6 +138,30 @@ margin-left : 10px ;
 width : 250px ;
 }
 
+#meeting_infos {
+letter-spacing: -1px ;
+margin-bottom : 15px ;        
+}
+
+#meeting_infos #meeting_title {
+color: #555 ;
+margin-left : 5px ;
+font-size: 2.3em;
+font-weight : bold ;
+text-shadow: 1px 1px 3px #aaa ;
+}
+
+#meeting_infos #meeting_author {
+color : #aaa ;
+font-size: 1.5em;
+}
+
+#meeting_infos #meeting_desc {
+width : 500px ;
+padding : 15px ;
+text-align : justify ;          
+}
+
 table#poll td.poll_month {
 border : 1px solid grey ;
 background-color : #c0c0c0 ;
