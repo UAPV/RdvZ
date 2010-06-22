@@ -1,4 +1,4 @@
-#  RdvZ version 2.0.3
+#  RdvZ 2.0.3 INSTALL
 
 Before running the install script please read carefully the README file,
 especially the 'Requirements' section.
