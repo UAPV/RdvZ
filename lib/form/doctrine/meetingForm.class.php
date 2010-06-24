@@ -52,7 +52,7 @@ class meetingForm extends BasemeetingForm
 
     foreach($dates as $i => $date)
     {
-      $this->widgetSchema['input_date_'.$i] = new rdvzWidgetFormInputDateText(array(),array('class' => 'dynamic_date', 'size' => '10')) ;
+      $this->widgetSchema['input_date_'.$i] = new rdvzWidgetFormInputDateText(array(),array('class' => 'dynamic_date', 'size' => '10', 'disabled' => 'disabled')) ;
       $this->widgetSchema['input_date_'.$i]->setCommentValue($comments[$i]) ; 
       $this->widgetSchema['input_date_'.$i]->setAttribute('value',$date) ; 
 
@@ -82,7 +82,7 @@ class meetingForm extends BasemeetingForm
 
   public function createDateInput()
   {
-    $w = new rdvzWidgetFormInputDateText(array(), array('class' => 'dynamic_date', 'size' => '10')) ;
+    $w = new rdvzWidgetFormInputDateText(array(), array('class' => 'dynamic_date', 'size' => '10', 'disabled' => 'disabled')) ;
     return $w ;
   }
 

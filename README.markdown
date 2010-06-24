@@ -6,7 +6,7 @@
 Developper contact :  
 
 * [through a list](https://listes.univ-avignon.fr/wws/info/gpl)
-* [or by mail](romain.deveaud@univ-avignon.fr)
+* or by mail : romain.deveaud@univ-avignon.fr
 
 
 

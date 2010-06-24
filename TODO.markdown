@@ -14,7 +14,6 @@ RdvZ development
 * when creating a new meeting, adding a new date moves the calendar but it shouldn't.
 * configuration of closing and deleting dates.
 * mail notification when a meeting has been edited.
-* input_date_* text field needs to be read-only.
 * find a nice way to include the LDAP autocomplete version of meetingForm in the install script.
 
 Features that would be nice
