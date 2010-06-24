@@ -1,6 +1,7 @@
 # RdvZ 2.0.3
 
 
+[Project website](http://gpl.univ-avignon.fr/rdvz/)
 [Bug tracker](http://github.com/UAPV/RdvZ/issues)
 
 Developper contact :  
