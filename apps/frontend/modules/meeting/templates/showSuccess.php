@@ -86,7 +86,7 @@
   <?php $i = 0 ; ?>
   <!-- Les lignes qui affichent les votes effectués... -->
   <?php foreach($votes as $user => $dts): ?>
-  <tr>
+  <tr class="tr_votes">
     <?php $usr = Doctrine::getTable('user')->find($user) ; ?>
     <?php if($sf_user->getAttribute('edit') && ($user == $sf_user->getProfileVar(sfConfig::get('app_user_id')) || $user == $sf_user->getAttribute('participant_name')) && !$meeting->getClosed()): ?>
       <form action="<?php echo url_for('meeting/validvote?h='.$meeting->getHash()) ?>" method="post" name="edit_form"> 

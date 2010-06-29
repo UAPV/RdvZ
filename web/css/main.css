@@ -183,6 +183,10 @@ background-color : #e5e5e5 ;
 border : 1px solid grey ;
 }
 
+table#poll tr.tr_votes td {
+min-width : 25px ;  
+}
+
 table#poll td.poll_count {
 font-weight : bold ;
 text-shadow: 1px 1px 1px #ddd ;
