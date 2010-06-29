@@ -18,7 +18,7 @@ There is a datepicker below the meeting creation form, you just have to click on
 
 RdvZ doesn't handle schedule management to be as customisable as possible. For example if you wan't to create a meeting for Thursday April, 22nd and propose these schedules : 8h-10h, 11h-13h and 15h-17h, you juste have to select the April 22nd three times and use the __Comment__ field to display the schedules, or anything else !
 
-![](/images/doc/date_comments.png)
+![](../images/doc/date_comments.png)
 
 ## Do I have to fill all the fields to create a meeting?
 
@@ -32,7 +32,7 @@ Two possibilities :
 
 * If you go on the meeting poll page you can see the link to send to other people (only the creator of the meeting can watch it).
 
-![](/images/doc/link_en.png)
+![](../images/doc/link_en.png)
 
 ## How can I vote for the schedules that suits to me?
 

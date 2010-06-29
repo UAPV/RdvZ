@@ -15,6 +15,5 @@
 
     <?php echo $sf_content ?>
     </div>
-    <?php include_javascripts() ?>
   </body>
 </html>

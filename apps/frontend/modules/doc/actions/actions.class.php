@@ -19,7 +19,7 @@ class docActions extends sfActions
   {
     require_once(sfConfig::get('sf_lib_dir').'/vendor/markdown.php');
 
-    $d = file_get_contents(sfConfig::get('sf_root_dir').'/doc/user_doc_'.$this->getUser()->getCulture().'.markdown') ;
+    $d = file_get_contents(sfConfig::get('sf_web_dir').'/doc/user_doc_'.$this->getUser()->getCulture().'.markdown') ;
 
     $d = htmlentities($d, ENT_QUOTES, 'UTF-8');
     $this->body = Markdown($d) ;

@@ -19,7 +19,7 @@ Vous pouvez voir un calendrier en bas de la page de création d'un rendez-vous, 
 
 RdvZ n'implémente pas la gestion des horaires afin de ne pas limiter ses utilisateurs. Si vous voulez par exemple créer un rendez-vous pour le jeudi 22 avril et proposer les créneaux 8h-10h, 11h-13h et 15h-17h, sélectionnez trois fois la date du jeudi 22 avril et utilisez le champ _Commentaire_ pour préciser vos horaires, ou n'importe quelle autre précision !
 
-![](/images/doc/date_comments.png)
+![](../images/doc/date_comments.png)
 
 ## Dois-je remplir tous les champs pour créer un rendez-vous?
 
@@ -33,7 +33,7 @@ Vous avez plusieurs possibilités ici :
 
 * Si vous vous rendez sur la page du sondage après la création du rendez-vous vous pourrez voir le lien à envoyer (visible par le créateur uniquement).
 
-![](/images/doc/link_fr.png)
+![](../images/doc/link_fr.png)
 
 ## Comment voter pour les horaires qui m'intéressent?
 
