@@ -27,7 +27,6 @@ Features that would be nice
 RdvZ evolution
 ==============
 
-* merging identical dates when showing the poll table.
 * installer : set default values on user input.
 * bugfixes.
 * deployment procedures improvement.

@@ -80,7 +80,7 @@ class meeting extends Basemeeting
       {
         // Little trick : if there is no vote associated to this date, it means that
         // the owner of the meeting probably added it afterwards.
-        // We have to handle it and create 'fake' votes wich are blanks and penalized.
+        // We have to handle it and create 'fake' votes which are blanks and penalized.
         
         // To do this, we retrieve all the users who already voted for this meeting
         // and add them this 'fake' vote.

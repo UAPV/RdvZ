@@ -57,10 +57,14 @@
   <!-- La ligne qui affiche les jours... -->
     <td class="poll_empty"></td>
     <?php foreach($dates as $m => $days): ?>
+      <?php $displayed_days = array() ?>
+      <?php $days_values = array_count_values($days->getRawValue()) ?>
       <?php foreach($days as $d): ?>
-        <td colspan="1" class="poll_td">
+        <?php if(in_array($d, $displayed_days)) continue ?>
+        <td colspan="<?php echo $days_values[$d] ?>" class="poll_td">
         <?php echo $d ?>
         </td>
+        <?php $displayed_days[] = $d ?>
       <?php endforeach; ?>
     <?php endforeach; ?>
   </tr>
