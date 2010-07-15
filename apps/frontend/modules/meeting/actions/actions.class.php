@@ -167,14 +167,17 @@ class meetingActions extends sfActions
       $poll = new meeting_poll() ;
 
       if($this->getUser()->hasCredential('member'))
+      {
         $poll->setUid($this->getUser()->getProfileVar(sfConfig::get('app_user_id'))) ;
+        $poll->setDateId($date->getId()) ;
+      }
       else
       {
-        $poll->setParticipantName($votes['name']) ;
-        $this->getUser()->setAttribute('participant_name',$votes['name']) ;
+        $name = $votes['name'] ;
+        $poll = Doctrine::getTable('meeting_poll')->retrieveByUserNameAndDateId($date->getId(), $name) ;
+        $poll->setParticipantName($name) ;
+        $this->getUser()->setAttribute('participant_name',$name) ;
       }
-
-      $poll->setDateId($date->getId()) ;
 
       if(in_array($date->getId(), array_keys($votes)))
         $poll->setPoll(1) ;
