@@ -5,6 +5,7 @@ version 2.0.4
 
   * vote counts are now visible.
   * new design for the poll page.
+  * new task for ldap user information update.
 
 version 2.0.3
   2010-05-25 Romain Deveaud <romain.deveaud@univ-avignon.fr>
