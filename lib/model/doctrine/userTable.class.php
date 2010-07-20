@@ -34,4 +34,12 @@ class userTable extends Doctrine_Table
     $user = $q->execute() ;
     return isset($user[0]) ? $user[0] : null;
   }
+
+  public function retrieveLdapUsers()
+  {
+    $q = $this->createQuery('u')
+      ->where('ldap_id is not null') ;
+
+    return $q->execute() ;
+  }
 }
