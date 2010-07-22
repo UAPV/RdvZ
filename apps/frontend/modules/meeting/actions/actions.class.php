@@ -174,7 +174,13 @@ class meetingActions extends sfActions
       else
       {
         $name = $votes['name'] ;
-        $poll = Doctrine::getTable('meeting_poll')->retrieveByUserNameAndDateId($date->getId(), $name) ;
+        $p = Doctrine::getTable('meeting_poll')->retrieveByUserNameAndDateId($date->getId(), $name) ;
+
+        if(is_null($p))
+          $poll->setDateId($date->getId()) ;
+        else
+          $poll = $p ;
+
         $poll->setParticipantName($name) ;
         $this->getUser()->setAttribute('participant_name',$name) ;
       }
