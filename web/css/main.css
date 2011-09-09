@@ -117,7 +117,7 @@ padding-bottom : 7px ;
 -webkit-box-shadow: inset 0 -4px 4px rgba(0,0,0,0.05);
 }
 
-#user_infos img {
+#user_infos img, #user_infos span#back_home {
 margin-left : 3px ;
 margin-bottom : -4px ;
 border-left : 1px solid #d8d8d8 ;

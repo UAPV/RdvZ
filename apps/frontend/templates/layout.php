@@ -14,6 +14,9 @@
 	if (top.location != self.document.location) {
 		// if rdvz is displayed through a web portal hide logos and logout box
 		document.getElementById('logo').style.display = 'none';
+		document.getElementById('logout_button').style.display = 'none';
+	} else {
+		document.getElementById('back_home').style.display = 'none';
 	}
 } 
     </script>
@@ -46,7 +49,8 @@
         <?php endforeach ; ?>
         <?php echo mail_to('romain.deveaud@univ-avignon.fr', '<img src="'.image_path('/images/71.png').'" alt="Bug" /> '.__('Signaler un bogue')) ?>
         <?php echo link_to('<img src="'.image_path('/images/51.png').'" alt="Help" /> '.__('Aide'), url_for('help'), array('popup' => array('RdvZ '.__('Aide'),'left=320,top=200,width=1000,height=700,scrollbars=yes'))) ?>
-        <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" />', 'out') ?>
+        <?php echo link_to('<img src="'.image_path('/images/shutdown.png').'" alt="'.__('Déconnexion').'" title="'.__('Déconnexion').'" id="logout_button" />', 'out') ?>
+	<?php echo link_to('<span id="back_home">Accueil<span>', 'homepage') ?>
       </div>
     <?php endif ; ?>
     <div id="footer">
