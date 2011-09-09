@@ -12,7 +12,7 @@
     <script type="text/javascript">
     function checkPortal() {
 	if (top.location != self.document.location) {
-		// if filez is displayed through a web portal hide logos and logout box
+		// if rdvz is displayed through a web portal hide logos and logout box
 		document.getElementById('logo').style.display = 'none';
 	}
 } 
