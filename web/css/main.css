@@ -46,7 +46,7 @@ right: 0px;
 bottom: 0px;
 left: 0px;
 /*  width:650px;*/
-width:95% ;
+width:90% ;
 height: 100%;
 margin: auto;
 border : 1px solid #B9B9B9 ;
@@ -140,7 +140,8 @@ width : 250px ;
 
 #meeting_infos {
 letter-spacing: -1px ;
-margin-bottom : 15px ;        
+margin-bottom : 15px ;
+margin-top : 15px;  
 }
 
 #meeting_infos #meeting_title {
@@ -220,7 +221,7 @@ padding : 0px ;
 margin : 0px ;          
 list-style: none ;
 float : left ;
-width : 700px ;        
+width : 100%;        
 letter-spacing : -1px ;
 }
 
@@ -301,9 +302,10 @@ display : none ;
 }
 
 ul.my_meetings li .actions a {
-padding-left : 10px ;  
-padding-right : 10px ;  
+padding-left : 6px ;  
+padding-right : 6px ;  
 border-left : 1px solid #d8d8d8 ;
+font-size:0.9em;
 }
 
 ul.my_meetings li .actions a.no_border {
@@ -380,17 +382,15 @@ text-align : justify ;
 }
 
 #meet_disc_box {
-position : absolute ;
 top : 10px ;
-left : 200px ;      
 }
 
 #url_meet_disc {
 color: #777;
-font-size: 1.5em;
+font-size: 1.1em;
 letter-spacing: -0.1em ;
 margin-bottom : 7px ;
-margin-left : -10px ;
+margin-left : 0px ;
 text-shadow: 1px 1px 1px #ddd ;
 }
 
@@ -401,9 +401,8 @@ font-size : 1.4em ;
 #m_search {
 background: transparent url('../images/search.png') no-repeat 0px 0px;  
 color: #777;
-width: 525px;
+width: 85%;
 margin-bottom : 20px ;
-margin-left : 20px ;
 }
 
 .error_name {
@@ -411,15 +410,15 @@ border : 4px solid #a00000;
 }
 
 .search {
-font-size: 1.5em;
+font-size: 1.3em;
 height: 33px;
-padding: 7px 50px 0px;
+padding: 7px 20px 0px 50px;
 }
 
 .url_meet {
 color: #777;
-width: 450px;
-padding : 7px 30px 0px ;       
+width: 100%;
+padding : 7px 0px 0px 7px;       
 }
 
 .comment_present {

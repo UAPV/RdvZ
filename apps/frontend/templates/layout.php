@@ -9,11 +9,19 @@
       <?php endif; ?>
     </title>
     <script type="text/javascript" src="<?php echo javascript_path('jquery-1.4.2.min.js') ?>"></script>
+    <script type="text/javascript">
+    function checkPortal() {
+	if (top.location != self.document.location) {
+		// if filez is displayed through a web portal hide logos and logout box
+		document.getElementById('logo').style.display = 'none';
+	}
+} 
+    </script>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_stylesheets() ?>
   </head>
-  <body>
+  <body onLoad="checkPortal();">
     <?php echo link_to('<img src="'.image_path('/images/rdvz_logo3_final.png').'" id="logo" />','homepage') ?>
 <!--    <div id="menu">
     </div> -->
