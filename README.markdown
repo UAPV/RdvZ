@@ -26,7 +26,7 @@ without being authenticated.
 Licence
 =======
 
-See the LICENSE file.
+[CeCILL FREE SOFTWARE LICENSE AGREEMENT](https://github.com/UAPV/RdvZ/blob/master/LICENSE)
 
 
 
